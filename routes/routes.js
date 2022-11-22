@@ -1,7 +1,7 @@
 const express = require('express');
 const routeur = express.Router();
-const identificationController = require('../controllers/ctrlIdentification')
+const connexionController = require('../controllers/ctrlConnexion')
 
-routeur.get('/identification', identificationController.afficherIdentification)
+routeur.get('/connexion', connexionController.afficherConnexion)
 
 module.exports = routeur;
