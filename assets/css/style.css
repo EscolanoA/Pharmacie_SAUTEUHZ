@@ -1,0 +1,17 @@
+body {
+    font-family: Lato;
+    margin: 0;
+}
+
+.header {
+    background-color: #C3E5F8;
+}
+
+#logo {
+    max-width: 40px;
+}
+
+.btnheader {
+    background-color: #82BAEB;
+    border-radius: 5px;
+}
