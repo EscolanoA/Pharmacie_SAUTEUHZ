@@ -13,18 +13,29 @@ body {
 .header {
     background-color: #C3E5F8;
     text-align: center;
+    padding-bottom: 10px;
+
 }
 
 #logo {
+    
     max-width: 40px;
 }
 
 .btnheader {
     background-color: #82BAEB;
     border-radius: 5px;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0px;
 }
 
 .btnlogout {
-    width: fit-content;
-    background-image: url("/img/logout.png");
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
 }
