@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato&family=Open+Sans:wght@700&display=swap');
 
-/*
-font-family: 'Anton', sans-serif;
-font-family: 'Lato', sans-serif;
-font-family: 'Open Sans', sans-serif;
-*/
+
 
 body {
     margin: 0;
@@ -14,28 +10,47 @@ body {
     background-color: #C3E5F8;
     text-align: center;
     padding-bottom: 10px;
+    padding-top: 10px;
 
 }
 
 #logo {
-    
-    max-width: 40px;
+    float: left;
+    max-width: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+
 }
 
 .btnheader {
     background-color: #82BAEB;
+    font-family: 'Anton', sans-serif;
     border-radius: 5px;
     padding: 12px 16px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     border: 0px;
+    margin-left: 10%;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
 }
 
 .btnlogout {
-    background-color: DodgerBlue;
+    float: right;
+    background-color: #FF6969;
+    font-family: 'Anton', sans-serif;
+    border-radius: 5px;
     border: none;
-    color: white;
+    color: black;
     padding: 12px 16px;
-    font-size: 16px;
+    font-size: 15px;
+    margin-left: 10%;
+    margin-right: 10px;
     cursor: pointer;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
 }
+
+/*
+font-family: 'Anton', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif;
+*/
