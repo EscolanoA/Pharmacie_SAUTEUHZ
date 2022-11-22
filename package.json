@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
     "express-validator": "^6.14.2",
     "iniparser": "^1.0.5",
     "mongoose": "^6.6.5",
