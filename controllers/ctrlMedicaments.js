@@ -1,10 +1,12 @@
 let modelConnexion = require('../models/modelConnexion.js')
+let mysqlConnexion = modelConnexion.mysqlConnexion
+
 const afficherMedicaments = (req, res) => {
 
-    modelConnexion.query('SELECT * FROM Medicaments', (err, lignes) => {
+    mysqlConnexion.query('SELECT * FROM Medicaments', (err, lignes) => {
         if (!err) {
-            console.log(lignes)
-            res.render("./medicaments", { medicaments: lignes })
+            console.log("toto" + lignes)
+          //  res.render("./medicaments", { medicaments: lignes })
 
         }
     })

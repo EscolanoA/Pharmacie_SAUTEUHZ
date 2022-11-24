@@ -9,8 +9,7 @@ let app = express()
 app.set('view engine', 'ejs')
 app.use(express.static('assets'))
 app.use(express.static('views'))
-app.use(express.static('imgg'));
-
+app.use(express.static('img'))
 
 app.use(express.urlencoded())
 
