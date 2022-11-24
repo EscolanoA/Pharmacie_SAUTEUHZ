@@ -156,6 +156,6 @@ ALTER TABLE
 ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_pathologie_id_foreign` FOREIGN KEY(`ordonnance_pathologie_id`) REFERENCES `Pathologies`(`pathologie_id`);
 ALTER TABLE
-    `Posologies` ADD CONSTRAINT `posologies_posologie_ordonnance_id_foreign` FOREIGN KEY(`posologie_ordonnance_id`) REFERENCES `Ordonnances`(`ordonnance_id`);
+    `Posologies` ADD CONSTRAINT `posologies_posologie_ordonnance_id_foreign` FOREIGN KEY(`posologie_ordonnance_id`) REFERENCES `Ordonnances`(`ordonnance_id`)ON DELETE CASCADE;
 ALTER TABLE
-    `Posologies` ADD CONSTRAINT `posologies_posologie_medicament_id_foreign` FOREIGN KEY(`posologie_medicament_id`) REFERENCES `Medicaments`(`medicament_id`);
+    `Posologies` ADD CONSTRAINT `posologies_posologie_medicament_id_foreign` FOREIGN KEY(`posologie_medicament_id`) REFERENCES `Medicaments`(`medicament_id`) ON DELETE CASCADE;

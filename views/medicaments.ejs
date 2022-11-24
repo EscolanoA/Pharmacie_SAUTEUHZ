@@ -1,9 +1,21 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des médicaments </div>
-    <% medicaments.forEach(function(user){ %>
+    <a id="attention"></a>
+    <% medicaments.forEach(function(user,i){ %>
         <li>
+
             <a href="http://localhost:3000/medicaments/modifier/<%=user.medicament_id%>">&#9998;</a>
-            <a href="http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>">&#10006;</a>
+
+            <button onclick="popupAttentionOn<%= i+1 %>()">supprimer</button>
+
+            <script>
+                function popupAttentionOn<%= i+1 %>() {
+                    document.getElementById("attention").innerHTML = `vous etes sur ? <button onClick="location.href='http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                }
+            </script>
+
+            <!--<a href="http://localhost:3000/medicaments/supprimer/<%=//user.medicament_id%>">&#10006;</a>-->
+
             <strong>
                 <%= user.medicament_nom %>
             </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
@@ -25,3 +37,9 @@
                     <button type="submit">Envoyer</button>
                 </div>
             </form>
+
+            <script>
+                function popupAttentionOff() {
+                    document.getElementById("attention").innerHTML = ""
+                }
+            </script>
