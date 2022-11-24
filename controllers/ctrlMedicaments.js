@@ -5,7 +5,7 @@ const afficherMedicaments = (req, res) => {
 
     mysqlConnexion.query('SELECT * FROM Medicaments', (err, lignes) => {
         if (!err) {
-            console.log(lignes)
+            //console.log(lignes)
             res.render("./medicaments", { medicaments: lignes })
 
         } else {
@@ -16,12 +16,12 @@ const afficherMedicaments = (req, res) => {
 
 const ajouterMedicament = (req, res) => {
 
-    let msgID = req.body.id
-    let msgName = req.body.name
-    let msgMsg = req.body.msg
-    let msgNote = req.body.note
+    let nom = req.body.nom
+    let stock = req.body.stock
+
+    let requeteSQL = "INSERT INTO Medicaments (medicament_nom, medicament_boitesstock) VALUES "+ ' ("' + nom + '",' + stock + ')'
     
-    mysqlConnexion.query('DELETE FROM Medicaments WHERE medicament_id = ?;', [id], (err) => {
+    mysqlConnexion.query(requeteSQL, (err) => {
         if (!err) {
             res.redirect("/medicaments");
 

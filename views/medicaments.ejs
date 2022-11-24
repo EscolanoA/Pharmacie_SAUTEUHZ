@@ -1,27 +1,27 @@
 <%- include('header') %>
-<div> Bienvenue sur la page des médicaments </div>
-<% medicaments.forEach(function(user){ %>
-    <li>
-        <a href="http://localhost:3000/medicaments/modifier/<%=user.medicament_id%>">&#9998;</a>
-        <a href="http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>">&#10006;</a>
-        <strong>
-            <%= user.medicament_nom %>
-        </strong> Nb Boites en stock  : <%= user.medicament_boitesstock %>
-    </li>
-    <% })%>
+    <div> Bienvenue sur la page des médicaments </div>
+    <% medicaments.forEach(function(user){ %>
+        <li>
+            <a href="http://localhost:3000/medicaments/modifier/<%=user.medicament_id%>">&#9998;</a>
+            <a href="http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>">&#10006;</a>
+            <strong>
+                <%= user.medicament_nom %>
+            </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
+        </li>
+        <% })%>
 
 
-    <div> Ajout d'un médicament </div>
+            <div> Ajout d'un médicament </div>
 
-    <form action="/medicaments/ajouter" method="POST" enctype="application/x-www-formurlencoded">
-        <div class="field">
+            <form action="/medicaments/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                <div>
 
-            <label for="nom">nom : </label>
-            <input type="text" name="nom" id="nom" >
+                    <label for="nom">nom : </label>
+                    <input type="text" name="nom" id="nom">
 
-            <label for="stock">Quantité en stock : </label>
-            <input type="number" name="stock" id="stock" value="0">
-        
-        <button type="submit" >Envoyer</button>
-    </div>
-    </form>
+                    <label for="stock">Quantité en stock : </label>
+                    <input type="number" name="stock" id="stock" value="0">
+
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
