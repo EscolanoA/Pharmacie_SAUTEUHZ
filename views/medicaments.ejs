@@ -9,3 +9,19 @@
         </strong> Nb Boites en stock  : <%= user.medicament_boitesstock %>
     </li>
     <% })%>
+
+
+    <div> Ajout d'un médicament </div>
+
+    <form action="/medicaments/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+        <div class="field">
+
+            <label for="nom">nom : </label>
+            <input type="text" name="nom" id="nom" >
+
+            <label for="stock">Quantité en stock : </label>
+            <input type="number" name="stock" id="stock" value="0">
+        
+        <button type="submit" >Envoyer</button>
+    </div>
+    </form>

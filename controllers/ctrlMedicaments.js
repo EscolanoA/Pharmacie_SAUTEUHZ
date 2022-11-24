@@ -14,6 +14,25 @@ const afficherMedicaments = (req, res) => {
     })
 }
 
+const ajouterMedicament = (req, res) => {
+
+    let msgID = req.body.id
+    let msgName = req.body.name
+    let msgMsg = req.body.msg
+    let msgNote = req.body.note
+    
+    mysqlConnexion.query('DELETE FROM Medicaments WHERE medicament_id = ?;', [id], (err) => {
+        if (!err) {
+            res.redirect("/medicaments");
+
+        } else {
+            console.log(err)
+            res.redirect("/medicaments");
+        }
+    })
+}
+
+
 const supprimerMedicament = (req, res) => {
 
     let id = req.params.id
@@ -29,7 +48,9 @@ const supprimerMedicament = (req, res) => {
 }
 
 
+
 module.exports = {
     afficherMedicaments,
-    supprimerMedicament
+    ajouterMedicament,
+    supprimerMedicament,
 }

@@ -36,9 +36,10 @@ routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController
 routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)
 
 routeur.get('/medicaments', medicamentsController.afficherMedicaments)
+routeur.get('/medicaments/ajouter', medicamentsController.ajouterMedicament)
 routeur.get('/medicaments/supprimer/:id', medicamentsController.supprimerMedicament)
 //sous pages
-routeur.get('/medicaments/modifMedicaments', modifMedicamentsController.afficherModifMedicaments)
+routeur.get('/medicaments/modifier/:id', modifMedicamentsController.afficherModifMedicaments)
 
 
 module.exports = routeur;
