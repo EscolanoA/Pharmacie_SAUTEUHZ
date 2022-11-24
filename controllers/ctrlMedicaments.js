@@ -5,14 +5,31 @@ const afficherMedicaments = (req, res) => {
 
     mysqlConnexion.query('SELECT * FROM Medicaments', (err, lignes) => {
         if (!err) {
-            console.log("toto" + lignes)
-          //  res.render("./medicaments", { medicaments: lignes })
+            console.log(lignes)
+            res.render("./medicaments", { medicaments: lignes })
 
+        } else {
+            console.log(err)
         }
     })
-    res.render('./medicaments')
 }
 
+const supprimerMedicament = (req, res) => {
+
+    let id = req.params.id
+    mysqlConnexion.query('DELETE FROM Medicaments WHERE medicament_id = ?;', [id], (err) => {
+        if (!err) {
+            res.redirect("/medicaments");
+
+        } else {
+            console.log(err)
+            res.redirect("/medicaments");
+        }
+    })
+}
+
+
 module.exports = {
-    afficherMedicaments
+    afficherMedicaments,
+    supprimerMedicament
 }

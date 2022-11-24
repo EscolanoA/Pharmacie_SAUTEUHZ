@@ -6,7 +6,7 @@ const mysqlConnexion = mysql.createConnection({
     host: configDB['dev']['host'],
     user: configDB['dev']['user'],
     password: configDB['dev']['password'],
-    database: configDB['dev']['database']
+    database: configDB['dev']['dbname']
 })
 mysqlConnexion.connect((err) => {
     if (!err) console.log('BDD connectée.')
