@@ -3,13 +3,34 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 
 module.exports = {
 
-    async modAfficherMedicaments() {
+    async modelAfficherMedicaments() {
 
         return new Promise((resolve, reject) => {
 
-            let requete = 'SELECT * FROM Medicaments'
+            let requeteSQL = 'SELECT * FROM Medicaments'
+            mysqlConnexion.query(requeteSQL, (err, data) => {
 
-            mysqlConnexion.query(requete, (err, data) => {
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAjouterMedicament(req) {
+
+        return new Promise((resolve, reject) => {
+
+            let nom = req.body.nom
+            let stock = req.body.stock
+
+            let requeteSQL = "INSERT INTO Medicaments (medicament_nom, medicament_boitesstock) VALUES (?, ?)" //+ ' ("' + nom + '",' + stock + ')'
+
+
+            mysqlConnexion.query(requeteSQL, [nom, stock], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -20,6 +41,10 @@ module.exports = {
         }
         )
     }
+
+
+
+
 
 
 }
