@@ -1,5 +1,4 @@
-let modelConnexion = require('../models/modelConnexion.js')
-let mysqlConnexion = modelConnexion.mysqlConnexion
+
 
 let modelMedicament = require('../models/modelMedicament.js')
 
@@ -8,8 +7,9 @@ const medecinController = {
     async afficherMedicaments(req, res) {
 
         try {
-            let data = await modelMedicament.modAfficherMedicaments
+            let data = await modelMedicament.modAfficherMedicaments()
             if (data) {
+                console.log(data)
                 res.render("./medicaments", { medicaments: data })
             }
         } catch (error) {

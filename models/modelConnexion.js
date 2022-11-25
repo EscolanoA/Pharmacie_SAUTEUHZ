@@ -1,4 +1,4 @@
-let mysql = require('mysql');
+let mysql = require('mysql2');
 let iniparser = require('iniparser')
 let configDB = iniparser.parseSync('./DB.ini')
 
