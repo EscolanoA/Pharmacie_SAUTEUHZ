@@ -1,2 +1,47 @@
 <%- include('header') %>
-<div> Bienvenue sur la page des patients </div>
+    <div> Bienvenue sur la page des patients </div>
+    <a id="attention"></a>
+    <% patients.forEach(function(user,i){ %>
+        <li>
+
+            <a href="http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>">&#9998;</a>
+
+            <button onclick="popupAttentionOn<%= i+1 %>()">supprimer</button>
+
+            <script>
+                function popupAttentionOn<%= i+1 %> () {
+                    document.getElementById("attention").innerHTML = `vous etes sur ? <button onClick="location.href='http://localhost:3000/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                }
+            </script>
+
+            <strong>
+                Nom :<%= user.patient_nom %>
+                Prenom :<%= user.patient_prenom %>
+                age :<%= user.patient_datenaiss %>
+                N° de secu :<%= user.patient_numsecu %>
+                mutuelle :<%= user.mutuelle_nom %>
+            </strong>
+        </li>
+        <% })%>
+
+
+            <div> Ajout d'un médicament </div>
+
+            <form action="/patients/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                <div>
+
+                    <label for="nom">nom : </label>
+                    <input type="text" name="nom" id="nom">
+
+                    <label for="stock">Quantité en stock : </label>
+                    <input type="number" name="stock" id="stock" value="0">
+
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
+
+            <script>
+                function popupAttentionOff() {
+                    document.getElementById("attention").innerHTML = ""
+                }
+            </script>

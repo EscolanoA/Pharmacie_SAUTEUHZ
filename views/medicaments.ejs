@@ -9,12 +9,10 @@
             <button onclick="popupAttentionOn<%= i+1 %>()">supprimer</button>
 
             <script>
-                function popupAttentionOn<%= i+1 %>() {
+                function popupAttentionOn<%= i+1 %> () {
                     document.getElementById("attention").innerHTML = `vous etes sur ? <button onClick="location.href='http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                 }
             </script>
-
-            <!--<a href="http://localhost:3000/medicaments/supprimer/<%=//user.medicament_id%>">&#10006;</a>-->
 
             <strong>
                 <%= user.medicament_nom %>

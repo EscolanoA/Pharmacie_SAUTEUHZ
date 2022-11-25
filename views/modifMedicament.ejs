@@ -1,0 +1,24 @@
+<%- include('header') %>
+    <div> Bienvenue sur la page de modification des médicaments </div>
+
+    <% medicament.forEach(function(user){ %>
+        <div> modifier le médicament n° <%=user.medicament_id%>
+        </div>
+
+
+        <form action="/medicaments/modifier" method="POST" enctype="application/x-www-formurlencoded">
+
+            <label for="nom">nom : </label>
+            <input type="text" name="nom" id="nom" value="<%=user.medicament_nom%>">
+
+
+            <label for="stock">Quantité en stock : </label>
+            <input type="number" name="stock" id="stock" value="<%=user.medicament_boitesstock%>">
+
+            <input type="hidden" name="id" id="id" value="<%=user.medicament_id%>">
+
+
+            <button type="submit">Modifier</button>
+
+            <% })%>
+        </form>
