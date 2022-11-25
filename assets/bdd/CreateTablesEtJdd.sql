@@ -22,21 +22,19 @@ CREATE TABLE `Ordonnances`(
     `ordonnance_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `ordonnance_patient_numsecu` VARCHAR(255) NOT NULL,
     `ordonnance_medecin_id` INT UNSIGNED NOT NULL,
-    `ordonnance_posologie_id` INT UNSIGNED NOT NULL,
     `ordonnance_pathologie_id` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`ordonnance_id`),
     KEY `ordonnance_patient_numsecu` (`ordonnance_patient_numsecu`),
     KEY `ordonnance_medecin_id` (`ordonnance_medecin_id`),
-    KEY `ordonnance_posologie_id` (`ordonnance_posologie_id`),
     KEY `ordonnance_pathologie_id` (`ordonnance_pathologie_id`)
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Ordonnances` (`ordonnance_id`, `ordonnance_patient_numsecu`, `ordonnance_medecin_id`,`ordonnance_posologie_id`,`ordonnance_pathologie_id`) VALUES
-(1, '0102053523882146', 1, 1, 1),
-(2, '1103053623883235', 2, 2, 2),
-(3, '0104053723884365', 3, 3, 3),
-(4, '1105053823885478', 4, 4, 4),
-(5, '0106053923886545', 5, 5, 5);
+INSERT INTO `Ordonnances` (`ordonnance_id`, `ordonnance_patient_numsecu`, `ordonnance_medecin_id`,`ordonnance_pathologie_id`) VALUES
+(1, '0102053523882146', 1, 1),
+(2, '1103053623883235', 2, 2),
+(3, '0104053723884365', 3, 3),
+(4, '1105053823885478', 4, 4),
+(5, '0106053923886545', 5, 5);
 
 
 
@@ -148,14 +146,12 @@ INSERT INTO `Pharmaciens` (`parmacien_mail`, `parmacien_mdp`) VALUES
 ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_medecin_id_foreign` FOREIGN KEY(`ordonnance_medecin_id`) REFERENCES `Medecins`(`medecin_id`);
 ALTER TABLE
-    `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_posologie_id_foreign` FOREIGN KEY(`ordonnance_posologie_id`) REFERENCES `Posologies`(`posologie_id`);
-ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_patient_numsecu_foreign` FOREIGN KEY(`ordonnance_patient_numsecu`) REFERENCES `Patients`(`patient_numsecu`);
 ALTER TABLE
     `Patients` ADD CONSTRAINT `patients_patient_mutuelle_id_foreign` FOREIGN KEY(`patient_mutuelle_id`) REFERENCES `Mutuelles`(`mutuelle_id`);
 ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_pathologie_id_foreign` FOREIGN KEY(`ordonnance_pathologie_id`) REFERENCES `Pathologies`(`pathologie_id`);
 ALTER TABLE
-    `Posologies` ADD CONSTRAINT `posologies_posologie_ordonnance_id_foreign` FOREIGN KEY(`posologie_ordonnance_id`) REFERENCES `Ordonnances`(`ordonnance_id`)ON DELETE CASCADE;
+    `Posologies` ADD CONSTRAINT `posologies_posologie_ordonnance_id_foreign` FOREIGN KEY(`posologie_ordonnance_id`) REFERENCES `Ordonnances`(`ordonnance_id`);
 ALTER TABLE
     `Posologies` ADD CONSTRAINT `posologies_posologie_medicament_id_foreign` FOREIGN KEY(`posologie_medicament_id`) REFERENCES `Medicaments`(`medicament_id`) ON DELETE CASCADE;
