@@ -3,10 +3,8 @@
     <a id="attention"></a>
     <% patients.forEach(function(user,i){ %>
         <li>
-
-            <a href="http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>">&#9998;</a>
-
-            <button onclick="popupAttentionOn<%= i+1 %>()">supprimer</button>
+            <button onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>';">Modifier</button>
+            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
 
             <script>
                 function popupAttentionOn<%= i+1 %> () {
@@ -17,7 +15,7 @@
             <strong>
                 Nom :<%= user.patient_nom %>
                 Prenom :<%= user.patient_prenom %>
-                age :<%= user.patient_datenaiss %>
+                age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
                 N° de secu :<%= user.patient_numsecu %>
                 mutuelle :<%= user.mutuelle_nom %>
             </strong>
