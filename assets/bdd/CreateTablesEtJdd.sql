@@ -99,7 +99,7 @@ INSERT INTO `Pathologies` (`pathologie_id`, `pathologie_nom`) VALUES
 DROP TABLE IF EXISTS `Patients`;
 CREATE TABLE `Patients`(
     `patient_numsecu` VARCHAR(255) NOT NULL,
-    `patient_mutuelle_id` INT UNSIGNED DEFAULT 0,
+    `patient_mutuelle_id` INT UNSIGNED NOT NULL DEFAULT 0,
     `patient_nom` VARCHAR(20) NOT NULL,
     `patient_prenom` VARCHAR(20) NOT NULL,
     `patient_datenaiss` DATE NOT NULL,

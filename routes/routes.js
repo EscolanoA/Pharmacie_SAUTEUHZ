@@ -24,8 +24,14 @@ routeur.get('/connexion', connexionController.afficherConnexion)
 routeur.get('/accueil', accueilController.afficherAcceuil)
 
 
+//Routes pour la page mutuelles
+//routeur.get('/mutuelles', patientsController.afficherPatients)
+
+
 routeur.get('/patients', patientsController.afficherPatients)
+routeur.post('/patients/ajouter', patientsController.ajouterPatient)
 routeur.post('/patients/ajoutermutuelle', patientsController.ajouterMutuelle)
+
 //sous pages
 routeur.get('/patients/infosMutuelle', infosMutuelleController.afficherInfosMutuelle)
 routeur.get('/patients/infosMutuelle/modifInfosMutuelle', modifInfosMutuelleController.afficherModifInfosMutuelle)

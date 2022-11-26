@@ -79,6 +79,38 @@ module.exports = {
         )
     },
 
+    async modelAjouterPatient(req) {
+
+        /** 
+         * recuperation des données la requette POST @req
+         * instantiation d'une promesse de résultat de  @requetteSQL avec ces données en paramètres
+         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+         * sinon @return @resolve avec les donnés @data de la @requetteSQL
+        */
+
+        return new Promise((resolve, reject) => {
+
+            let numsecu = req.body.numsecu
+            let mutuelle = req.body.mutuelle
+            let nom = req.body.nom
+            let prenom = req.body.prenom
+            let datenaiss = req.body.datenaiss
+
+            let requeteSQL = "INSERT INTO Patients (patient_numsecu, patient_mutuelle_id, patient_nom, patient_prenom, patient_datenaiss) VALUES (?, ?, ?, ?, ?)"
+
+
+            mysqlConnexion.query(requeteSQL, [numsecu, mutuelle, nom, prenom, datenaiss], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
 
 
 }
