@@ -24,7 +24,7 @@
         <select name="mutuelle" id="mutuelle" required>
 
 
-            <% mutuelles.forEach(function(user){ if(user.mutuelle_id==user.patient_mutuelle_id) { %>
+            <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
                 <option value="<%= user.mutuelle_id %>" selected>
                     <%= user.mutuelle_nom %>
                 </option>
