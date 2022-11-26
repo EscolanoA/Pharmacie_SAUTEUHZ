@@ -99,7 +99,7 @@ INSERT INTO `Pathologies` (`pathologie_id`, `pathologie_nom`) VALUES
 DROP TABLE IF EXISTS `Patients`;
 CREATE TABLE `Patients`(
     `patient_numsecu` VARCHAR(255) NOT NULL,
-    `patient_mutuelle_id` INT UNSIGNED,
+    `patient_mutuelle_id` INT UNSIGNED DEFAULT 0,
     `patient_nom` VARCHAR(20) NOT NULL,
     `patient_prenom` VARCHAR(20) NOT NULL,
     `patient_datenaiss` DATE NOT NULL,
@@ -124,6 +124,7 @@ CREATE TABLE `Mutuelles`(
     PRIMARY KEY (`mutuelle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Mutuelles` (`mutuelle_id`, `mutuelle_nom`, `mutuelle_tel`,`mutuelle_mail`) VALUES
+(0, 'Pas de mutuelle', '0000','0000@000.com'),
 (1, 'Stevia', '0664589745','contact@stevia.com'),
 (2, 'Matbut', '0669686978','contact@matbut.com'),
 (3, 'MMA', '0656326978','contact@mma.com'),

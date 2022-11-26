@@ -30,20 +30,19 @@
                 <div>
 
                     <label for="nom">nom : </label>
-                    <input type="text" name="nom" id="nom">
+                    <input type="text" name="nom" id="nom" required>
 
                     <label for="prenom">prenom : </label>
-                    <input type="text" name="prenom" id="prenom">
+                    <input type="text" name="prenom" id="prenom" required>
 
                     <label for="datenaiss">date de naissance : </label>
-                    <input type="date" name="datenaiss" id="datenaiss">
+                    <input type="date" name="datenaiss" id="datenaiss" required>
 
                     <label for="numsecu">N° de secu : </label>
-                    <input type="number" name="numsecu" id="numsecu">
+                    <input type="number" name="numsecu" id="numsecu" required>
 
 
-                    <select name="mutuelle" id="mutuelle">
-                        <option value="" disabled selected>Choisir une mutuelle</option>
+                    <select name="mutuelle" id="mutuelle" required>
 
                         <% mutuelles.forEach(function(user,i){ %>
                             <option value="<%= user.mutuelle_id %>">
@@ -60,34 +59,17 @@
             </form>
             <div> Ajout d'une Mutuelle </div>
 
-            <form action="/patients/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+            <form action="/patients/ajoutermutuelle" method="POST" enctype="application/x-www-formurlencoded">
                 <div>
 
-                    <label for="nom">nom : </label>
-                    <input type="text" name="nom" id="nom">
+                    <label for="nom">Nom : </label>
+                    <input type="text" name="nom" id="nom" required>
 
-                    <label for="prenom">prenom : </label>
-                    <input type="text" name="prenom" id="prenom">
+                    <label for="tel">Tel : </label>
+                    <input type="tel" name="tel" id="tel" required>
 
-                    <label for="datenaiss">date de naissance : </label>
-                    <input type="date" name="datenaiss" id="datenaiss">
-
-                    <label for="numsecu">N° de secu : </label>
-                    <input type="number" name="numsecu" id="numsecu">
-
-
-                    <select name="mutuelle" id="mutuelle">
-                        <option value="" disabled selected>Choisir une mutuelle</option>
-
-                        <% mutuelles.forEach(function(user,i){ %>
-                            <option value="<%= user.mutuelle_id %>">
-                                <%= user.mutuelle_nom %>
-                            </option>
-                            <% })%>
-
-
-                    </select>
-
+                    <label for="email">Mail : </label>
+                    <input type="email" name="email" id="email" required>
 
                     <button type="submit">Ajouter</button>
                 </div>

@@ -25,6 +25,7 @@ routeur.get('/accueil', accueilController.afficherAcceuil)
 
 
 routeur.get('/patients', patientsController.afficherPatients)
+routeur.post('/patients/ajoutermutuelle', patientsController.ajouterMutuelle)
 //sous pages
 routeur.get('/patients/infosMutuelle', infosMutuelleController.afficherInfosMutuelle)
 routeur.get('/patients/infosMutuelle/modifInfosMutuelle', modifInfosMutuelleController.afficherModifInfosMutuelle)

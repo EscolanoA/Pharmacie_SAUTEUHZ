@@ -22,6 +22,25 @@ module.exports = {
 
     },
 
+    
+
+    
+    async ajouterMutuelle(req, res) {
+
+        try {
+            let data = await modelPatients.modelAjouterMutuelle(req)
+            if (data) {
+                //console.log(data)
+                res.redirect("/patients")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+
 
 
 
