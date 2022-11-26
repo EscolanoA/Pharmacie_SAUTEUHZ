@@ -15,7 +15,7 @@ const modifOrdonnancesController = require('../controllers/ctrlModifOrdonnances'
 const posologiesController = require('../controllers/crtlPosologies')
 const modifPosologiesController = require('../controllers/ctrlModifPosologies')
 const medicamentsController = require('../controllers/ctrlMedicaments')
-const modifMedicamentsController = require('../controllers/ctrlModifMedicaments')
+const modifMedicamentsController = require('../controllers/ctrlModifMedicament')
 
 //Page d'indentification
 routeur.get('/connexion', connexionController.afficherConnexion)

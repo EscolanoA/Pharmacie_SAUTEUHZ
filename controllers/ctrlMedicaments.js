@@ -5,10 +5,10 @@ module.exports = {
 
     /**
     * méthode qui attend @data , fourni par la fonction @modelAfficherMedicaments () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher sur la page medicament les @data nommées @medicaments .
+    * le resultat res , est d'afficher sur la page medicament les @data nommées @medicaments .
     */
 
-    async afficherMedicaments(res) {
+    async afficherMedicaments(req,res) {
 
         try {
             let data = await modelMedicament.modelAfficherMedicaments()
