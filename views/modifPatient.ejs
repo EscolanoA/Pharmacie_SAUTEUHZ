@@ -1,0 +1,51 @@
+<%- include('header') %>
+<div> Bienvenue sur la page de modification des patients </div>
+
+
+    <% patient.forEach(function(user){ %>
+        <div> modifier le médicament n° <%=user.patient_numsecu%>
+        </div>
+
+// TODO: remplir les champs du form modif patient et faire une requette de sa mutuelle  
+
+        <label for="nom">nom : </label>
+        <input type="text" name="nom" id="nom" required>
+
+        <label for="prenom">prenom : </label>
+        <input type="text" name="prenom" id="prenom" required>
+
+        <label for="datenaiss">date de naissance : </label>
+        <input type="date" name="datenaiss" id="datenaiss" required>
+
+        <label for="numsecu">N° de secu : </label>
+        <input type="number" name="numsecu" id="numsecu" required>
+
+
+        <select name="mutuelle" id="mutuelle" required>
+
+            <% mutuelles.forEach(function(user,i){ %>
+                <option value="<%= user.mutuelle_id %>">
+                    <%= user.mutuelle_nom %>
+                </option>
+                <% })%>
+
+
+        </select>
+        
+
+        <form action="/medicaments/modifier" method="POST" enctype="application/x-www-formurlencoded">
+
+            <label for="nom">nom : </label>
+            <input type="text" name="nom" id="nom" value="<%=user.medicament_nom%>">
+
+
+            <label for="stock">Quantité en stock : </label>
+            <input type="number" name="stock" id="stock" value="<%=user.medicament_boitesstock%>">
+
+            <input type="hidden" name="id" id="id" value="<%=user.medicament_id%>">
+
+
+            <button type="submit">Modifier</button>
+
+            <% })%>
+        </form>
