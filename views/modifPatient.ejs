@@ -1,51 +1,43 @@
 <%- include('header') %>
-<div> Bienvenue sur la page de modification des patients </div>
+    <div> Bienvenue sur la page de modification des patients </div>
 
 
     <% patient.forEach(function(user){ %>
-        <div> modifier le médicament n° <%=user.patient_numsecu%>
+        <div> modifier le patient n° <%=user.patient_numsecu%>
         </div>
 
-// TODO: remplir les champs du form modif patient et faire une requette de sa mutuelle  
-
         <label for="nom">nom : </label>
-        <input type="text" name="nom" id="nom" required>
+        <input type="text" name="nom" id="nom" value="<%=user.patient_nom%>" required>
 
         <label for="prenom">prenom : </label>
-        <input type="text" name="prenom" id="prenom" required>
+        <input type="text" name="prenom" id="prenom" value="<%=user.patient_prenom%>" required>
 
         <label for="datenaiss">date de naissance : </label>
-        <input type="date" name="datenaiss" id="datenaiss" required>
+        <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
+        <input type="date" name="datenaiss" id="datenaiss"
+            value="<%=user.patient_anneenaiss%>-<%=user.patient_moisnaiss%>-<%=user.patient_journaiss%>" required>
 
         <label for="numsecu">N° de secu : </label>
-        <input type="number" name="numsecu" id="numsecu" required>
+        <input type="number" name="numsecu" id="numsecu" value="<%=user.patient_numsecu%>" required>
 
 
         <select name="mutuelle" id="mutuelle" required>
 
-            <% mutuelles.forEach(function(user,i){ %>
-                <option value="<%= user.mutuelle_id %>">
+
+            <% mutuelles.forEach(function(user){ if(user.mutuelle_id==user.patient_mutuelle_id) { %>
+                <option value="<%= user.mutuelle_id %>" selected>
                     <%= user.mutuelle_nom %>
                 </option>
-                <% })%>
+                <% } else {%>
+                    <option value="<%= user.mutuelle_id %>">
+                        <%= user.mutuelle_nom %>
+                    </option>
+                    <% }})%>
+
+
 
 
         </select>
-        
+        <button type="submit">Modifier</button>
 
-        <form action="/medicaments/modifier" method="POST" enctype="application/x-www-formurlencoded">
-
-            <label for="nom">nom : </label>
-            <input type="text" name="nom" id="nom" value="<%=user.medicament_nom%>">
-
-
-            <label for="stock">Quantité en stock : </label>
-            <input type="number" name="stock" id="stock" value="<%=user.medicament_boitesstock%>">
-
-            <input type="hidden" name="id" id="id" value="<%=user.medicament_id%>">
-
-
-            <button type="submit">Modifier</button>
-
-            <% })%>
-        </form>
+        <% })%>

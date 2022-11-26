@@ -30,7 +30,7 @@ routeur.get('/accueil', accueilController.afficherAcceuil)
 //Routes pour la page Patient
 routeur.get('/patients', patientsController.afficherPatients)
 routeur.post('/patients/ajouter', patientsController.ajouterPatient)
-routeur.get('/patients/modifier', modifPatientsController.afficherModifPatients)
+routeur.get('/patients/modifier/:numsecu/:idmut', modifPatientsController.afficherModifPatient)
 routeur.post('/patients/ajoutermutuelle', patientsController.ajouterMutuelle)
 
 //sous pages
