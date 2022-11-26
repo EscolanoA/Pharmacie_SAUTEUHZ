@@ -1,5 +1,5 @@
 //importer les models d'accès aux donnés (requetes SQL)
-let modelMedicament = require('../models/modelMedicament.js')
+let modelMedicament = require('../models/modelMedicaments.js')
 
 module.exports = {
 
@@ -8,7 +8,7 @@ module.exports = {
     * le resultat res , est d'afficher sur la page medicament les @data nommées @medicaments .
     */
 
-    async afficherMedicaments(req,res) {
+    async afficherMedicaments(req, res) {
 
         try {
             let data = await modelMedicament.modelAfficherMedicaments()

@@ -3,7 +3,8 @@
     <a id="attention"></a>
     <% patients.forEach(function(user,i){ %>
         <li>
-            <button onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>';">Modifier</button>
+            <button
+                onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>';">Modifier</button>
             <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
 
             <script>
@@ -14,16 +15,16 @@
 
             <strong>
                 Nom :<%= user.patient_nom %>
-                Prenom :<%= user.patient_prenom %>
-                age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
-                N° de secu :<%= user.patient_numsecu %>
-                mutuelle :<%= user.mutuelle_nom %>
+                    Prenom :<%= user.patient_prenom %>
+                        age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
+                            N° de secu :<%= user.patient_numsecu %>
+                                mutuelle :<%= user.mutuelle_nom %>
             </strong>
         </li>
         <% })%>
 
 
-            <div> Ajout d'un médicament </div>
+            <div> Ajout d'un patient </div>
 
             <form action="/patients/ajouter" method="POST" enctype="application/x-www-formurlencoded">
                 <div>
@@ -31,10 +32,64 @@
                     <label for="nom">nom : </label>
                     <input type="text" name="nom" id="nom">
 
-                    <label for="stock">Quantité en stock : </label>
-                    <input type="number" name="stock" id="stock" value="0">
+                    <label for="prenom">prenom : </label>
+                    <input type="text" name="prenom" id="prenom">
 
-                    <button type="submit">Envoyer</button>
+                    <label for="datenaiss">date de naissance : </label>
+                    <input type="date" name="datenaiss" id="datenaiss">
+
+                    <label for="numsecu">N° de secu : </label>
+                    <input type="number" name="numsecu" id="numsecu">
+
+
+                    <select name="mutuelle" id="mutuelle">
+                        <option value="" disabled selected>Choisir une mutuelle</option>
+
+                        <% mutuelles.forEach(function(user,i){ %>
+                            <option value="<%= user.mutuelle_id %>">
+                                <%= user.mutuelle_nom %>
+                            </option>
+                            <% })%>
+
+
+                    </select>
+
+
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
+            <div> Ajout d'une Mutuelle </div>
+
+            <form action="/patients/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                <div>
+
+                    <label for="nom">nom : </label>
+                    <input type="text" name="nom" id="nom">
+
+                    <label for="prenom">prenom : </label>
+                    <input type="text" name="prenom" id="prenom">
+
+                    <label for="datenaiss">date de naissance : </label>
+                    <input type="date" name="datenaiss" id="datenaiss">
+
+                    <label for="numsecu">N° de secu : </label>
+                    <input type="number" name="numsecu" id="numsecu">
+
+
+                    <select name="mutuelle" id="mutuelle">
+                        <option value="" disabled selected>Choisir une mutuelle</option>
+
+                        <% mutuelles.forEach(function(user,i){ %>
+                            <option value="<%= user.mutuelle_id %>">
+                                <%= user.mutuelle_nom %>
+                            </option>
+                            <% })%>
+
+
+                    </select>
+
+
+                    <button type="submit">Ajouter</button>
                 </div>
             </form>
 

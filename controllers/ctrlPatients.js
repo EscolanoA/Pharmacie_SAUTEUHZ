@@ -1,18 +1,28 @@
-let modelConnexion = require('../models/modelConnexion.js')
-let mysqlConnexion = modelConnexion.mysqlConnexion
+//importer les models d'accès aux donnés (requetes SQL)
+const modelPatients = require('../models/modelPatients.js')
 
-const afficherPatients = (req, res) => {
-
-    mysqlConnexion.query('SELECT Patients.*, DATE_FORMAT(patient_datenaiss, "%Y") as patient_anneenaiss, Mutuelles.mutuelle_nom FROM Patients, Mutuelles WHERE patient_mutuelle_id = mutuelle_id', (err, lignes) => {
-        if (!err) {
-            res.render("./patients", { patients: lignes })
-
-        } else {
-            console.log(err)
-        }
-    })
-}
 
 module.exports = {
-    afficherPatients
+
+
+
+    async afficherPatients(req, res) {
+
+        try {
+            let data = await modelPatients.modelAfficherPatients()
+            let data2 = await modelPatients.modelAfficherMutuelles()
+            if (data) {
+                //console.log(data)
+                res.render("./patients", { patients: data, mutuelles: data2 })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+
+
+
 }

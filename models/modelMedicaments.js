@@ -1,5 +1,5 @@
 //récuperer le module de connexion
-let modelConnexion = require('../models/modelConnexion.js')
+let modelConnexion = require('./modelConnexion.js')
 let mysqlConnexion = modelConnexion.mysqlConnexion
 
 //export des methodes contenant les requettes SQL
