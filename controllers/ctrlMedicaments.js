@@ -1,9 +1,14 @@
+//importer les models d'accès aux donnés (requetes SQL)
 let modelMedicament = require('../models/modelMedicament.js')
-
 
 module.exports = {
 
-    async afficherMedicaments(req, res) {
+    /**
+    * méthode qui attend @data , fourni par la fonction @modelAfficherMedicaments () , sans bloquer le thread principal.
+    * le resultat @res , est d'afficher sur la page medicament les @data nommées @medicaments .
+    */
+
+    async afficherMedicaments(res) {
 
         try {
             let data = await modelMedicament.modelAfficherMedicaments()
@@ -18,6 +23,11 @@ module.exports = {
 
     },
 
+    /**
+    * méthode qui envoie @req en paramètre, au modèle @modelAjouterMedicament () , sans bloquer le thread principal.
+    * si @data est true (elle ne l'est qui si elle n'est pas nulle / à été resolve), alors le resultat, @res est d'afficher la page /medicaments qui apellera la fontion du dessus pour rafraichir les données .
+    */
+
     async ajouterMedicament(req, res) {
 
         try {
@@ -31,6 +41,11 @@ module.exports = {
 
 
     },
+
+    /**
+    * méthode qui envoie @req en paramètre, au modèle @modelSupprimerMedicament () , sans bloquer le thread principal.
+    * si @data est true, alors le resultat, @res est d'afficher la page /medicaments qui apellera la fontion du dessus pour rafraichir les données .
+    */
 
     async supprimerMedicament(req, res) {
 

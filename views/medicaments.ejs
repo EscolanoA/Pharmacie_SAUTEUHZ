@@ -1,6 +1,8 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des médicaments </div>
     <a id="attention"></a>
+    <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
+    on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
     <% medicaments.forEach(function(user,i){ %>
         <div>
             <button
