@@ -38,7 +38,7 @@ routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.affiche
 
 routeur.get('/medicaments', medicamentsController.afficherMedicaments)
 routeur.post('/medicaments/ajouter', medicamentsController.ajouterMedicament)
-//routeur.get('/medicaments/supprimer/:id', medicamentsController.supprimerMedicament)
+routeur.get('/medicaments/supprimer/:id', medicamentsController.supprimerMedicament)
 //sous pages
 routeur.get('/medicaments/modifier/:id', modifMedicamentsController.afficherModifMedicament)
 routeur.post('/medicaments/modifier', modifMedicamentsController.modifMedicament)

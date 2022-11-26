@@ -40,7 +40,29 @@ module.exports = {
             })
         }
         )
+    },
+
+    async modelSupprimerMedicament(req) {
+
+        return new Promise((resolve, reject) => {
+
+            let id = req.params.id
+
+            let requeteSQL = "DELETE FROM Medicaments WHERE medicament_id = ?;" //+ ' ("' + nom + '",' + stock + ')'
+
+
+            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
     }
+
 
 
 
