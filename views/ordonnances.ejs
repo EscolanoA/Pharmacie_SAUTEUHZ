@@ -1,2 +1,41 @@
 <%- include('header') %>
 <div> Bienvenue sur la page des ordonnances </div>
+
+<a id="attention"></a>
+
+
+<h1>Ordonnances de</h1>
+ <li>nom : <%= ordonnances[0].patient_nom %> prenom : <%= ordonnances[0].patient_prenom %> Date de naissance : <%= ordonnances[0].patient_prenom %></li>
+
+<% ordonnances.forEach(function(user,i){ %>
+    <li>
+        <button
+        onClick="location.href='http://localhost:3000/patients/ordonnances/<%=user.patient_numsecu%>';">Ordonnances</button>
+        <%if(user.patient_mutuelle_id==null){%>
+
+            <button disabled>Mutuelle</button>
+
+            <% }else {%>
+                <button
+                    onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=user.patient_mutuelle_id%>';">Mutuelle</button>
+                <%} %>
+
+
+                    <button onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>/<% if(user.patient_mutuelle_id==null){ user.patient_mutuelle_id = 0 }%><%= user.patient_mutuelle_id  %> ';">Modifier</button>
+
+
+                    <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+                    <script>
+                        function popupAttentionOn<%= i+1 %> () {
+                            document.getElementById("attention").innerHTML = `Supprimer un patient supprimera ses ordonnances <button onClick="location.href='http://localhost:3000/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                        }
+                    </script>
+
+                    <strong>
+                        Nom :<%= user.patient_nom %>
+                            Prenom :<%= user.patient_prenom %>
+                                age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
+                                    N° de secu :<%= user.patient_numsecu %>
+                    </strong>
+    </li>
+    <% })%>

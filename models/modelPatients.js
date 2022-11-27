@@ -51,7 +51,7 @@ module.exports = {
             let prenom = req.body.prenom
             let datenaiss = req.body.datenaiss
 
-            console.log(mutuelle)
+            //console.log(mutuelle)
             if(mutuelle == 'null' ){
 
                 let requeteSQL = "INSERT INTO Patients (patient_numsecu, patient_nom, patient_prenom, patient_datenaiss) VALUES (?, ?, ?, ?)"
@@ -153,10 +153,7 @@ module.exports = {
         */
 
         return new Promise((resolve, reject) => {
-            //ORDER BY afin que pas de mutuelle soit selected
-
-            let numsecu = req.params.numsecu
-
+            
             let requeteSQL = 'SELECT Mutuelles,* FROM Mutuelles ORDER BY mutuelle_id'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 

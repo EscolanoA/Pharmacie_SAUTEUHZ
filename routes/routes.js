@@ -6,12 +6,13 @@ const accueilController = require('../controllers/ctrlAccueil')
 
 
 const patientsController = require('../controllers/ctrlPatients')
-const ordonnancesController = require('../controllers/crtlOrdonnances')
-const modifMedecinController = require('../controllers/crtlModifMedecin')
-const modifOrdonnancesController = require('../controllers/ctrlModifOrdonnances')
-const posologiesController = require('../controllers/crtlPosologies')
-const modifPosologiesController = require('../controllers/ctrlModifPosologies')
+
+const ordonnancesController = require('../controllers/ctrlOrdonnances')
+
+const posologiesController = require('../controllers/ctrlPosologies')
+
 const medicamentsController = require('../controllers/ctrlMedicaments')
+
 const mutuellesController = require('../controllers/ctrlMutuelles')
 
 //Page d'indentification
@@ -58,14 +59,14 @@ routeur.get('/patients/modifier/:numsecu/:idmut', patientsController.afficherMod
 routeur.post('/patients/modifier', patientsController.modifPatient)
 
 //Routes pour la sous page patients/ordonnances
-routeur.get('/patients/ordonnances/:id', ordonnancesController.afficherOrdonnances)
+routeur.get('/patients/ordonnances/:numsecu', ordonnancesController.afficherOrdonnances)
 
 
 //sous pages
 routeur.get('/patients/ordonnances/posologies', posologiesController.afficherPosologies)
-routeur.get('/patients/ordonnances/posologies/modifPosologies', modifPosologiesController.afficherModifPosologie)
-routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)
-routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)
+//routeur.get('/patients/ordonnances/posologies/modifPosologies', modifPosologiesController.afficherModifPosologie)
+//routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)
+//routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)
 
 
 
