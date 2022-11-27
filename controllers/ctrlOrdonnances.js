@@ -37,6 +37,20 @@ module.exports = {
 
 
     },
+    async supprimerOrdonnance(req, res) {
+
+        try {
+            let data = await modelOrdonnances.modelSupprimerOrdonnance(req)
+            if (data) {
+                //console.log(data)
+                res.redirect("/patients/ordonnances/" + req.params.numsecu)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
 
 }

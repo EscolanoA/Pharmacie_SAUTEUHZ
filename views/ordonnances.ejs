@@ -30,7 +30,7 @@
             <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Supprimer une ordonnance supprimera ses posologies <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                    document.getElementById("attention").innerHTML = `Supprimer une ordonnance supprimera ses posologies <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.patient_numsecu%>/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                 }
             </script>
 
