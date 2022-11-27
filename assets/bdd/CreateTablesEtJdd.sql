@@ -107,6 +107,9 @@ CREATE TABLE `Patients`(
     KEY `patient_mutuelle_id` (`patient_mutuelle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Patients` (`patient_numsecu`, `patient_mutuelle_id`, `patient_prenom`,`patient_nom`,`patient_datenaiss`) VALUES
+('4753622189562547', NULL, 'Amandine', 'Place', '1495-7-14'),
+('1162176249885478', NULL, 'Frank', 'Place', '2022-7-14'),
+('1162176249885478', NULL, 'Sans', 'Mutuelle', '2002-7-14'),
 ('0102053523882146', 1, 'Allan','Escolano', '2003-12-12'),
 ('1103053623883235', 2, 'Brieuc','Meyer', '2002-05-21'),
 ('0104053723884365', 3, 'OuiOui',"l'Ourson", '1995-10-3'),
