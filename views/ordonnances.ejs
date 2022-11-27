@@ -25,7 +25,7 @@
 
 
                 <button
-                    onClick="location.href='http://localhost:3000/medecin/modifier/<%=user.medecin_id%>';">Medecin</button>
+                    onClick="location.href='http://localhost:3000/medecins/modifier/<%=user.medecin_id%>';">Medecin</button>
 
 
 
@@ -46,6 +46,9 @@
                             <%= user.medecin_prenom %>
                                 Tel : <a href="telto:<%= user.medecin_tel %>">
                                     <%= user.medecin_tel %>
+                                </a>
+                                Mail : <a href="mailto:<%= user.medecin_email %>">
+                                    <%= user.medecin_email %>
                                 </a>
                                 Pathologie : <%= user.pathologie_nom %>
                 </strong>
