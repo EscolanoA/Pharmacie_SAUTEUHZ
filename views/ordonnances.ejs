@@ -3,87 +3,97 @@
 
     <a id="attention"></a>
 
-
     <h1>Ordonnances de</h1>
-    <li>nom : <%= ordonnances[0].patient_nom.toUpperCase() %> prenom : <%= ordonnances[0].patient_prenom %> Date de
-                naissance : <%= ordonnances[0].patient_journaiss %>/<%= ordonnances[0].patient_moisnaiss %>/<%=
-                            ordonnances[0].patient_anneenaiss %> Age : <%= new Date().getFullYear() -
-                                ordonnances[0].patient_anneenaiss %> ans  Numéro Sécu : <%= ordonnances[0].patient_numsecu %>
+    <li>nom : <%= infospatient[0].patient_nom.toUpperCase() %> prenom : <%= infospatient[0].patient_prenom %> Date de
+                naissance : <%= infospatient[0].patient_journaiss %>/<%= infospatient[0].patient_moisnaiss %>/<%=
+                            infospatient[0].patient_anneenaiss %> Age : <%= new Date().getFullYear() -
+                            infospatient[0].patient_anneenaiss %> ans Numéro Sécu : <%=
+                            infospatient[0].patient_numsecu %>
     </li>
 
-    <% ordonnances.forEach(function(user,i){ %>
-        <li>
-            <button
-                onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/<%=user.ordonnance_id%>';">Posologies</button>
+    <% if (ordonnances.length > 0) { %>
 
 
 
-            <button
-                onClick="location.href='http://localhost:3000/medecin/modifier/<%=user.medecin_id%>';">Medecin</button>
+
+
+        <% ordonnances.forEach(function(user,i){ %>
+            <li>
+                <button
+                    onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/<%=user.ordonnance_id%>';">Posologies</button>
 
 
 
-            <button
-                onClick="location.href='http://localhost:3000/patients/ordonnances/modifier/<%=user.ordonnance_id%>';">Modifier</button>
+                <button
+                    onClick="location.href='http://localhost:3000/medecin/modifier/<%=user.medecin_id%>';">Medecin</button>
 
 
-            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
-            <script>
-                function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Supprimer une ordonnance supprimera ses posologies <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.patient_numsecu%>/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
-                }
-            </script>
 
-            <strong>
-                N°Ordonnance : <%= user.ordonnance_id %>
-                    Médecin : <%= user.medecin_nom.toUpperCase() %>
-                        <%= user.medecin_prenom %>
-                            Tel : <a href="telto:<%= user.medecin_tel %>">
-                                <%= user.medecin_tel %>
-                            </a>
-                            Pathologie : <%= user.pathologie_nom %>
-            </strong>
-        </li>
+                <button
+                    onClick="location.href='http://localhost:3000/patients/ordonnances/modifier/<%=user.ordonnance_id%>';">Modifier</button>
+
+
+                <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+                <script>
+                    function popupAttentionOn<%= i+1 %> () {
+                        document.getElementById("attention").innerHTML = `Supprimer une ordonnance supprimera ses posologies <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.patient_numsecu%>/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                    }
+                </script>
+
+                <strong>
+                    N°Ordonnance : <%= user.ordonnance_id %>
+                        Médecin : <%= user.medecin_nom.toUpperCase() %>
+                            <%= user.medecin_prenom %>
+                                Tel : <a href="telto:<%= user.medecin_tel %>">
+                                    <%= user.medecin_tel %>
+                                </a>
+                                Pathologie : <%= user.pathologie_nom %>
+                </strong>
+            </li>
         <% })%>
+    <% } %>
 
 
-            <div> Ajouter une Ordonnance </div>
+                    <div> Ajouter une Ordonnance </div>
 
-            <form action="/patients/ordonnances/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                    <form action="/patients/ordonnances/ajouter" method="POST"
+                        enctype="application/x-www-formurlencoded">
 
-                <div>
-                
-                    <input hidden type="number" name="numsecu" id="numsecu" value="<%= ordonnances[0].patient_numsecu %>" required>
+                        <div>
 
-                    <label for="medecin"> Medecin : </label>
-                    <select name="medecin" id="medecin" required>
+                            <input hidden type="number" name="numsecu" id="numsecu"
+                                value="<%= patient_numsecu %>" required>
 
-                        <option value="" selected disabled>Choisir un Médecin</option>
-                        <% medecins.forEach(function(user){ %>
-                            <option value="<%= user.medecin_id %>">
-                                <%= user.medecin_prenom %> <%= user.medecin_nom.toUpperCase() %>
-                            </option>
-                            <% })%>
-                    </select>
+                            <label for="medecin"> Medecin : </label>
+                            <select name="medecin" id="medecin" required>
 
-                    <label for="pathologie"> Pathologie : </label>
-                    <select name="pathologie" id="pathologie" required>
+                                <option value="" selected disabled>Choisir un Médecin</option>
+                                <% medecins.forEach(function(user){ %>
+                                    <option value="<%= user.medecin_id %>">
+                                        <%= user.medecin_prenom %>
+                                            <%= user.medecin_nom.toUpperCase() %>
+                                    </option>
+                                    <% })%>
+                            </select>
 
-                        <option value="" selected disabled>Choisir une pathologie</option>
-                        <% pathologies.forEach(function(user){ %>
-                            <option value="<%= user.pathologie_id %>">
-                                <%= user.pathologie_nom %>
-                            </option>
-                            <% })%>
-                    </select>
+                            <label for="pathologie"> Pathologie : </label>
+                            <select name="pathologie" id="pathologie" required>
+
+                                <option value="" selected disabled>Choisir une pathologie</option>
+                                <% pathologies.forEach(function(user){ %>
+                                    <option value="<%= user.pathologie_id %>">
+                                        <%= user.pathologie_nom %>
+                                    </option>
+                                    <% })%>
+                            </select>
 
 
-                    <button type="submit">Ajouter</button>
-                </div>
-            </form>
+                            <button type="submit">Ajouter</button>
+                        </div>
+                    </form>
 
-            <script>
-                function popupAttentionOff() {
-                    document.getElementById("attention").innerHTML = ""
-                }
-            </script>
+                    <script>
+                        function popupAttentionOff() {
+                            document.getElementById("attention").innerHTML = ""
+                        }
+                    </script>

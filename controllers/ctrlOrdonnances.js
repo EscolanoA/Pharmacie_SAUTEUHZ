@@ -1,6 +1,7 @@
 const modelOrdonnances = require('../models/modelOrdonnances.js')
 const modelMedecins = require('../models/modelMedecins.js')
 const modelPathologies = require('../models/modelPathologies.js')
+const modelPatients = require('../models/modelPatients.js')
 
 
 module.exports = {
@@ -9,13 +10,17 @@ module.exports = {
     async afficherOrdonnances(req, res) {
 
         try {
-            let data = await modelOrdonnances.modelAfficherOrdonnances(req,res)
+            let data = await modelOrdonnances.modelAfficherOrdonnances(req, res)
             let data2 = await modelMedecins.modelAfficherMedecins()
             let data3 = await modelPathologies.modelAfficherPathologies()
-            
+            let data4 = await modelPatients.modelAfficherModifPatient(req)
+
+
+
+
             if (data) {
                 //console.log(data)
-                res.render("./ordonnances", { ordonnances: data, medecins: data2, pathologies: data3 })
+                res.render("./ordonnances", { ordonnances: data, medecins: data2, pathologies: data3, patient_numsecu: req.params.numsecu, infospatient: data4 })
             }
         } catch (error) {
             console.log(error)
@@ -26,7 +31,7 @@ module.exports = {
     async ajouterOrdonnance(req, res) {
 
         try {
-            let data = await modelOrdonnances.modelAjouterOrdonnance(req,res)
+            let data = await modelOrdonnances.modelAjouterOrdonnance(req, res)
             if (data) {
                 //console.log(data)
                 res.redirect("/patients/ordonnances/" + req.body.numsecu)
