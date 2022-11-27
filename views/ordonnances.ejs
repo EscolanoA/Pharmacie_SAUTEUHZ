@@ -5,7 +5,7 @@
 
 
 <h1>Ordonnances de</h1>
- <li>nom : <%= ordonnances[0].patient_nom %> prenom : <%= ordonnances[0].patient_prenom %> Date de naissance : <%= ordonnances[0].patient_prenom %></li>
+ <li>nom : <%= ordonnances[0].patient_nom %>     prenom : <%= ordonnances[0].patient_prenom %>      Date de naissance : <%= ordonnances[0].patient_journaiss %>/<%= ordonnances[0].patient_moisnaiss %>/<%= ordonnances[0].patient_anneenaiss %>     Age : <%= new Date().getFullYear() - ordonnances[0].patient_anneenaiss %>     Numéro Sécu : <%= ordonnances[0].patient_numsecu %></li>
 
 <% ordonnances.forEach(function(user,i){ %>
     <li>
