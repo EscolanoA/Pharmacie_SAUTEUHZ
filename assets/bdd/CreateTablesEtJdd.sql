@@ -124,7 +124,6 @@ CREATE TABLE `Mutuelles`(
     PRIMARY KEY (`mutuelle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Mutuelles` (`mutuelle_id`, `mutuelle_nom`, `mutuelle_tel`,`mutuelle_email`) VALUES
-(0, 'Pas de mutuelle', '0000','0000@000.com'),
 (1, 'Stevia', '0664589745','contact@stevia.com'),
 (2, 'Matbut', '0669686978','contact@matbut.com'),
 (3, 'MMA', '0656326978','contact@mma.com'),
