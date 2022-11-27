@@ -1,0 +1,20 @@
+<%- include('header') %>
+
+
+    <div>
+        <div> informations de la pathologie N° <%=pathologie[0].pathologie_id%>
+        </div>
+        <form action="/pathologies/modifier" method="POST" enctype="application/x-www-formurlencoded">
+
+            <input hidden type="number" name="id" id="id" value="<%=pathologie[0].pathologie_id%>" required>
+
+            <label for="nom">Nom : </label>
+            <input type="text" name="nom" id="nom" value="<%=pathologie[0].pathologie_nom.toUpperCase()%>" required>
+
+
+            <button type="submit">Modifier</button>
+
+        </form>
+
+        <button onClick="history.back()">Retour</button>
+    </div>

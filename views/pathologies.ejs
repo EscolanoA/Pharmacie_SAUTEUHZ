@@ -1,0 +1,47 @@
+<%- include('header') %>
+    <div> Bienvenue sur la page des pathologies </div>
+    <a id="attention"></a>
+    <% for(let i=0; i < pathologies.length; i++) {%>
+        <li>
+            <button
+                onClick="location.href='http://localhost:3000/pathologies/modifier/<%=pathologies[i].pathologie_id%>';">Modifier</button>
+
+            <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
+            <script>
+                function popupAttentionOn<%=i+1 %> () {
+                    document.getElementById("attention").innerHTML = `Ceci supprimera les ordonances que ce médecin aura crée <button onClick="location.href='http://localhost:3000/pathologies/supprimer/<%=pathologies[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                }
+
+
+            </script>
+
+
+
+
+            <strong>
+                n° Pathologie : <%= pathologies[i].pathologie_id %>
+                Nom : <%= pathologies[i].pathologie_nom.toUpperCase() %>
+            </strong>
+        </li>
+        <% }%>
+
+
+
+            <div> Ajout d'une pathologie </div>
+
+            <form action="/pathologies/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                <div>
+
+
+                    <label for="nom">Nom : </label>
+                    <input type="text" name="nom" id="nom" required>
+
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
+
+            <script>
+                function popupAttentionOff() {
+                    document.getElementById("attention").innerHTML = ""
+                }
+            </script>

@@ -50,6 +50,16 @@ routeur.get('/medecins/modifier/:id', ctrlMedecins.afficherModifMedecin)
 routeur.post('/medecins/modifier', ctrlMedecins.modifMedecin)
 
 
+//Routes pour la page pathologies
+routeur.get('/pathologies', ctrlPathologies.afficherPathologies)
+routeur.post('/pathologies/ajouter', ctrlPathologies.ajouterPathologie)
+routeur.get('/pathologies/supprimer/:id', ctrlPathologies.supprimerPathologie)
+
+//Routes pour la sous page pathologies/modifier
+routeur.get('/pathologies/modifier/:id', ctrlPathologies.afficherModifPathologie)
+routeur.post('/pathologies/modifier', ctrlPathologies.modifPathologie)
+
+
 
 
 //Routes pour la page medicaments

@@ -17,7 +17,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             //ORDER BY afin que pas de mutuelle soit selected
 
-            let requeteSQL = 'SELECT * FROM Pathologies ORDER BY pathologie_nom'
+            let requeteSQL = 'SELECT * FROM Pathologies ORDER BY pathologie_id'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
@@ -32,7 +32,7 @@ module.exports = {
 
     
 
-    async modelAjouterMutuelle(req) {
+    async modelAjouterPathologie(req) {
 
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -43,11 +43,9 @@ module.exports = {
         return new Promise((resolve, reject) => {
 
             let nom = req.body.nom
-            let tel = req.body.tel
-            let email = req.body.email
 
-            let requeteSQL = "INSERT INTO Mutuelles (mutuelle_nom, mutuelle_tel,mutuelle_email) VALUES (?, ?, ?)"
-            mysqlConnexion.query(requeteSQL, [nom, tel, email], (err, data) => {
+            let requeteSQL = "INSERT INTO Pathologies (pathologie_nom) VALUES (?)"
+            mysqlConnexion.query(requeteSQL, [nom], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -61,7 +59,7 @@ module.exports = {
 
 
 
-    async modelAfficherModifMutuelle(req) {
+    async modelAfficherModifPathologie(req) {
 
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -73,7 +71,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = 'SELECT * FROM Mutuelles WHERE mutuelle_id = ?'
+            let requeteSQL = 'SELECT * FROM Pathologies WHERE pathologie_id = ?'
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {
 
                 if (err) {
@@ -89,7 +87,7 @@ module.exports = {
 
 
 
-    async modelModifMutuelle(req) {
+    async modelModifPathologie(req) {
 
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -101,12 +99,10 @@ module.exports = {
 
             
             let nom = req.body.nom
-            let tel = req.body.tel
-            let email = req.body.email
             let id = req.body.id
 
-            let requeteSQL = 'UPDATE Mutuelles SET mutuelle_nom = ?, mutuelle_tel = ?, mutuelle_email = ? WHERE mutuelle_id = ?'
-            mysqlConnexion.query(requeteSQL, [ nom, tel, email, id], (err, data) => {
+            let requeteSQL = 'UPDATE Pathologies SET pathologie_nom = ? WHERE pathologie_id = ?'
+            mysqlConnexion.query(requeteSQL, [ nom, id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -118,7 +114,7 @@ module.exports = {
         )
     },
 
-    async modelSupprimerMutuelle(req) {
+    async modelSupprimerPathologie(req) {
 
         /** 
          * recuperation de l' @id dans la requette GET @req
@@ -131,7 +127,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = "DELETE FROM Mutuelles WHERE mutuelle_id = ?;"
+            let requeteSQL = "DELETE FROM Pathologies WHERE mutuelle_id = ?;"
 
 
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {
