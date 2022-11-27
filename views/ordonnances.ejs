@@ -17,8 +17,6 @@
                 onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/<%=user.ordonnance_id%>';">Posologies</button>
 
 
-            <button disabled>Mutuelle</button>
-
 
             <button
                 onClick="location.href='http://localhost:3000/medecin/modifier/<%=user.medecin_id%>';">Medecin</button>
@@ -63,17 +61,18 @@
                         <option value="" selected disabled>Choisir un Médecin</option>
                         <% medecins.forEach(function(user){ %>
                             <option value="<%= user.medecin_id %>">
-                                <%= user.medecin_nom %>
+                                <%= user.medecin_prenom %> <%= user.medecin_nom.toUpperCase() %>
                             </option>
                             <% })%>
                     </select>
-                    <label for="medecin"> Pathologie : </label>
-                    <select name="medecin" id="medecin" required>
 
-                        <option value="" selected disabled>Choisir un Médecin</option>
-                        <% medecins.forEach(function(user){ %>
-                            <option value="<%= user.medecin_id %>">
-                                <%= user.medecin_nom %>
+                    <label for="pathologie"> Pathologie : </label>
+                    <select name="pathologie" id="pathologie" required>
+
+                        <option value="" selected disabled>Choisir une pathologie</option>
+                        <% pathologies.forEach(function(user){ %>
+                            <option value="<%= user.pathologie_id %>">
+                                <%= user.pathologie_nom %>
                             </option>
                             <% })%>
                     </select>
