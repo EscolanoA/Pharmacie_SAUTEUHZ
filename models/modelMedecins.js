@@ -30,9 +30,9 @@ module.exports = {
         )
     },
 
-    
 
-    async modelAjouterMutuelle(req) {
+
+    async modelAjouterMedecin(req) {
 
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -42,12 +42,13 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
+            let prenom = req.body.prenom
             let nom = req.body.nom
             let tel = req.body.tel
             let email = req.body.email
 
-            let requeteSQL = "INSERT INTO Mutuelles (mutuelle_nom, mutuelle_tel,mutuelle_email) VALUES (?, ?, ?)"
-            mysqlConnexion.query(requeteSQL, [nom, tel, email], (err, data) => {
+            let requeteSQL = "INSERT INTO Medecins (medecin_prenom, medecin_nom, medecin_tel, medecin_email ) VALUES (?, ?, ?, ?)"
+            mysqlConnexion.query(requeteSQL, [prenom, nom, tel, email], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -61,7 +62,7 @@ module.exports = {
 
 
 
-    async modelAfficherModifMutuelle(req) {
+    async modelAfficherModifMedecin(req) {
 
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -73,7 +74,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = 'SELECT * FROM Mutuelles WHERE mutuelle_id = ?'
+            let requeteSQL = 'SELECT * FROM Medecins WHERE mutuelle_id = ?'
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {
 
                 if (err) {
@@ -89,7 +90,7 @@ module.exports = {
 
 
 
-    async modelModifMutuelle(req) {
+    async modelModifMedecin(req) {
 
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -99,14 +100,14 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            
+
             let nom = req.body.nom
             let tel = req.body.tel
             let email = req.body.email
             let id = req.body.id
 
-            let requeteSQL = 'UPDATE Mutuelles SET mutuelle_nom = ?, mutuelle_tel = ?, mutuelle_email = ? WHERE mutuelle_id = ?'
-            mysqlConnexion.query(requeteSQL, [ nom, tel, email, id], (err, data) => {
+            let requeteSQL = 'UPDATE Medecins SET medecin_nom = ?, mutuelle_tel = ?, mutuelle_email = ? WHERE mutuelle_id = ?'
+            mysqlConnexion.query(requeteSQL, [nom, tel, email, id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -118,7 +119,7 @@ module.exports = {
         )
     },
 
-    async modelSupprimerMutuelle(req) {
+    async modelSupprimerMedecin(req) {
 
         /** 
          * recuperation de l' @id dans la requette GET @req
@@ -131,7 +132,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = "DELETE FROM Mutuelles WHERE mutuelle_id = ?;"
+            let requeteSQL = "DELETE FROM Medecins WHERE medecin_id = ?;"
 
 
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {

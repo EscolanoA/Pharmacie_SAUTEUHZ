@@ -5,15 +5,19 @@ const connexionController = require('../controllers/ctrlConnexion')
 const accueilController = require('../controllers/ctrlAccueil')
 
 
-const patientsController = require('../controllers/ctrlPatients')
+const ctrlPatients = require('../controllers/ctrlPatients')
 
-const ordonnancesController = require('../controllers/ctrlOrdonnances')
+const ctrlOrdonnances = require('../controllers/ctrlOrdonnances')
 
-const posologiesController = require('../controllers/ctrlPosologies')
+const ctrlPosologies = require('../controllers/ctrlPosologies')
 
-const medicamentsController = require('../controllers/ctrlMedicaments')
+const ctrlMedicaments = require('../controllers/ctrlMedicaments')
 
-const mutuellesController = require('../controllers/ctrlMutuelles')
+const ctrlMutuelles = require('../controllers/ctrlMutuelles')
+
+const ctrlMedecins = require('../controllers/ctrlMedecins')
+
+const ctrlPathologies = require('../controllers/ctrlPathologies')
 
 //Page d'indentification
 routeur.get('/connexion', connexionController.afficherConnexion)
@@ -26,46 +30,57 @@ routeur.get('/accueil', accueilController.afficherAcceuil)
 
 
 //Routes pour la page mutuelles
-routeur.get('/mutuelles', mutuellesController.afficherMutuelles)
-routeur.post('/mutuelles/ajouter', mutuellesController.ajouterMutuelle)
-routeur.get('/mutuelles/supprimer/:id', mutuellesController.supprimerMututelle)
+routeur.get('/mutuelles', ctrlMutuelles.afficherMutuelles)
+routeur.post('/mutuelles/ajouter', ctrlMutuelles.ajouterMutuelle)
+routeur.get('/mutuelles/supprimer/:id', ctrlMutuelles.supprimerMututelle)
 
 //Routes pour la sous page mutuelles/modifier
-routeur.get('/mutuelles/modifier/:id', mutuellesController.afficherModifMutuelle)
-routeur.post('/mutuelles/modifier', mutuellesController.modifMututelle)
+routeur.get('/mutuelles/modifier/:id', ctrlMutuelles.afficherModifMutuelle)
+routeur.post('/mutuelles/modifier', ctrlMutuelles.modifMututelle)
+
+
+
+//Routes pour la page medecins
+routeur.get('/medecins', ctrlMedecins.afficherMedecins)
+routeur.post('/medecins/ajouter', ctrlMedecins.ajouterMedecin)
+routeur.get('/medecins/supprimer/:id', ctrlMedecins.supprimerMedecin)
+
+//Routes pour la sous page medecins/modifier
+routeur.get('/medecins/modifier/:id', ctrlMedecins.afficherModifMedecin)
+routeur.post('/medecins/modifier', ctrlMedecins.modifMedecin)
 
 
 
 
 //Routes pour la page medicaments
-routeur.get('/medicaments', medicamentsController.afficherMedicaments)
-routeur.post('/medicaments/ajouter', medicamentsController.ajouterMedicament)
-routeur.get('/medicaments/supprimer/:id', medicamentsController.supprimerMedicament)
+routeur.get('/medicaments', ctrlMedicaments.afficherMedicaments)
+routeur.post('/medicaments/ajouter', ctrlMedicaments.ajouterMedicament)
+routeur.get('/medicaments/supprimer/:id', ctrlMedicaments.supprimerMedicament)
 
 //Routes pour la sous page medicaments/modifier
-routeur.get('/medicaments/modifier/:id', medicamentsController.afficherModifMedicament)
-routeur.post('/medicaments/modifier', medicamentsController.modifMedicament)
+routeur.get('/medicaments/modifier/:id', ctrlMedicaments.afficherModifMedicament)
+routeur.post('/medicaments/modifier', ctrlMedicaments.modifMedicament)
 
 
 
 
 //Routes pour la page Patient
-routeur.get('/patients', patientsController.afficherPatients)
-routeur.post('/patients/ajouter', patientsController.ajouterPatient)
-routeur.get('/patients/supprimer/:numsecu', patientsController.supprimerPatient)
+routeur.get('/patients', ctrlPatients.afficherPatients)
+routeur.post('/patients/ajouter', ctrlPatients.ajouterPatient)
+routeur.get('/patients/supprimer/:numsecu', ctrlPatients.supprimerPatient)
 
 //Routes pour la sous page patients/modifier
-routeur.get('/patients/modifier/:numsecu/:idmut', patientsController.afficherModifPatient)
-routeur.post('/patients/modifier', patientsController.modifPatient)
+routeur.get('/patients/modifier/:numsecu/:idmut', ctrlPatients.afficherModifPatient)
+routeur.post('/patients/modifier', ctrlPatients.modifPatient)
 
 //Routes pour la sous page patients/ordonnances
-routeur.get('/patients/ordonnances/:numsecu', ordonnancesController.afficherOrdonnances)
-routeur.post('/patients/ordonnances/ajouter', ordonnancesController.ajouterOrdonnance)
-routeur.get('/patients/ordonnances/supprimer/:numsecu/:id', ordonnancesController.supprimerOrdonnance)
+routeur.get('/patients/ordonnances/:numsecu', ctrlOrdonnances.afficherOrdonnances)
+routeur.post('/patients/ordonnances/ajouter', ctrlOrdonnances.ajouterOrdonnance)
+routeur.get('/patients/ordonnances/supprimer/:numsecu/:id', ctrlOrdonnances.supprimerOrdonnance)
 
 
 //Routes pour la sous page patients/posologies
-routeur.get('/patients/ordonnances/posologies/:idordo', posologiesController.afficherPosologies)
+routeur.get('/patients/ordonnances/posologies/:idordo', ctrlPosologies.afficherPosologies)
 
 //routeur.get('/patients/ordonnances/posologies/modifPosologies', modifPosologiesController.afficherModifPosologie)
 //routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)

@@ -1,0 +1,63 @@
+<%- include('header') %>
+    <div> Bienvenue sur la page des medecins </div>
+    <a id="attention"></a>
+    <% for(let i=0; i < medecins.length; i++) {%>
+        <li>
+            <button
+                onClick="location.href='http://localhost:3000/medecins/modifier/<%=medecins[i].medecin_id%>';">Modifier</button>
+
+            <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
+            <script>
+                function popupAttentionOn<%=i+1 %> () {
+                    document.getElementById("attention").innerHTML = `Ceci supprimera les ordonances que ce médecin aura crée <button onClick="location.href='http://localhost:3000/medecins/supprimer/<%=medecins[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                }
+
+
+            </script>
+
+
+
+
+            <strong>
+                Prenom : <%= medecins[i].medecin_prenom %>
+                    Nom : <%= medecins[i].medecin_nom.toUpperCase() %>
+                        Tel : <a href="telto:<%= medecins[i].medecin_tel %>">
+                            <%= medecins[i].medecin_tel %>
+                        </a>
+                        Mail : <a href="mailto:<%= medecins[i].medecin_email %>">
+                            <%= medecins[i].medecin_email %>
+                        </a>
+
+            </strong>
+        </li>
+        <% }%>
+
+
+
+            <div> Ajout d'un medecin </div>
+
+            <form action="/medecins/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                <div>
+
+
+                    <label for="nom">Nom : </label>
+                    <input type="text" name="nom" id="nom" required>
+
+                    <label for="prenom">Prenom : </label>
+                    <input type="text" name="prenom" id="prenom" required>
+
+                    <label for="tel">Tel : </label>
+                    <input type="tel" name="tel" id="tel" required>
+
+                    <label for="email">Mail : </label>
+                    <input type="email" name="email" id="email" required>
+
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
+
+            <script>
+                function popupAttentionOff() {
+                    document.getElementById("attention").innerHTML = ""
+                }
+            </script>

@@ -8,7 +8,7 @@
     <li>nom : <%= ordonnances[0].patient_nom.toUpperCase() %> prenom : <%= ordonnances[0].patient_prenom %> Date de
                 naissance : <%= ordonnances[0].patient_journaiss %>/<%= ordonnances[0].patient_moisnaiss %>/<%=
                             ordonnances[0].patient_anneenaiss %> Age : <%= new Date().getFullYear() -
-                                ordonnances[0].patient_anneenaiss %> Numéro Sécu : <%= ordonnances[0].patient_numsecu %>
+                                ordonnances[0].patient_anneenaiss %> ans  Numéro Sécu : <%= ordonnances[0].patient_numsecu %>
     </li>
 
     <% ordonnances.forEach(function(user,i){ %>
@@ -81,3 +81,9 @@
                     <button type="submit">Ajouter</button>
                 </div>
             </form>
+
+            <script>
+                function popupAttentionOff() {
+                    document.getElementById("attention").innerHTML = ""
+                }
+            </script>

@@ -7,14 +7,17 @@ CREATE TABLE `Medecins`(
     `medecin_prenom` VARCHAR(20) NOT NULL,
     `medecin_nom` VARCHAR(20) NOT NULL,
     `medecin_tel` VARCHAR(50) NOT NULL,
+    `medecin_email` VARCHAR(200) NOT NULL,
+
+
     PRIMARY KEY (`medecin_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Medecins` (`medecin_id`, `medecin_prenom`, `medecin_nom`,`medecin_tel`) VALUES
-(1, 'Tony', 'Montana','0664589745'),
-(2, 'Mont', 'Hessquieu','0669686978'),
-(3, 'Doumé', 'Babar','0656326978'),
-(4, 'Boloré', 'Fopaparler','0656326978'),
-(5, 'Kim', 'JongHun','6589423578');
+INSERT INTO `Medecins` (`medecin_id`, `medecin_prenom`, `medecin_nom`,`medecin_tel`,`medecin_email`) VALUES
+(1, 'Tony', 'Montana','0664589745', 'contact@tonymontana.com'),
+(2, 'Mont', 'Hessquieu','0669686978', 'contact@monthessqieu.com'),
+(3, 'Doumé', 'Babar','0656326978', 'contact@doumébabar.com'),
+(4, 'Boloré', 'Fopaparler','0656326978', 'contact@bolorefopaparler.com'),
+(5, 'Kim', 'JongHun','6589423578', 'contact@kimkim420.com');
 
 
 DROP TABLE IF EXISTS `Ordonnances`;
@@ -136,11 +139,11 @@ INSERT INTO `Mutuelles` (`mutuelle_id`, `mutuelle_nom`, `mutuelle_tel`,`mutuelle
 
 DROP TABLE IF EXISTS `Pharmaciens`;
 CREATE TABLE `Pharmaciens`(
-    `parmacien_mail` VARCHAR(200) NOT NULL,
+    `parmacien_email` VARCHAR(200) NOT NULL,
     `parmacien_mdp` VARCHAR(20) NOT NULL,
-    PRIMARY KEY (`parmacien_mail`)
+    PRIMARY KEY (`parmacien_email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Pharmaciens` (`parmacien_mail`, `parmacien_mdp`) VALUES
+INSERT INTO `Pharmaciens` (`parmacien_email`, `parmacien_mdp`) VALUES
 ('root@root.com', 'root');
 
 
