@@ -3,6 +3,11 @@
     <a id="attention"></a>
     <% patients.forEach(function(user,i){ %>
         <li>
+
+            <button
+                onClick="location.href='http://localhost:3000/mutuelles/modifier/<%= user.patient_mutuelle_id%>';">Mutuelle</button>
+            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+
             <button
                 onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>/<%= user.patient_mutuelle_id%>';">Modifier</button>
             <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
@@ -18,7 +23,7 @@
                     Prenom :<%= user.patient_prenom %>
                         age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
                             N° de secu :<%= user.patient_numsecu %>
-                                mutuelle :<%= user.mutuelle_ %>
+                                mutuelle :<%= user.patient_mutuelle_id %>
             </strong>
         </li>
         <% })%>
