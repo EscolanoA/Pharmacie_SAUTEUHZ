@@ -3,6 +3,8 @@
     <a id="attention"></a>
     <% patients.forEach(function(user,i){ %>
         <li>
+            <button
+            onClick="location.href='http://localhost:3000/patients/ordonnances/<%=user.patient_mutuelle_id%>';">Ordonnances</button>
             <%if(user.patient_mutuelle_id==null){%>
 
                 <button disabled>Mutuelle</button>

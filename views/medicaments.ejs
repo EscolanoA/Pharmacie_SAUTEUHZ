@@ -4,7 +4,8 @@
     <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
     on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
     <% medicaments.forEach(function(user,i){ %>
-        <div>
+        <li>
+
             <button
                 onClick="location.href='http://localhost:3000/medicaments/modifier/<%=user.medicament_id%>';">Modifier</button>
             <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
@@ -18,7 +19,8 @@
             <strong>
                 <%= user.medicament_nom %>
             </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
-        </div>
+
+        </li>
         <% })%>
 
 
