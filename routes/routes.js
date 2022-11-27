@@ -30,7 +30,7 @@ routeur.get('/mutuelles', mutuellesController.afficherMutuelles)
 routeur.post('/mutuelles/ajouter', mutuellesController.ajouterMutuelle)
 routeur.get('/mutuelles/modifier/:id', mutuellesController.afficherModifMutuelle)
 routeur.post('/mutuelles/modifier', mutuellesController.modifMututelle)
-
+routeur.get('/mutuelles/supprimer/:id', mutuellesController.supprimerMututelle)
 
 
 

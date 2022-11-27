@@ -11,7 +11,7 @@
 
             <script>
                 function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `vous etes sur ? <button onClick="location.href='http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                    document.getElementById("attention").innerHTML = `Supprimer un médicament effacera les posologies qui lui sont liées <button onClick="location.href='http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                 }
             </script>
 

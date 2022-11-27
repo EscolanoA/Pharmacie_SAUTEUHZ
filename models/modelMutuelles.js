@@ -118,6 +118,34 @@ module.exports = {
         )
     },
 
+    async modelSupprimerMutuelle(req) {
+
+        /** 
+         * recuperation de l' @id dans la requette GET @req
+         * instantiation d'une promesse de résultat de  @requetteSQL avec la donné en paramètre
+         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+         * sinon @return @resolve avec les donnés @data de la @requetteSQL
+        */
+
+        return new Promise((resolve, reject) => {
+
+            let id = req.params.id
+
+            let requeteSQL = "DELETE FROM Mutuelles WHERE mutuelle_id = ?;"
+
+
+            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    }
+
 
 
 

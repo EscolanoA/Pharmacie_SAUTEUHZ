@@ -1,11 +1,22 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des mutuelles </div>
-
+    <a id="attention"></a>
     <!--boucle qui commence à 0 car il n'y a pas à cacher une colonne "pas de mutuelle -->
     <% for(let i = 0; i < mutuelles.length; i++) {%>
         <li>
-            <button
-                onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>
+            <button onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>
+
+            <button onclick="popupAttentionOn()">Supprimer</button>
+            <script>
+                function popupAttentionOn() {
+                    document.getElementById("attention").innerHTML = `Ceci désatribura la mutuelle des patients <button onClick="location.href='http://localhost:3000/mutuelles/supprimer/<%=mutuelles[i].mutuelle_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?` 
+                }            
+                function popupAttentionOff() {
+                    document.getElementById("attention").innerHTML = ""
+                }
+
+            </script>
+            
 
 
 

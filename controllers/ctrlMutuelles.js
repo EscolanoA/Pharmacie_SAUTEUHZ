@@ -74,6 +74,22 @@ module.exports = {
 
 
     },
+    async supprimerMututelle(req, res) {
+
+        try {
+            let data = await modelMutuelles.modelSupprimerMutuelle(req)
+            
+            if (data) {
+                //console.log(data)
+                res.redirect("/mutuelles")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
 
 }
