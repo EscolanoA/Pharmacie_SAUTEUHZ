@@ -47,3 +47,38 @@
             </strong>
         </li>
         <% })%>
+
+
+            <div> Ajouter une Ordonnance </div>
+
+            <form action="/patients/ordonnances/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+
+                <div>
+                
+                    <input hidden type="number" name="numsecu" id="numsecu" value="<%= ordonnances[0].patient_numsecu %>" required>
+
+                    <label for="medecin"> Medecin : </label>
+                    <select name="medecin" id="medecin" required>
+
+                        <option value="" selected disabled>Choisir un Médecin</option>
+                        <% medecins.forEach(function(user){ %>
+                            <option value="<%= user.medecin_id %>">
+                                <%= user.medecin_nom %>
+                            </option>
+                            <% })%>
+                    </select>
+                    <label for="medecin"> Pathologie : </label>
+                    <select name="medecin" id="medecin" required>
+
+                        <option value="" selected disabled>Choisir un Médecin</option>
+                        <% medecins.forEach(function(user){ %>
+                            <option value="<%= user.medecin_id %>">
+                                <%= user.medecin_nom %>
+                            </option>
+                            <% })%>
+                    </select>
+
+
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>

@@ -60,10 +60,12 @@ routeur.post('/patients/modifier', patientsController.modifPatient)
 
 //Routes pour la sous page patients/ordonnances
 routeur.get('/patients/ordonnances/:numsecu', ordonnancesController.afficherOrdonnances)
+routeur.post('/patients/ordonnances/ajouter', posologiesController.afficherPosologies)
 
 
-//sous pages
+//Routes pour la sous page patients/posologies
 routeur.get('/patients/ordonnances/posologies/:idordo', posologiesController.afficherPosologies)
+
 //routeur.get('/patients/ordonnances/posologies/modifPosologies', modifPosologiesController.afficherModifPosologie)
 //routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)
 //routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)

@@ -147,13 +147,13 @@ INSERT INTO `Pharmaciens` (`parmacien_mail`, `parmacien_mdp`) VALUES
 
 
 ALTER TABLE
-    `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_medecin_id_foreign` FOREIGN KEY(`ordonnance_medecin_id`) REFERENCES `Medecins`(`medecin_id`);
+    `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_medecin_id_foreign` FOREIGN KEY(`ordonnance_medecin_id`) REFERENCES `Medecins`(`medecin_id`) ON DELETE CASCADE;
 ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_patient_numsecu_foreign` FOREIGN KEY(`ordonnance_patient_numsecu`) REFERENCES `Patients`(`patient_numsecu`) ON DELETE CASCADE;
 ALTER TABLE
     `Patients` ADD CONSTRAINT `patients_patient_mutuelle_id_foreign` FOREIGN KEY(`patient_mutuelle_id`) REFERENCES `Mutuelles`(`mutuelle_id`)ON DELETE SET NULL ;
 ALTER TABLE
-    `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_pathologie_id_foreign` FOREIGN KEY(`ordonnance_pathologie_id`) REFERENCES `Pathologies`(`pathologie_id`);
+    `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_pathologie_id_foreign` FOREIGN KEY(`ordonnance_pathologie_id`) REFERENCES `Pathologies`(`pathologie_id`) ON DELETE CASCADE;
 ALTER TABLE
     `Posologies` ADD CONSTRAINT `posologies_posologie_ordonnance_id_foreign` FOREIGN KEY(`posologie_ordonnance_id`) REFERENCES `Ordonnances`(`ordonnance_id`) ON DELETE CASCADE;
 ALTER TABLE
