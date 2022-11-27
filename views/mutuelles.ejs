@@ -1,8 +1,8 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des mutuelles </div>
 
-    <!--boucle qui commence à 1 pour cacher la mutuelle 0 qui est Pas de mutuelles -->
-    <% for(let i = 1; i < mutuelles.length; i++) {%>
+    <!--boucle qui commence à 0 car il n'y a pas à cacher une colonne "pas de mutuelle -->
+    <% for(let i = 0; i < mutuelles.length; i++) {%>
         <li>
             <button
                 onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>

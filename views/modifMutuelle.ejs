@@ -1,23 +1,26 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page de modification des mutuelles </div>
 
 
-    <div> modifier le mutuelle n° <%=mutuelle[0].mutuelle_id%>
+    <div>
+        <div> informations de la mutuelle n° <%=mutuelle[0].mutuelle_id%>
+        </div>
+        <form action="/mutuelles/modifier" method="POST" enctype="application/x-www-formurlencoded">
+
+            <input hidden type="number" name="id" id="id" value="<%=mutuelle[0].mutuelle_id%>" required>
+
+            <label for="nom">Nom : </label>
+            <input type="text" name="nom" id="nom" value="<%=mutuelle[0].mutuelle_nom%>" required>
+
+            <label for="tel">Tel : </label>
+            <input type="tel" name="tel" id="tel" value="<%=mutuelle[0].mutuelle_tel%>" required>
+
+            <label for="email">Mail : </label>
+            <input type="email" name="email" id="email" value="<%=mutuelle[0].mutuelle_email%>" required>
+
+
+            <button type="submit">Modifier</button>
+
+        </form>
+
+        <button onClick="history.back()">Retour</button>
     </div>
-    <form action="/mutuelles/modifier" method="POST" enctype="application/x-www-formurlencoded">
-
-        <input hidden type="number" name="id" id="id" value="<%=mutuelle[0].mutuelle_id%>" required>
-
-        <label for="nom">Nom : </label>
-        <input type="text" name="nom" id="nom" value="<%=mutuelle[0].mutuelle_nom%>" required>
-
-        <label for="tel">Tel : </label>
-        <input type="tel" name="tel" id="tel" value="<%=mutuelle[0].mutuelle_tel%>"required>
-
-        <label for="email">Mail : </label>
-        <input type="email" name="email" id="email" value="<%=mutuelle[0].mutuelle_email%>" required>
-
-    
-        <button type="submit">Modifier</button>
-    </form>
-    
