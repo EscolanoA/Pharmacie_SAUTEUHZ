@@ -16,6 +16,7 @@ const posologiesController = require('../controllers/crtlPosologies')
 const modifPosologiesController = require('../controllers/ctrlModifPosologies')
 const medicamentsController = require('../controllers/ctrlMedicaments')
 const modifMedicamentsController = require('../controllers/ctrlModifMedicament')
+const mutuellesController = require('../controllers/ctrlMutuelles')
 
 //Page d'indentification
 routeur.get('/connexion', connexionController.afficherConnexion)
@@ -25,15 +26,18 @@ routeur.get('/accueil', accueilController.afficherAcceuil)
 
 
 //Routes pour la page mutuelles
-//routeur.get('/mutuelles', patientsController.afficherPatients)
+routeur.get('/mutuelles', mutuellesController.afficherMutuelles)
+routeur.post('/mutuelles/ajouter', mutuellesController.ajouterMutuelle)
+
 
 //Routes pour la page Patient
 routeur.get('/patients', patientsController.afficherPatients)
 routeur.post('/patients/ajouter', patientsController.ajouterPatient)
+routeur.get('/patients/supprimer/:numsecu', patientsController.supprimerPatient)
 routeur.get('/patients/modifier/:numsecu/:idmut', modifPatientsController.afficherModifPatient)
 routeur.post('/patients/modifier', modifPatientsController.modifPatient)
 
-routeur.post('/patients/ajoutermutuelle', patientsController.ajouterMutuelle)
+routeur.post('/mutuelles/ajoutermutuelle', mutuellesController.ajouterMutuelle)
 
 //sous pages
 routeur.get('/patients/infosMutuelle', infosMutuelleController.afficherInfosMutuelle)
