@@ -1,6 +1,6 @@
 //importer les models d'accès aux donnés (requetes SQL)
 let modelModifPatient = require('../models/modelModifPatient.js')
-let modelPatient = require('../models/modelPatients.js')
+let modelMutuelles = require('../models/modelMutuelles.js')
 
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
 
         try {
             let data = await modelModifPatient.modelAfficherModifPatient(req)
-            let data2 = await modelPatient.modelAfficherMutuelles(req)
+            let data2 = await modelMutuelles.modelAfficherMutuelles(req)
 
             if (data && data2 ) {
                 //console.log(data)
@@ -47,7 +47,7 @@ module.exports = {
         }
 
 
-    }
+    },
 
 }
 

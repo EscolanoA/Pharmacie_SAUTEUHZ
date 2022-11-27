@@ -99,7 +99,7 @@ INSERT INTO `Pathologies` (`pathologie_id`, `pathologie_nom`) VALUES
 DROP TABLE IF EXISTS `Patients`;
 CREATE TABLE `Patients`(
     `patient_numsecu` VARCHAR(255) NOT NULL,
-    `patient_mutuelle_id` INT UNSIGNED NOT NULL DEFAULT 0,
+    `patient_mutuelle_id` INT UNSIGNED 
     `patient_nom` VARCHAR(20) NOT NULL,
     `patient_prenom` VARCHAR(20) NOT NULL,
     `patient_datenaiss` DATE NOT NULL,
@@ -120,10 +120,10 @@ CREATE TABLE `Mutuelles`(
     `mutuelle_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `mutuelle_nom` VARCHAR(20) NOT NULL,
     `mutuelle_tel` VARCHAR(50) NOT NULL,
-    `mutuelle_mail` VARCHAR(200) NOT NULL,
+    `mutuelle_email` VARCHAR(200) NOT NULL,
     PRIMARY KEY (`mutuelle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Mutuelles` (`mutuelle_id`, `mutuelle_nom`, `mutuelle_tel`,`mutuelle_mail`) VALUES
+INSERT INTO `Mutuelles` (`mutuelle_id`, `mutuelle_nom`, `mutuelle_tel`,`mutuelle_email`) VALUES
 (0, 'Pas de mutuelle', '0000','0000@000.com'),
 (1, 'Stevia', '0664589745','contact@stevia.com'),
 (2, 'Matbut', '0669686978','contact@matbut.com'),
@@ -149,7 +149,7 @@ ALTER TABLE
 ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_patient_numsecu_foreign` FOREIGN KEY(`ordonnance_patient_numsecu`) REFERENCES `Patients`(`patient_numsecu`);
 ALTER TABLE
-    `Patients` ADD CONSTRAINT `patients_patient_mutuelle_id_foreign` FOREIGN KEY(`patient_mutuelle_id`) REFERENCES `Mutuelles`(`mutuelle_id`);
+    `Patients` ADD CONSTRAINT `patients_patient_mutuelle_id_foreign` FOREIGN KEY(`patient_mutuelle_id`) REFERENCES `Mutuelles`(`mutuelle_id`)ON DELETE SET NULL ;
 ALTER TABLE
     `Ordonnances` ADD CONSTRAINT `ordonnances_ordonnance_pathologie_id_foreign` FOREIGN KEY(`ordonnance_pathologie_id`) REFERENCES `Pathologies`(`pathologie_id`);
 ALTER TABLE

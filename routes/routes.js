@@ -28,6 +28,10 @@ routeur.get('/accueil', accueilController.afficherAcceuil)
 //Routes pour la page mutuelles
 routeur.get('/mutuelles', mutuellesController.afficherMutuelles)
 routeur.post('/mutuelles/ajouter', mutuellesController.ajouterMutuelle)
+routeur.get('/mutuelles/modifier/:id', mutuellesController.afficherModifMutuelle)
+routeur.post('/mutuelles/modifier', mutuellesController.modifMututelle)
+
+
 
 
 //Routes pour la page Patient

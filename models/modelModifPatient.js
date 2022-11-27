@@ -29,9 +29,9 @@ module.exports = {
         }
         )
     },
+
     async modelAfficherMutuelles() {
         
-
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
          * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
