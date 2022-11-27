@@ -51,17 +51,42 @@ module.exports = {
             let prenom = req.body.prenom
             let datenaiss = req.body.datenaiss
 
-            let requeteSQL = "INSERT INTO Patients (patient_numsecu, patient_mutuelle_id, patient_nom, patient_prenom, patient_datenaiss) VALUES (?, ?, ?, ?, ?)"
+            console.log(mutuelle)
+            if(mutuelle == 'null' ){
+
+                let requeteSQL = "INSERT INTO Patients (patient_numsecu, patient_nom, patient_prenom, patient_datenaiss) VALUES (?, ?, ?, ?)"
 
 
-            mysqlConnexion.query(requeteSQL, [numsecu, mutuelle, nom, prenom, datenaiss], (err, data) => {
+                mysqlConnexion.query(requeteSQL, [numsecu, nom, prenom, datenaiss], (err, data) => {
+    
+                    if (err) {
+                        return reject(err)
+    
+                    }
+                    return resolve(data)
+                })
 
-                if (err) {
-                    return reject(err)
+            }else {
 
-                }
-                return resolve(data)
-            })
+                let requeteSQL = "INSERT INTO Patients (patient_numsecu, patient_mutuelle_id, patient_nom, patient_prenom, patient_datenaiss) VALUES (?, ?, ?, ?, ?)"
+
+
+                mysqlConnexion.query(requeteSQL, [numsecu, mutuelle, nom, prenom, datenaiss], (err, data) => {
+    
+                    if (err) {
+                        return reject(err)
+    
+                    }
+                    return resolve(data)
+                })
+
+
+
+
+            }
+
+
+
         }
         )
     },
@@ -79,7 +104,7 @@ module.exports = {
 
             let numsecu = req.params.numsecu
 
-            let requeteSQL = "DELETE FROM Medicaments WHERE patient_numsecu = ?;"
+            let requeteSQL = "DELETE FROM Patients WHERE patient_numsecu = ?;"
 
 
             mysqlConnexion.query(requeteSQL, [numsecu], (err, data) => {

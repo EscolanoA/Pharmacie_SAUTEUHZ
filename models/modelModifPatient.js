@@ -31,7 +31,7 @@ module.exports = {
     },
 
     async modelAfficherMutuelles() {
-        
+
         /** 
          * instantiation d'une promesse de résultat de  @requetteSQL 
          * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
@@ -58,25 +58,26 @@ module.exports = {
 
 
 
-        async modelModifPatient(req) {
+    async modelModifPatient(req) {
 
-            /** 
-             * instantiation d'une promesse de résultat de  @requetteSQL 
-             * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-             * sinon @return @resolve avec les donnés @data de la @requetteSQL
-            */
+        /** 
+         * instantiation d'une promesse de résultat de  @requetteSQL 
+         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+         * sinon @return @resolve avec les donnés @data de la @requetteSQL
+        */
 
-            return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
 
-                let numsecu = req.body.numsecu
-                let mutuelle = req.body.mutuelle
-                let nom = req.body.nom
-                let prenom = req.body.prenom
-                let datenaiss = req.body.datenaiss
-                console.log(numsecu,datenaiss)
+            let numsecu = req.body.numsecu
+            let mutuelle = req.body.mutuelle
+            let nom = req.body.nom
+            let prenom = req.body.prenom
+            let datenaiss = req.body.datenaiss
 
-                let requeteSQL = 'UPDATE Patients SET patient_mutuelle_id = ?, patient_nom = ?,patient_prenom = ?, patient_datenaiss = ?  WHERE patient_numsecu = ?'
-                mysqlConnexion.query(requeteSQL, [ mutuelle, nom, prenom, datenaiss, numsecu], (err, data) => {
+            if (mutuelle == 'null') {
+
+                let requeteSQL = 'UPDATE Patients SET patient_mutuelle_id = NULL, patient_nom = ?,patient_prenom = ?, patient_datenaiss = ?  WHERE patient_numsecu = ?'
+                mysqlConnexion.query(requeteSQL, [ nom, prenom, datenaiss, numsecu], (err, data) => {
 
                     if (err) {
                         return reject(err)
@@ -84,9 +85,23 @@ module.exports = {
                     }
                     return resolve(data)
                 })
+
+            }else{
+
+                let requeteSQL = 'UPDATE Patients SET patient_mutuelle_id = ?, patient_nom = ?,patient_prenom = ?, patient_datenaiss = ?  WHERE patient_numsecu = ?'
+                mysqlConnexion.query(requeteSQL, [mutuelle, nom, prenom, datenaiss, numsecu], (err, data) => {
+
+                    if (err) {
+                        return reject(err)
+
+                    }
+                    return resolve(data)
+                })
+
             }
-            )
-        },
+        }
+        )
+    },
 
 
-    }
+}

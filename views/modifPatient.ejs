@@ -21,13 +21,11 @@
             required>
 
         <label for="mutuelle">Mutuelle : </label>
-        <select name="mutuelle" id="mutuelle" required>
-
+        <select name="mutuelle" id="mutuelle">
+            <option value="null">Pas de mut</option>
 
             <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
-                <option value="<%= user.mutuelle_id %>" selected>
-                    <%= user.mutuelle_nom %>
-                </option>
+                <option value="<%= user.mutuelle_id %>" selected><%= user.mutuelle_nom %></option>
                 <% } else {%>
                     <option value="<%= user.mutuelle_id %>">
                         <%= user.mutuelle_nom %>
