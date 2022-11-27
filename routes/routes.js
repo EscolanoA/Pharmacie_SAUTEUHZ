@@ -63,7 +63,7 @@ routeur.get('/patients/ordonnances/:numsecu', ordonnancesController.afficherOrdo
 
 
 //sous pages
-routeur.get('/patients/ordonnances/posologies', posologiesController.afficherPosologies)
+routeur.get('/patients/ordonnances/posologies/:idordo', posologiesController.afficherPosologies)
 //routeur.get('/patients/ordonnances/posologies/modifPosologies', modifPosologiesController.afficherModifPosologie)
 //routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)
 //routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)

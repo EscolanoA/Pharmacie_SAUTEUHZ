@@ -4,12 +4,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `Medecins`;
 CREATE TABLE `Medecins`(
     `medecin_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `medecin_nom` VARCHAR(20) NOT NULL,
     `medecin_prenom` VARCHAR(20) NOT NULL,
+    `medecin_nom` VARCHAR(20) NOT NULL,
     `medecin_tel` VARCHAR(50) NOT NULL,
     PRIMARY KEY (`medecin_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Medecins` (`medecin_id`, `medecin_nom`, `medecin_prenom`,`medecin_tel`) VALUES
+INSERT INTO `Medecins` (`medecin_id`, `medecin_prenom`, `medecin_nom`,`medecin_tel`) VALUES
 (1, 'Tony', 'Montana','0664589745'),
 (2, 'Mont', 'Hessquieu','0669686978'),
 (3, 'Doumé', 'Babar','0656326978'),

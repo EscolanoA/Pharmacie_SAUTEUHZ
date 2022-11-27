@@ -1,41 +1,49 @@
 <%- include('header') %>
-<div> Bienvenue sur la page des ordonnances </div>
+    <div> Bienvenue sur la page des ordonnances </div>
 
-<a id="attention"></a>
+    <a id="attention"></a>
 
 
-<h1>Ordonnances de</h1>
- <li>nom : <%= ordonnances[0].patient_nom %>     prenom : <%= ordonnances[0].patient_prenom %>      Date de naissance : <%= ordonnances[0].patient_journaiss %>/<%= ordonnances[0].patient_moisnaiss %>/<%= ordonnances[0].patient_anneenaiss %>     Age : <%= new Date().getFullYear() - ordonnances[0].patient_anneenaiss %>     Numéro Sécu : <%= ordonnances[0].patient_numsecu %></li>
+    <h1>Ordonnances de</h1>
+    <li>nom : <%= ordonnances[0].patient_nom.toUpperCase() %> prenom : <%= ordonnances[0].patient_prenom %> Date de
+                naissance : <%= ordonnances[0].patient_journaiss %>/<%= ordonnances[0].patient_moisnaiss %>/<%=
+                            ordonnances[0].patient_anneenaiss %> Age : <%= new Date().getFullYear() -
+                                ordonnances[0].patient_anneenaiss %> Numéro Sécu : <%= ordonnances[0].patient_numsecu %>
+    </li>
 
-<% ordonnances.forEach(function(user,i){ %>
-    <li>
-        <button
-        onClick="location.href='http://localhost:3000/patients/ordonnances/<%=user.patient_numsecu%>';">Ordonnances</button>
-        <%if(user.patient_mutuelle_id==null){%>
+    <% ordonnances.forEach(function(user,i){ %>
+        <li>
+            <button
+                onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/<%=user.ordonnance_id%>';">Posologies</button>
+
 
             <button disabled>Mutuelle</button>
 
-            <% }else {%>
-                <button
-                    onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=user.patient_mutuelle_id%>';">Mutuelle</button>
-                <%} %>
+
+            <button
+                onClick="location.href='http://localhost:3000/medecin/modifier/<%=user.medecin_id%>';">Medecin</button>
 
 
-                    <button onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>/<% if(user.patient_mutuelle_id==null){ user.patient_mutuelle_id = 0 }%><%= user.patient_mutuelle_id  %> ';">Modifier</button>
+
+            <button
+                onClick="location.href='http://localhost:3000/patients/ordonnances/modifier/<%=user.ordonnance_id%>';">Modifier</button>
 
 
-                    <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
-                    <script>
-                        function popupAttentionOn<%= i+1 %> () {
-                            document.getElementById("attention").innerHTML = `Supprimer un patient supprimera ses ordonnances <button onClick="location.href='http://localhost:3000/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
-                        }
-                    </script>
+            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+            <script>
+                function popupAttentionOn<%= i+1 %> () {
+                    document.getElementById("attention").innerHTML = `Supprimer une ordonnance supprimera ses posologies <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                }
+            </script>
 
-                    <strong>
-                        Nom :<%= user.patient_nom %>
-                            Prenom :<%= user.patient_prenom %>
-                                age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
-                                    N° de secu :<%= user.patient_numsecu %>
-                    </strong>
-    </li>
-    <% })%>
+            <strong>
+                N°Ordonnance : <%= user.ordonnance_id %>
+                    Médecin : <%= user.medecin_nom.toUpperCase() %>
+                        <%= user.medecin_prenom %>
+                            Tel : <a href="telto:<%= user.medecin_tel %>">
+                                <%= user.medecin_tel %>
+                            </a>
+                            Pathologie : <%= user.pathologie_nom %>
+            </strong>
+        </li>
+        <% })%>
