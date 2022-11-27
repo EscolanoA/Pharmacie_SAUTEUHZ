@@ -2,42 +2,39 @@
     <div> Bienvenue sur la page de modification des patients </div>
 
 
-    <% patient.forEach(function(user){ %>
-        <div> modifier le patient n° <%=user.patient_numsecu%>
-        </div>
+    <div> modifier le patient n° <%=patient[0].patient_numsecu%>
+    </div>
 
-        <label for="nom">nom : </label>
-        <input type="text" name="nom" id="nom" value="<%=user.patient_nom%>" required>
+    <label for="nom">nom : </label>
+    <input type="text" name="nom" id="nom" value="<%=patient[0].patient_nom%>" required>
 
-        <label for="prenom">prenom : </label>
-        <input type="text" name="prenom" id="prenom" value="<%=user.patient_prenom%>" required>
+    <label for="prenom">prenom : </label>
+    <input type="text" name="prenom" id="prenom" value="<%=patient[0].patient_prenom%>" required>
 
-        <label for="datenaiss">date de naissance : </label>
-        <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
-        <input type="date" name="datenaiss" id="datenaiss"
-            value="<%=user.patient_anneenaiss%>-<%=user.patient_moisnaiss%>-<%=user.patient_journaiss%>" required>
+    <label for="datenaiss">date de naissance : </label>
+    <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
+    <input type="date" name="datenaiss" id="datenaiss"
+        value="<%=patient[0].patient_anneenaiss%>-<%=patient[0].patient_moisnaiss%>-<%=patient[0].patient_journaiss%>" required>
 
-        <label for="numsecu">N° de secu : </label>
-        <input type="number" name="numsecu" id="numsecu" value="<%=user.patient_numsecu%>" required>
+    <label for="numsecu">N° de secu : </label>
+    <input disabled type="number" name="numsecu" id="numsecu" value="<%=patient[0].patient_numsecu%>" required>
+
+    <label for="mutuelle">Mutuelle : </label>
+    <select name="mutuelle" id="mutuelle" required>
 
 
-        <select name="mutuelle" id="mutuelle" required>
-
-
-            <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
-                <option value="<%= user.mutuelle_id %>" selected>
+        <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
+            <option value="<%= user.mutuelle_id %>" selected>
+                <%= user.mutuelle_nom %>
+            </option>
+            <% } else {%>
+                <option value="<%= user.mutuelle_id %>">
                     <%= user.mutuelle_nom %>
                 </option>
-                <% } else {%>
-                    <option value="<%= user.mutuelle_id %>">
-                        <%= user.mutuelle_nom %>
-                    </option>
-                    <% }})%>
+                <% }})%>
 
 
 
 
-        </select>
-        <button type="submit">Modifier</button>
-
-        <% })%>
+    </select>
+    <button type="submit">Modifier</button>
