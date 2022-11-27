@@ -127,7 +127,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = "DELETE FROM Pathologies WHERE mutuelle_id = ?;"
+            let requeteSQL = "DELETE FROM Pathologies WHERE pathologie_id = ?;"
 
 
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {

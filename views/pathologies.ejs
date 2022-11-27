@@ -9,7 +9,7 @@
             <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Ceci Suprimera les ordonnances qui contiennent cette maladie <button onClick="location.href='http://localhost:3000/pathologies/supprimer/<%=pathologies[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                    document.getElementById("attention").innerHTML = `Ceci Suprimera les ordonnances qui contiennent cette maladie <button onClick="location.href='http://localhost:3000/pathologies/supprimer/<%=pathologies[i].pathologie_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
                 }
 
 
