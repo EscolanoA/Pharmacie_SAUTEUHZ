@@ -1,7 +1,56 @@
-const afficherPosologies = (req, res) => {
-    res.render('./posologies')
-}
+const modelOrdonnances = require('../models/modelOrdonnances.js')
+const modelPosologies = require('../models/modelPosologies.js')
+const modelMedicaments = require('../models/modelMedicaments.js')
+
 
 module.exports = {
-    afficherPosologies
+
+
+    async afficherPosologies(req, res) {
+
+        try {
+            let data = await modelPosologies.modelAfficherInfoOrdonnance(req, res)
+            let data2 = await modelPosologies.modelAfficherPosologies(req, res)
+            let data3 = await modelMedicaments.modelAfficherMedicaments(req, res)
+
+            if (data) {
+
+                res.render("./posologies", { infosordo : data, idordo : req.params.idordo, posologies : data2 , medicaments : data3})
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    async ajouterOrdonnance(req, res) {
+
+        try {
+            let data = await modelOrdonnances.modelAjouterOrdonnance(req, res)
+            if (data) {
+                //console.log(data)
+                res.redirect("/patients/ordonnances/" + req.body.numsecu)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    async supprimerOrdonnance(req, res) {
+
+        try {
+            let data = await modelOrdonnances.modelSupprimerOrdonnance(req)
+            if (data) {
+                //console.log(data)
+                res.redirect("/patients/ordonnances/" + req.params.numsecu)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+
 }

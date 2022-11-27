@@ -92,7 +92,7 @@ routeur.get('/patients/ordonnances/supprimer/:numsecu/:id', ctrlOrdonnances.supp
 //Routes pour la sous page patients/posologies
 routeur.get('/patients/ordonnances/posologies/:idordo', ctrlPosologies.afficherPosologies)
 
-//routeur.get('/patients/ordonnances/posologies/modifPosologies', modifPosologiesController.afficherModifPosologie)
+//routeur.get('/patients/ordonnances/posologies/modifier/:idpos', ctrlPosologies.afficherModifPosologie)
 //routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)
 //routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)
 

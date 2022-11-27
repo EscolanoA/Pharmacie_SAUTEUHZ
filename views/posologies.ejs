@@ -1,2 +1,80 @@
 <%- include('header') %>
 <div> Bienvenue sur la page des posologies </div>
+
+<a id="attention"></a>
+
+<h1>Posologie  de l'ordonnance n° <%=idordo  %> pour <%=infosordo[0].patient_nom.toUpperCase()  %> <%= infosordo[0].patient_prenom %> </h1>
+<li>Médecin : <%= infosordo[0].medecin_nom.toUpperCase() %> <%= infosordo[0].medecin_prenom %> 
+    Tel : <a href="telto:<%= infosordo[0].medecin_tel %>"><%= infosordo[0].medecin_tel %></a>
+    Mail : <a href="mailto:<%= infosordo[0].medecin_email %>"><%= infosordo[0].medecin_email %></a>
+    Pathologie : <%= infosordo[0].pathologie_nom %>
+</li>
+
+
+<% if (posologies.length > 0) { %>
+
+
+
+
+
+    <% posologies.forEach(function(user,i){ %>
+        <li>
+
+            <button
+                onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/modifier/<%=user.posologie_id%>';">Modifier</button>
+
+
+            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+            <script>
+                function popupAttentionOn<%= i+1 %> () {
+                    document.getElementById("attention").innerHTML = `etes vous sûr? <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.patient_numsecu%>/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                }
+            </script>
+
+            <strong>
+                Médicament : <%= user.medicament_nom %>
+                Boites par mois : <%= user.posologie_nbboitesmois %>
+                Durée en Mois : <%= user.posologie_dureetraitement %>
+            </strong>
+        </li>
+    <% })%>
+<% } %>
+
+
+<div> Ajouter une Posologie </div>
+
+<form action="/patients/ordonnances/posologie/ajouter" method="POST"
+    enctype="application/x-www-formurlencoded">
+
+    <div>
+
+        <input hidden type="number" name="idrdo" id="idordo"
+            value="<%= idordo %>" required>
+
+        <label for="medicament"> Méducament : </label>
+        <select name="medicament" id="medicament" required>
+
+            <option value="" selected disabled>Choisir un Médicament</option>
+            <% medicaments.forEach(function(user){ %>
+                <option value="<%= user.medicament_id %>">
+                    <%= user.medicament_nom.toUpperCase() %>
+                </option>
+                <% })%>
+        </select>
+
+        <label for="boites">Boites par mois : </label>
+        <input type="number" name="boites" id="boites" required>
+
+        <label for="duree">Durée en mois : </label>
+        <input type="number" name="duree" id="duree" required>
+
+
+        <button type="submit">Ajouter</button>
+    </div>
+</form>
+
+<script>
+    function popupAttentionOff() {
+        document.getElementById("attention").innerHTML = ""
+    }
+</script>
