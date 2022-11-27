@@ -58,7 +58,7 @@ module.exports = {
 
 
 
-        async modelModifMedicament(req) {
+        async modelModifPatient(req) {
 
             /** 
              * instantiation d'une promesse de résultat de  @requetteSQL 
@@ -68,12 +68,15 @@ module.exports = {
 
             return new Promise((resolve, reject) => {
 
-                let id = req.body.id
+                let numsecu = req.body.numsecu
+                let mutuelle = req.body.mutuelle
                 let nom = req.body.nom
-                let stock = req.body.stock
+                let prenom = req.body.prenom
+                let datenaiss = req.body.datenaiss
+                console.log(numsecu,datenaiss)
 
-                let requeteSQL = 'UPDATE Medicaments SET medicament_nom = ?, medicament_boitesstock = ?  WHERE medicament_id = ?'
-                mysqlConnexion.query(requeteSQL, [nom, stock, id], (err, data) => {
+                let requeteSQL = 'UPDATE Patients SET patient_mutuelle_id = ?, patient_nom = ?,patient_prenom = ?, patient_datenaiss = ?  WHERE patient_numsecu = ?'
+                mysqlConnexion.query(requeteSQL, [ mutuelle, nom, prenom, datenaiss, numsecu], (err, data) => {
 
                     if (err) {
                         return reject(err)

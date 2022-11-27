@@ -8,7 +8,7 @@ const accueilController = require('../controllers/ctrlAccueil')
 const patientsController = require('../controllers/ctrlPatients')
 const infosMutuelleController = require('../controllers/crtlInfosMutuelle')
 const modifInfosMutuelleController = require('../controllers/crtlModifInfosMutuelle')
-const modifPatientsController = require('../controllers/ctrlModifPatients')
+const modifPatientsController = require('../controllers/ctrlModifPatient')
 const ordonnancesController = require('../controllers/crtlOrdonnances')
 const modifMedecinController = require('../controllers/crtlModifMedecin')
 const modifOrdonnancesController = require('../controllers/ctrlModifOrdonnances')
@@ -31,6 +31,8 @@ routeur.get('/accueil', accueilController.afficherAcceuil)
 routeur.get('/patients', patientsController.afficherPatients)
 routeur.post('/patients/ajouter', patientsController.ajouterPatient)
 routeur.get('/patients/modifier/:numsecu/:idmut', modifPatientsController.afficherModifPatient)
+routeur.post('/patients/modifier', modifPatientsController.modifPatient)
+
 routeur.post('/patients/ajoutermutuelle', patientsController.ajouterMutuelle)
 
 //sous pages
