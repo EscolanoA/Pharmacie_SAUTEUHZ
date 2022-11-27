@@ -1,44 +1,39 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des mutuelles </div>
 
-    <% mutuelles.forEach(function(user,i){ %>
+    <!--boucle qui commence à 1 pour cacher la mutuelle 0 qui est Pas de mutuelles -->
+    <% for(let i = 1; i < mutuelles.length; i++) {%>
         <li>
             <button
-                onClick="location.href='http://localhost:3000/mutuelle/modifier/<%=user.patient_numsecu%>/<%= user.patient_mutuelle_id%>';">Modifier</button>
-            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+                onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>
 
-            <script>
-                function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `vous etes sur ? <button onClick="location.href='http://localhost:3000/mutuelle/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
-                }
-            </script>
+
 
             <strong>
-                Nom :<%= user.patient_nom %>
-                    Prenom :<%= user.patient_prenom %>
-                        age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
-                            N° de secu :<%= user.patient_numsecu %>
-                                mutuelle :<%= user.mutuelle_nom %>
+                Nom : <%= mutuelles[i].mutuelle_nom %>
+                Tel : <a href="telto:<%= mutuelles[i].mutuelle_tel %>"><%= mutuelles[i].mutuelle_tel %></a>
+                Mail : <a href="mailto:<%= mutuelles[i].mutuelle_mail %>"><%= mutuelles[i].mutuelle_mail %></a>
+
             </strong>
         </li>
-        <% })%>
+        <% }%>
 
 
 
-<div> Ajout d'une Mutuelle </div>
+            <div> Ajout d'une Mutuelle </div>
 
-<form action="/mutuelles/ajouter" method="POST" enctype="application/x-www-formurlencoded">
-    <div>
+            <form action="/mutuelles/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+                <div>
 
-        <label for="nom">Nom : </label>
-        <input type="text" name="nom" id="nom" required>
+                    <label for="nom">Nom : </label>
+                    <input type="text" name="nom" id="nom" required>
 
-        <label for="tel">Tel : </label>
-        <input type="tel" name="tel" id="tel" required>
+                    <label for="tel">Tel : </label>
+                    <input type="tel" name="tel" id="tel" required>
 
-        <label for="email">Mail : </label>
-        <input type="email" name="email" id="email" required>
+                    <label for="email">Mail : </label>
+                    <input type="email" name="email" id="email" required>
 
-        <button type="submit">Ajouter</button>
-    </div>
-</form>
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
