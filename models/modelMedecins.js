@@ -74,7 +74,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = 'SELECT * FROM Medecins WHERE mutuelle_id = ?'
+            let requeteSQL = 'SELECT * FROM Medecins WHERE medecin_id = ?'
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {
 
                 if (err) {
@@ -102,12 +102,13 @@ module.exports = {
 
 
             let nom = req.body.nom
+            let prenom = req.body.prenom
             let tel = req.body.tel
             let email = req.body.email
             let id = req.body.id
 
-            let requeteSQL = 'UPDATE Medecins SET medecin_nom = ?, mutuelle_tel = ?, mutuelle_email = ? WHERE mutuelle_id = ?'
-            mysqlConnexion.query(requeteSQL, [nom, tel, email, id], (err, data) => {
+            let requeteSQL = 'UPDATE Medecins SET medecin_prenom = ?, medecin_nom = ?, medecin_tel = ?, medecin_email = ? WHERE medecin_id = ?'
+            mysqlConnexion.query(requeteSQL, [prenom, nom, tel, email, id], (err, data) => {
 
                 if (err) {
                     return reject(err)
