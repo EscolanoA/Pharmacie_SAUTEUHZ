@@ -23,13 +23,13 @@ module.exports = {
 
 
     },
-    async ajouterOrdonnance(req, res) {
+    async ajouterPosologie(req, res) {
 
         try {
-            let data = await modelOrdonnances.modelAjouterOrdonnance(req, res)
+            let data = await modelOrdonnances.modelAjouterPosologie(req, res)
             if (data) {
                 //console.log(data)
-                res.redirect("/patients/ordonnances/" + req.body.numsecu)
+                res.redirect("/patients/ordonnances/posologies/" + req.body.idordo)
             }
         } catch (error) {
             console.log(error)

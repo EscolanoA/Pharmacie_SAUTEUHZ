@@ -18,7 +18,7 @@ module.exports = {
 
             let idordo = req.params.idordo
 
-            let requeteSQL = `SELECT * FROM Patients, Ordonnances, Medecins, Pathologies WHERE ordonnance_id = ? AND ordonnance_patient_numsecu = patient_numsecu AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id`
+            let requeteSQL = `SELECT * FROM Patients, Posologies, Medecins, Pathologies, Ordonnances WHERE posologie_ordonnance_id = ? AND posologie_ordonnance_id = ordonnance_id AND  ordonnance_patient_numsecu = patient_numsecu AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id`
             mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
 
                 if (err) {
@@ -57,7 +57,7 @@ module.exports = {
     },
 
 
-    async modelAjouterOrdonnance(req) {
+    async modelAjouterPosologie(req) {
 
         /** 
          * recuperation des données la requette POST @req
@@ -74,7 +74,7 @@ module.exports = {
 
             //console.log(mutuelle)
 
-            let requeteSQL = "INSERT INTO Ordonnances (ordonnance_patient_numsecu, ordonnance_medecin_id, ordonnance_pathologie_id) VALUES (?, ?, ?)"
+            let requeteSQL = "INSERT INTO Posologies (posologie_ordonnance_id, posologie_medicament_id, posologie_fin ,posologie_nbboitesmois) VALUES (?, ?, DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), ?)"
 
 
             mysqlConnexion.query(requeteSQL, [numsecu, medecin, pathologie], (err, data) => {
@@ -104,7 +104,7 @@ module.exports = {
 
             let id = req.params.id
 
-            let requeteSQL = "DELETE FROM Ordonnances WHERE ordonnance_id = ?;"
+            let requeteSQL = "DELETE FROM Posologies WHERE ordonnance_id = ?;"
 
 
             mysqlConnexion.query(requeteSQL, [id], (err, data) => {
