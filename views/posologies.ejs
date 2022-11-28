@@ -34,7 +34,17 @@
             <strong>
                 Médicament : <%= user.medicament_nom %>
                 Boites par mois : <%= user.posologie_nbboitesmois %>
-                Durée en Mois : <%= user.posologie_dureetraitement %>
+
+
+                <!--traitemnt affichege ici car formatage de la date dans la requette sql donne un résultat undefined : DATE_FORMAT(posologie_debut,"%d-%m-%Y") as posologie_debutformatee-->
+                début du traitement : <%=user.posologie_debut.toLocaleDateString()%>
+            
+                fin du traitement : <%=user.posologie_fin.toLocaleDateString()%>
+
+
+<!-- tentaive d'oprération pour avoir les mois resants   date = new Date().getDate() +"/"+ parseInt(new Date().getMonth()+1) +"/"+ new Date().getMonth(), console.log( parseInt(user.posologie_debut.toLocaleDateString()) - parseInt(date) )  -->
+                Jours restant : <%console.log(user.jrestants)%>
+
             </strong>
         </li>
     <% })%>
@@ -51,7 +61,7 @@
         <input hidden type="number" name="idordo" id="idordo"
             value="<%= idordo %>" required>
 
-        <label for="medicament"> Méducamentkjj : </label>
+        <label for="medicament"> Médicament : </label>
         <select name="medicament" id="medicament" required>
 
             <option value="" selected disabled>Choisir un Médicament</option>

@@ -18,7 +18,7 @@ module.exports = {
 
             let idordo = req.params.idordo
 
-            let requeteSQL = `SELECT * FROM Patients, Posologies, Medecins, Pathologies, Ordonnances WHERE posologie_ordonnance_id = ? AND posologie_ordonnance_id = ordonnance_id AND  ordonnance_patient_numsecu = patient_numsecu AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id`
+            let requeteSQL = `SELECT *, TO_DAYS(posologie_fin) - TO_DAYS(CURRENT_DATE) as jrestants FROM Patients, Posologies, Medecins, Pathologies, Ordonnances WHERE posologie_ordonnance_id = ? AND posologie_ordonnance_id = ordonnance_id AND  ordonnance_patient_numsecu = patient_numsecu AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id`
             mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
 
                 if (err) {
