@@ -47,8 +47,8 @@ CREATE TABLE `Posologies`(
     `posologie_ordonnance_id` INT UNSIGNED NOT NULL,
     `posologie_medicament_id` INT UNSIGNED NOT NULL,
 
-    `posologie_debut` INT UNSIGNED NOT NULL,
-    `posologie_fin` INT UNSIGNED NOT NULL,
+    `posologie_debut` DATE NOT NULL DEFAULT CURRENT_DATE(),
+    `posologie_fin` DATE NOT NULL,
 
     `posologie_nbboitesmois` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`posologie_id`),
@@ -56,17 +56,17 @@ CREATE TABLE `Posologies`(
     KEY `posologie_medicament_id` (`posologie_medicament_id`)
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_medicament_id`, `posologie_debut`, `posologie_fin`,`posologie_nbboitesmois`) VALUES
-(1, 1, 1, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 14),
-(2, 1, 2, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 9 MONTH ), 36),
-(3, 2, 3, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 25),
-(4, 2, 4, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 5 MONTH ), 25),
-(5, 3, 5, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 7 MONTH ), 12),
-(6, 3, 1, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 22),
-(7, 4, 2, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 6),
-(8, 4, 3, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 9 MONTH ), 16),
-(9, 5, 4, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 15 MONTH ), 45),
-(10, 5, 5,CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 8);
+INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_medicament_id`, `posologie_fin`,`posologie_nbboitesmois`) VALUES
+(1, 1, 1,  DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 14),
+(2, 1, 2,  DATE_ADD(CURRENT_DATE(), INTERVAL 9 MONTH ), 36),
+(3, 2, 3,  DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 25),
+(4, 2, 4,  DATE_ADD(CURRENT_DATE(), INTERVAL 5 MONTH ), 25),
+(5, 3, 5,  DATE_ADD(CURRENT_DATE(), INTERVAL 7 MONTH ), 12),
+(6, 3, 1,  DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 22),
+(7, 4, 2,  DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 6),
+(8, 4, 3,  DATE_ADD(CURRENT_DATE(), INTERVAL 9 MONTH ), 16),
+(9, 5, 4,  DATE_ADD(CURRENT_DATE(), INTERVAL 15 MONTH ), 45),
+(10, 5, 5, DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 8);
 
 
 
