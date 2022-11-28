@@ -46,24 +46,27 @@ CREATE TABLE `Posologies`(
     `posologie_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `posologie_ordonnance_id` INT UNSIGNED NOT NULL,
     `posologie_medicament_id` INT UNSIGNED NOT NULL,
-    `posologie_dureetraitement` INT UNSIGNED NOT NULL,
+
+    `posologie_debut` INT UNSIGNED NOT NULL,
+    `posologie_fin` INT UNSIGNED NOT NULL,
+
     `posologie_nbboitesmois` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`posologie_id`),
     KEY `posologie_ordonnance_id` (`posologie_ordonnance_id`),
     KEY `posologie_medicament_id` (`posologie_medicament_id`)
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_medicament_id`, `posologie_dureetraitement`,`posologie_nbboitesmois`) VALUES
-(1, 1, 1, 7, 14),
-(2, 1, 2, 5, 36),
-(3, 2, 3, 15, 25),
-(4, 2, 4, 15, 25),
-(5, 3, 5, 29, 12),
-(6, 3, 1, 23, 22),
-(7, 4, 2, 16, 6),
-(8, 4, 3, 16, 16),
-(9, 5, 4, 25, 45),
-(10, 5, 5, 3, 8);
+INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_medicament_id`, `posologie_debut`, `posologie_fin`,`posologie_nbboitesmois`) VALUES
+(1, 1, 1, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 14),
+(2, 1, 2, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 9 MONTH ), 36),
+(3, 2, 3, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 25),
+(4, 2, 4, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 5 MONTH ), 25),
+(5, 3, 5, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 7 MONTH ), 12),
+(6, 3, 1, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 22),
+(7, 4, 2, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 6),
+(8, 4, 3, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 9 MONTH ), 16),
+(9, 5, 4, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 15 MONTH ), 45),
+(10, 5, 5,CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 2 MONTH ), 8);
 
 
 
