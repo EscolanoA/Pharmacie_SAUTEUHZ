@@ -43,7 +43,7 @@
 
 
 <!-- tentaive d'oprération pour avoir les mois resants   date = new Date().getDate() +"/"+ parseInt(new Date().getMonth()+1) +"/"+ new Date().getMonth(), console.log( parseInt(user.posologie_debut.toLocaleDateString()) - parseInt(date) )  -->
-                Jours restant : <%console.log(user.jrestants)%>
+                <!--Jours restant : --><%#console.log(user.jrestants)%>
 
             </strong>
         </li>
@@ -53,7 +53,7 @@
 
 <div> Ajouter une Posologie </div>
 
-<form action="/patients/ordonnances/posologie/ajouter" method="POST"
+<form action="/patients/ordonnances/posologies/ajouter" method="POST"
     enctype="application/x-www-formurlencoded">
 
     <div>

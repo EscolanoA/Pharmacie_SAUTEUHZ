@@ -68,16 +68,17 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let numsecu = req.body.numsecu
-            let medecin = req.body.medecin
-            let pathologie = req.body.pathologie
+            let idordo = req.body.idordo
+            let medicament = req.body.medicament
+            let boites = req.body.boites
+            let duree = req.body.duree
 
             //console.log(mutuelle)
 
             let requeteSQL = "INSERT INTO Posologies (posologie_ordonnance_id, posologie_medicament_id, posologie_fin ,posologie_nbboitesmois) VALUES (?, ?, DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), ?)"
 
 
-            mysqlConnexion.query(requeteSQL, [numsecu, medecin, pathologie], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [idordo, medicament,duree, boites ], (err, data) => {
 
                 if (err) {
                     return reject(err)

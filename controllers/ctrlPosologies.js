@@ -26,7 +26,7 @@ module.exports = {
     async ajouterPosologie(req, res) {
 
         try {
-            let data = await modelOrdonnances.modelAjouterPosologie(req, res)
+            let data = await modelPosologies.modelAjouterPosologie(req, res)
             if (data) {
                 //console.log(data)
                 res.redirect("/patients/ordonnances/posologies/" + req.body.idordo)
@@ -37,13 +37,13 @@ module.exports = {
 
 
     },
-    async supprimerOrdonnance(req, res) {
+    async supprimerPosologie(req, res) {
 
         try {
-            let data = await modelOrdonnances.modelSupprimerOrdonnance(req)
+            let data = await modelPosologies.modelSupprimerPosologie(req)
             if (data) {
                 //console.log(data)
-                res.redirect("/patients/ordonnances/" + req.params.numsecu)
+                res.redirect("/patients/ordonnances/posologies/" + req.body.idpos)
             }
         } catch (error) {
             console.log(error)
