@@ -1,4 +1,4 @@
-const modelOrdonnances = require('../models/modelOrdonnances.js')
+const modelOrdonnances = require('../models/modelOrdonnances.js')// TO DO il fautdrai utiliser ce module pour afficher les infos de l'odonnance meme quans il ny a pas de posologies dessus
 const modelPosologies = require('../models/modelPosologies.js')
 const modelMedicaments = require('../models/modelMedicaments.js')
 
@@ -9,7 +9,7 @@ module.exports = {
     async afficherPosologies(req, res) {
 
         try {
-            let data = await modelPosologies.modelAfficherInfoOrdonnance(req, res)
+            let data = await modelPosologies.modelAfficherInfoOrdonnance(req, res)//modele a utiliser ici : modelOrdonnances, il faut ajouter une fonction dedans nomée modelmodelAfficherInfoOrdonnancePosologie our afficher les infos de l'ordonnance correspndante a la posologie
             let data2 = await modelPosologies.modelAfficherPosologies(req, res)
             let data3 = await modelMedicaments.modelAfficherMedicaments(req, res)
 
