@@ -9,7 +9,7 @@ module.exports = {
     async afficherPosologies(req, res) {
 
         try {
-            let data = await modelPosologies.modelAfficherInfoOrdonnance(req, res)//modele a utiliser ici : modelOrdonnances, il faut ajouter une fonction dedans nomée modelmodelAfficherInfoOrdonnancePosologie our afficher les infos de l'ordonnance correspndante a la posologie
+            let data = await modelOrdonnances.modelAfficherOrdonnances(req, res)//modele a utiliser ici : modelOrdonnances, il faut ajouter une fonction dedans nomée modelAfficherInfoOrdonnancePosologie our afficher les infos de l'ordonnance correspndante a la posologie
             let data2 = await modelPosologies.modelAfficherPosologies(req, res)
             let data3 = await modelMedicaments.modelAfficherMedicaments(req, res)
 
@@ -29,7 +29,7 @@ module.exports = {
             let data = await modelPosologies.modelAjouterPosologie(req, res)
             if (data) {
                 //console.log(data)
-                res.redirect("/patients/ordonnances/posologies/" + req.body.idordo)
+                res.redirect("/patients/ordonnances/"+req.body.numsecu+"/posologies/" + req.body.idordo)
             }
         } catch (error) {
             console.log(error)

@@ -6,30 +6,6 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 module.exports = {
 
 
-    async modelAfficherInfoOrdonnance(req) {
-
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
-        return new Promise((resolve, reject) => {
-
-            let idordo = req.params.idordo
-
-            let requeteSQL = `SELECT *, TO_DAYS(posologie_fin) - TO_DAYS(CURRENT_DATE) as jrestants FROM Patients, Posologies, Medecins, Pathologies, Ordonnances WHERE posologie_ordonnance_id = ? AND posologie_ordonnance_id = ordonnance_id AND  ordonnance_patient_numsecu = patient_numsecu AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id`
-            mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
-
-                if (err) {
-                    return reject(err)
-
-                }
-                return resolve(data)
-            })
-        }
-        )
-    },
 
     async modelAfficherPosologies(req) {
 
@@ -41,10 +17,11 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
+            let numsecu = req.params.numsecu
             let idordo = req.params.idordo
 
-            let requeteSQL = `SELECT * FROM Posologies, Medicaments WHERE posologie_ordonnance_id = ? AND posologie_medicament_id = medicament_id`
-            mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
+            let requeteSQL = `SELECT * FROM Posologies, Medicaments, Patients, Ordonnances WHERE posologie_ordonnance_id = ? AND patient_numsecu = ? AND posologie_medicament_id = medicament_id AND posologie_ordonnance_id = ordonnance_id AND patient_numsecu = ordonnance_patient_numsecu `
+            mysqlConnexion.query(requeteSQL, [idordo, numsecu], (err, data) => {
 
                 if (err) {
                     return reject(err)

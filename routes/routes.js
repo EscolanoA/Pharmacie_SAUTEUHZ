@@ -83,17 +83,15 @@ routeur.get('/patients/supprimer/:numsecu', ctrlPatients.supprimerPatient)
 routeur.get('/patients/modifier/:numsecu/:idmut', ctrlPatients.afficherModifPatient)
 routeur.post('/patients/modifier', ctrlPatients.modifPatient)
 
+//Routes pour la sous page patients/posologies
+routeur.get('/patients/ordonnances/:numsecu/posologies/:idordo', ctrlPosologies.afficherPosologies)
+routeur.post('/patients/ordonnances/posologies/ajouter', ctrlPosologies.ajouterPosologie)
+
 //Routes pour la sous page patients/ordonnances
 routeur.get('/patients/ordonnances/:numsecu', ctrlOrdonnances.afficherOrdonnances)
 routeur.post('/patients/ordonnances/ajouter', ctrlOrdonnances.ajouterOrdonnance)
 routeur.get('/patients/ordonnances/supprimer/:numsecu/:id', ctrlOrdonnances.supprimerOrdonnance)
-
-
-//Routes pour la sous page patients/posologies
-routeur.get('/patients/ordonnances/posologies/:idordo', ctrlPosologies.afficherPosologies)
-routeur.post('/patients/ordonnances/posologies/ajouter', ctrlPosologies.ajouterPosologie)
-
-//routeur.get('/patients/ordonnances/modifOrdonnances', modifOrdonnancesController.afficherModifOrdonnances)
+routeur.get('/patients/ordonnances/:numsecu/modifier/id', ctrlOrdonnances.modifierOrdonnance)
 //routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)
 
 

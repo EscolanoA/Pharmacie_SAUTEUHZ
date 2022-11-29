@@ -20,7 +20,7 @@
         <% ordonnances.forEach(function(user,i){ %>
             <li>
                 <button
-                    onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/<%=user.ordonnance_id%>';">Posologies</button>
+                    onClick="location.href='http://localhost:3000/patients/ordonnances/<%=infospatient[0].patient_numsecu %>/posologies/<%=user.ordonnance_id%>';">Posologies</button>
 
 
 
