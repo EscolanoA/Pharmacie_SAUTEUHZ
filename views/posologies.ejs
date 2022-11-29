@@ -21,7 +21,7 @@
         <li>
 
             <button
-                onClick="location.href='http://localhost:3000/patients/ordonnances/posologies/modifier/<%=user.posologie_id%>';">Modifier</button>
+                onClick="location.href='http://localhost:3000/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/modifier';">Modifier</button>
 
 
             <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>

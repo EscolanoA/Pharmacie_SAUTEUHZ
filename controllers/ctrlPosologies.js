@@ -51,6 +51,38 @@ module.exports = {
 
 
     },
+    async afficherModifPosologie(req, res) {
 
+        try {
+            let data = await modelPosologies.modelAfficherModifPosologie(req)
+            let data2 = await modelMedicaments.modelAfficherMedicaments(req)
+            if (data ) {
+                //console.log(data)
+                res.render("./modifPosologie", { posologie: data , medicaments: data2})
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+
+    async modifPosologie(req, res) {
+
+        try {
+            let data = await modelPosologies.modelModifPosologie(req)
+            
+            if (data) {
+                //console.log(data)
+                res.redirect("/patients/ordonnances/"+req.body.numsecu+"/posologies/" + req.body.idordo)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
 }

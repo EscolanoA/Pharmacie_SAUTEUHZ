@@ -85,8 +85,16 @@ routeur.post('/patients/modifier', ctrlPatients.modifPatient)
 
 //Routes pour la sous sous page patients/ordonnances/posologies
 routeur.get('/patients/ordonnances/:numsecu/posologies/:idordo', ctrlPosologies.afficherPosologies)
+
+//CECI DEVRAIT ETRE LE FOMALISME UTILISÉ POUR TOUTES LES ROUTES CAR PLUS COMPRÉHENSIBLE ET ADAPTÉ SUR DE GROS PROJETS
 routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/supprimer', ctrlPosologies.supprimerPosologie)
+
 routeur.post('/patients/ordonnances/posologies/ajouter', ctrlPosologies.ajouterPosologie)
+
+routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/modifier', ctrlPosologies.afficherModifPosologie)
+routeur.post('/patients/ordonnances/posologies/modifier', ctrlPosologies.modifPosologie)
+
+
 
 
 
