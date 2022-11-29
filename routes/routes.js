@@ -90,9 +90,9 @@ routeur.post('/patients/ordonnances/posologies/ajouter', ctrlPosologies.ajouterP
 //Routes pour la sous page patients/ordonnances
 routeur.get('/patients/ordonnances/:numsecu', ctrlOrdonnances.afficherOrdonnances)
 routeur.post('/patients/ordonnances/ajouter', ctrlOrdonnances.ajouterOrdonnance)
-routeur.get('/patients/ordonnances/supprimer/:numsecu/:id', ctrlOrdonnances.supprimerOrdonnance)
-routeur.get('/patients/ordonnances/:numsecu/modifier/id', ctrlOrdonnances.modifierOrdonnance)
-//routeur.get('/patients/ordonnances/modifMedecin', modifMedecinController.afficherModifMedecin)
+routeur.get('/patients/ordonnances/:numsecu/supprimer/:idordo', ctrlOrdonnances.supprimerOrdonnance)
+routeur.get('/patients/ordonnances/:numsecu/modifier/:id', ctrlOrdonnances.afficherModifOrdonnance)
+routeur.post('/patients/ordonnances/modifier', ctrlOrdonnances.modifOrdonnance)
 
 
 

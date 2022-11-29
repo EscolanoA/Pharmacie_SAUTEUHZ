@@ -57,5 +57,36 @@ module.exports = {
 
     },
 
+    async afficherModifOrdonnance(req, res) {
+
+        try {
+            let data = await modelOrdonnances.modelafficherModifOrdonnance(req)
+            if (data) {
+                //console.log(data)
+                res.render("./modifOrdonnance", { ordonnance: data })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async modifOrdonnance(req, res) {
+
+        try {
+            let data = await modelOrdonnances.modelmodifOrdonnance(req)
+            if (data) {
+                //console.log(data)
+                res.redirect("/patients/ordonnances/" + req.body.numsecu)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    }
+
 
 }

@@ -76,12 +76,64 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let id = req.params.id
+            let idordo = req.params.idordo
 
             let requeteSQL = "DELETE FROM Ordonnances WHERE ordonnance_id = ?;"
 
 
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelafficherModifOrdonnance(req) {
+
+        /** 
+         * instantiation d'une promesse de résultat de  @requetteSQL 
+         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+         * sinon @return @resolve avec les donnés @data de la @requetteSQL
+        */
+
+        return new Promise((resolve, reject) => {
+
+            let idordo = req.params.idordo
+
+            let requeteSQL = 'SELECT * FROM Ordonnances WHERE ordonnance_id = ?'
+            mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelmodifOrdonnance(req) {
+
+        /** 
+         * instantiation d'une promesse de résultat de  @requetteSQL 
+         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+         * sinon @return @resolve avec les donnés @data de la @requetteSQL
+        */
+
+        return new Promise((resolve, reject) => {
+
+            let id = req.body.id
+            let nom = req.body.nom
+            let stock = req.body.stock
+
+            let requeteSQL = 'UPDATE Medicaments SET medicament_nom = ?, medicament_boitesstock = ?  WHERE medicament_id = ?'
+            mysqlConnexion.query(requeteSQL, [nom, stock, id], (err, data) => {
 
                 if (err) {
                     return reject(err)
