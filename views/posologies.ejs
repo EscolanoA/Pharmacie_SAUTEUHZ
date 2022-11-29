@@ -27,7 +27,7 @@
             <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `etes vous sûr? <button onClick="location.href='http://localhost:3000/patients/ordonnances/supprimer/<%=user.patient_numsecu%>/<%=user.ordonnance_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                    document.getElementById("attention").innerHTML = `etes vous sûr? <button onClick="location.href='http://localhost:3000/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/supprimer';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                 }
             </script>
 

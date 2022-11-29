@@ -69,7 +69,7 @@ module.exports = {
     },
 
 
-    async modelSupprimerOrdonnance(req) {
+    async modelSupprimerPosologie(req) {
 
         /** 
          * recuperation de l' @id dans la requette GET @req
@@ -80,12 +80,12 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let id = req.params.id
+            let idpos = req.params.idpos
 
-            let requeteSQL = "DELETE FROM Posologies WHERE ordonnance_id = ?;"
+            let requeteSQL = "DELETE FROM Posologies WHERE posologie_id = ?;"
 
 
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [idpos], (err, data) => {
 
                 if (err) {
                     return reject(err)

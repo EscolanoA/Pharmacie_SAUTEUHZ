@@ -2,30 +2,38 @@
     <div> Bienvenue sur la page de modification des Ordonnances </div>
 
 
-    <div> modifier l' Ordonnance n° <%=ordonnance[0].ordonnance_numsecu%>
+    <div> modifier l' Ordonnance n° <%=ordonnance[0].ordonnance_id%>
     </div>
     <form action="/patients/ordonnances/modifier" method="POST" enctype="application/x-www-formurlencoded">
-        
-        <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>" required>
+
+        <input hidden type="number" name="idordo" id="idordo" value="<%=ordonnance[0].ordonnance_id%>"
+            required>
+            <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>"
+            required>
 
         <label for="medecin">Medecin : </label>
         <select name="medecin" id="medecin">
 
             <% medecins.forEach(function(user){ if(user.medecin_id==ordonnance[0].ordonnance_medecin_id) { %>
-                <option value="<%= user.medecin_id %>" selected><%= user.medecin_nom %></option>
+                <option value="<%= user.medecin_id %>" selected>
+                    <%= user.medecin_nom %>
+                </option>
                 <% } else {%>
                     <option value="<%= user.medecin_id %>">
                         <%= user.medecin_nom %>
                     </option>
                     <% }})%>
 
+        </select>
 
-        <label for="pathologie">Mutuelle : </label>
+        <label for="pathologie">Pathologie : </label>
         <select name="pathologie" id="pathologie">
             <option value="null">Pas de pathologie</option>
 
             <% pathologies.forEach(function(user){ if(user.pathologie_id==ordonnance[0].ordonnance_pathologie_id) { %>
-                <option value="<%= user.pathologie_id %>" selected><%= user.pathologie_nom %></option>
+                <option value="<%= user.pathologie_id %>" selected>
+                    <%= user.pathologie_nom %>
+                </option>
                 <% } else {%>
                     <option value="<%= user.pathologie_id %>">
                         <%= user.pathologie_nom %>
@@ -38,4 +46,3 @@
         </select>
         <button type="submit">Modifier</button>
     </form>
-    

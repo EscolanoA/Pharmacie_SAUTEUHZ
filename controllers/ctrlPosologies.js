@@ -43,7 +43,7 @@ module.exports = {
             let data = await modelPosologies.modelSupprimerPosologie(req)
             if (data) {
                 //console.log(data)
-                res.redirect("/patients/ordonnances/posologies/" + req.body.idpos)
+                res.redirect("/patients/ordonnances/"+req.params.numsecu+"/posologies/" + req.params.idordo)
             }
         } catch (error) {
             console.log(error)

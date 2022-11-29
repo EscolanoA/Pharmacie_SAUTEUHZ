@@ -128,12 +128,12 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let id = req.body.id
-            let nom = req.body.nom
-            let stock = req.body.stock
+            let medecin = req.body.medecin
+            let pathologie = req.body.pathologie
+            let idordo = req.body.idordo
 
-            let requeteSQL = 'UPDATE Medicaments SET medicament_nom = ?, medicament_boitesstock = ?  WHERE medicament_id = ?'
-            mysqlConnexion.query(requeteSQL, [nom, stock, id], (err, data) => {
+            let requeteSQL = 'UPDATE Ordonnances SET ordonnance_medecin_id = ?, ordonnance_pathologie_id = ?  WHERE ordonnance_id = ?'
+            mysqlConnexion.query(requeteSQL, [medecin, pathologie, idordo], (err, data) => {
 
                 if (err) {
                     return reject(err)

@@ -61,9 +61,12 @@ module.exports = {
 
         try {
             let data = await modelOrdonnances.modelafficherModifOrdonnance(req)
+            let data2 = await modelMedecins.modelAfficherMedecins(req)
+            let data3 = await modelPathologies.modelAfficherPathologies(req)
+
             if (data) {
                 //console.log(data)
-                res.render("./modifOrdonnance", { ordonnance: data })
+                res.render("./modifOrdonnance", { ordonnance: data , medecins: data2 , pathologies: data3})
             }
         } catch (error) {
             console.log(error)
