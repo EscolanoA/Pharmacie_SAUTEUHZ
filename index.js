@@ -10,6 +10,9 @@ app.set('view engine', 'ejs')
 app.use(express.static('assets'))
 app.use(express.static('views'))
 app.use(express.static('img'))
+app.use(express.static('controllers'));
+
+
 
 app.use(express.urlencoded())
 
