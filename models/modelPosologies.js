@@ -20,8 +20,34 @@ module.exports = {
             let numsecu = req.params.numsecu
             let idordo = req.params.idordo
 
-            let requeteSQL = `SELECT * FROM Posologies, Medicaments, Patients, Ordonnances WHERE posologie_ordonnance_id = ? AND patient_numsecu = ? AND posologie_medicament_id = medicament_id AND posologie_ordonnance_id = ordonnance_id AND patient_numsecu = ordonnance_patient_numsecu `
+            let requeteSQL = `SELECT * FROM Posologies, Medicaments, Patients, Ordonnances, Medecins WHERE posologie_ordonnance_id = ? AND patient_numsecu = ? AND posologie_medicament_id = medicament_id AND posologie_ordonnance_id = ordonnance_id AND patient_numsecu = ordonnance_patient_numsecu AND ordonnance_medecin_id = medecin_id`
             mysqlConnexion.query(requeteSQL, [idordo, numsecu], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    //Pour afficher les infos de l'ordonnance qand aucune posologie n'a été encore créer mais impossible car aucun medecin n'a cree de posologie pour le moment
+    async modelAfficherInfoMedecinEtPath(req) {
+
+        /** 
+         * instantiation d'une promesse de résultat de  @requetteSQL 
+         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+         * sinon @return @resolve avec les donnés @data de la @requetteSQL
+        */
+
+        return new Promise((resolve, reject) => {
+
+            let idordo = req.params.idordo
+
+            let requeteSQL = `SELECT * FROM Pathologies, Medecins, Ordonnances WHERE ordonnance_id = ? AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id `
+            mysqlConnexion.query(requeteSQL, [idordo], (err, data) => {
 
                 if (err) {
                     return reject(err)

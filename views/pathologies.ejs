@@ -29,7 +29,7 @@
 
             <div> Ajout d'une pathologie </div>
 
-            <form action="/pathologies/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+            <form action="/pathologies/ajouter" id="form" method="POST" enctype="application/x-www-formurlencoded">
                 <div>
 
 
@@ -44,5 +44,15 @@
                 function popupAttentionOff() {
                     document.getElementById("attention").innerHTML = ""
                 }
+                
+                const onlyInputs = document.querySelectorAll('#form input');
+                const submit = document.querySelector('button[type="submit"]')
+
+                onlyInputs.forEach(input => {
+                    input.addEventListener('focusout', function() {
+                        let value = input.value.trim();
+                        input.value = value
+                    })
+                });
+
             </script>
-            <script type="application/javascript" src="../controllers/scripts/controleSaisiePathologies.js"></script>

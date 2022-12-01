@@ -26,7 +26,7 @@
 
             <div> Ajout d'un médicament </div>
 
-            <form action="/medicaments/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+            <form action="/medicaments/ajouter" method="POST" id= "form" enctype="application/x-www-formurlencoded">
                 <div>
 
                     <label for="nom">nom : </label>
@@ -43,4 +43,14 @@
                 function popupAttentionOff() {
                     document.getElementById("attention").innerHTML = ""
                 }
+                const onlyInputs = document.querySelectorAll('#form input');
+                const submit = document.querySelector('button[type="submit"]')
+
+                onlyInputs.forEach(input => {
+                    input.addEventListener('focusout', function() {
+                        let value = input.value.trim();
+                        input.value = value
+                    })
+                });
+
             </script>

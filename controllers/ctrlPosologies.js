@@ -12,10 +12,12 @@ module.exports = {
             let data = await modelOrdonnances.modelAfficherOrdonnances(req, res)//modele a utiliser ici : modelOrdonnances, il faut ajouter une fonction dedans nomée modelAfficherInfoOrdonnancePosologie our afficher les infos de l'ordonnance correspndante a la posologie
             let data2 = await modelPosologies.modelAfficherPosologies(req, res)
             let data3 = await modelMedicaments.modelAfficherMedicaments(req, res)
+            let data4 = await modelPosologies.modelAfficherInfoMedecinEtPath(req, res)
+
 
             if (data) {
 
-                res.render("./posologies", { infosordo : data, idordo : req.params.idordo, posologies : data2 , medicaments : data3})
+                res.render("./posologies", { infosordo : data, idordo : req.params.idordo, posologies : data2 , medicaments : data3, medecinpath: data4})
             }
         } catch (error) {
             console.log(error)
