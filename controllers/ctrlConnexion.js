@@ -24,7 +24,9 @@ module.exports = {
                 const sessionId = uuidv4();
                 sessions[sessionId] = {email, userId: 1};
                 res.set('Set-Cookie',`session=${sessionId}`)
-                console.log(sessions[sessionId])
+
+                console.log(sessions)
+                
                 res.render('./accueil')
             }
             //res.render('./connexion')

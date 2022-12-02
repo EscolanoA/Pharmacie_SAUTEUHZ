@@ -1,8 +1,9 @@
 const express = require('express')
 const ejs = require('ejs')
-
+const sessions = require('express-session');
 const iniparser = require('iniparser')
 const Routeur = require('./routes/routes.js')
+
 
 let app = express()
 app.set('view engine', 'ejs')
@@ -14,6 +15,12 @@ app.use(express.static('controllers'));
 
 
 app.use(express.urlencoded())
+
+app.use(sessions({
+    secret: "secret",
+    saveUninitialized:true,
+    resave: false
+}));
 
 //priorité des routes 
 app.use('/', Routeur)
