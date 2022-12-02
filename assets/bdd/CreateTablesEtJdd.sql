@@ -8,8 +8,6 @@ CREATE TABLE `Medecins`(
     `medecin_nom` VARCHAR(20) NOT NULL,
     `medecin_tel` VARCHAR(50) NOT NULL,
     `medecin_email` VARCHAR(200) NOT NULL,
-
-
     PRIMARY KEY (`medecin_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Medecins` (`medecin_id`, `medecin_prenom`, `medecin_nom`,`medecin_tel`,`medecin_email`) VALUES

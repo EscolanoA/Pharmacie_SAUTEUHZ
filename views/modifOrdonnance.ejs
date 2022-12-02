@@ -6,9 +6,8 @@
     </div>
     <form action="/patients/ordonnances/modifier" method="POST" enctype="application/x-www-formurlencoded">
 
-        <input hidden type="number" name="idordo" id="idordo" value="<%=ordonnance[0].ordonnance_id%>"
-            required>
-            <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>"
+        <input hidden type="number" name="idordo" id="idordo" value="<%=ordonnance[0].ordonnance_id%>" required>
+        <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>"
             required>
 
         <label for="medecin">Medecin : </label>
@@ -46,3 +45,14 @@
         </select>
         <button type="submit">Modifier</button>
     </form>
+    <script>
+
+        const onlyInputs = document.querySelectorAll('#form input');
+        const submit = document.querySelector('button[type="submit"]')
+        onlyInputs.forEach(input => {
+            input.addEventListener('focusout', function () {
+                let value = input.value.trim();
+                input.value = value
+            })
+        });
+    </script>

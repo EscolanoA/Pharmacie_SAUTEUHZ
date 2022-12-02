@@ -5,7 +5,7 @@
     <div> modifier le patient n° <%=patient[0].patient_numsecu%>
     </div>
     <form action="/patients/modifier" method="POST" enctype="application/x-www-formurlencoded">
-        
+
         <input hidden type="number" name="numsecu" id="numsecu" value="<%=patient[0].patient_numsecu%>" required>
 
         <label for="nom">nom : </label>
@@ -25,7 +25,9 @@
             <option value="null">Pas de mutuelle</option>
 
             <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
-                <option value="<%= user.mutuelle_id %>" selected><%= user.mutuelle_nom %></option>
+                <option value="<%= user.mutuelle_id %>" selected>
+                    <%= user.mutuelle_nom %>
+                </option>
                 <% } else {%>
                     <option value="<%= user.mutuelle_id %>">
                         <%= user.mutuelle_nom %>
@@ -38,4 +40,14 @@
         </select>
         <button type="submit">Modifier</button>
     </form>
-    
+    <script>
+
+        const onlyInputs = document.querySelectorAll('#form input');
+        const submit = document.querySelector('button[type="submit"]')
+        onlyInputs.forEach(input => {
+            input.addEventListener('focusout', function () {
+                let value = input.value.trim();
+                input.value = value
+            })
+        });
+    </script>

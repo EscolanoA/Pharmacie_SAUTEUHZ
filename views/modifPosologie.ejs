@@ -7,7 +7,8 @@
     </div>
     <form action="/patients/ordonnances/posologies/modifier" method="POST" enctype="application/x-www-formurlencoded">
 
-        <input hidden type="number" name="idordo" id="idordo" value="<%=posologie[0].posologie_ordonnance_id%>" required>
+        <input hidden type="number" name="idordo" id="idordo" value="<%=posologie[0].posologie_ordonnance_id%>"
+            required>
         <input hidden type="number" name="numsecu" id="numsecu" value="<%=posologie[0].patient_numsecu%>" required>
         <input hidden type="number" name="idpos" id="idpos" value="<%=posologie[0].posologie_id%>" required>
 
@@ -17,23 +18,40 @@
         <select name="medicament" id="medicament">
 
             <% medicaments.forEach(function(user){ if(user.medicament_id==posologie[0].posologie_medicament_id) { %>
-                <option value="<%= user.medicament_id %>" selected><%= user.medicament_nom %></option>
+                <option value="<%= user.medicament_id %>" selected>
+                    <%= user.medicament_nom %>
+                </option>
                 <% } else {%>
-                    <option value="<%= user.medicament_id %>"><%= user.medicament_nom %></option>
-            <% }})%>
+                    <option value="<%= user.medicament_id %>">
+                        <%= user.medicament_nom %>
+                    </option>
+                    <% }})%>
         </select>
 
 
         <label for="boites">Nb de boites par mois :
-        <input type="number" name="boites" id="boites" value="<%=posologie[0].posologie_nbboitesmois%>" required>
+            <input type="number" name="boites" id="boites" value="<%=posologie[0].posologie_nbboitesmois%>" required>
 
 
-        <label for="datenaiss">date de fin : </label>
-        <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
-        <input type="date" name="datenaiss" id="datenaiss" value="<%=posologie[0].posologie_anneefin%>-<%=posologie[0].posologie_moisfin%>-<%=posologie[0].posologie_jourfin%>" required>
+            <label for="datenaiss">date de fin : </label>
+            <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
+            <input type="date" name="datenaiss" id="datenaiss"
+                value="<%=posologie[0].posologie_anneefin%>-<%=posologie[0].posologie_moisfin%>-<%=posologie[0].posologie_jourfin%>"
+                required>
 
 
 
-        </select>
-        <button type="submit">Modifier</button>
+            </select>
+            <button type="submit">Modifier</button>
     </form>
+    <script>
+        const onlyInputs = document.querySelectorAll('#form input');
+        const submit = document.querySelector('button[type="submit"]')
+
+        onlyInputs.forEach(input => {
+            input.addEventListener('focusout', function () {
+                let value = input.value.trim();
+                input.value = value
+            })
+        });
+    </script>
