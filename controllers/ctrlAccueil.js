@@ -1,7 +1,10 @@
 module.exports = {
     
     async afficherAcceuil(req, res) {
-        console.log(req.headers.cookie.split('='[1]))
+        const sessionId = req.headers.cookie.split('='[1])
+        const userSession = sessions[sessionId]
+        console.log(userSession)
+
         res.render('./accueil')
     },
 

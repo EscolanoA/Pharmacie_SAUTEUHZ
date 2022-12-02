@@ -1,6 +1,6 @@
 const modelConnexion = require('../models/modelConnexion.js')
 const uuidv4 = require('uuid').v4;
-const sessions ={}
+const sessions = require('express-session');
 
 
 module.exports = {
