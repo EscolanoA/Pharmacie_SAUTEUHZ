@@ -1,2 +1,8 @@
-<%- include('header') %>
-<div> Bienvenue sur la page d'identification </div>
+<%#- include('headerConnexion') %>
+<form action="/connexion" method="post" id="form">
+
+    Adresse Mail : <input type="email" name="email" id="email">
+    Mot de passe :<input type="password" name="mdp" id="mdp">
+    <button type="submit">CONNEXION</button>
+
+</form>

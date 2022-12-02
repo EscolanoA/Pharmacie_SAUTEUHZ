@@ -1,8 +1,9 @@
 const express = require('express');
 const routeur = express.Router();
 
-const connexionController = require('../controllers/ctrlConnexion')
-const accueilController = require('../controllers/ctrlAccueil')
+const ctrlConnexion = require('../controllers/ctrlConnexion')
+
+const ctrlAccueil = require('../controllers/ctrlAccueil')
 
 
 const ctrlPatients = require('../controllers/ctrlPatients')
@@ -20,12 +21,13 @@ const ctrlMedecins = require('../controllers/ctrlMedecins')
 const ctrlPathologies = require('../controllers/ctrlPathologies')
 
 //Page d'indentification
-routeur.get('/connexion', connexionController.afficherConnexion)
+routeur.get('/', ctrlConnexion.afficherConnexion)
+routeur.post('/connexion', ctrlConnexion.testConnexion)
 
 
 
 //La Page d'aceuil
-routeur.get('/accueil', accueilController.afficherAcceuil)
+routeur.get('/accueil', ctrlAccueil.afficherAcceuil)
 
 
 

@@ -1,7 +1,8 @@
-const afficherAcceuil = (req, res) => {
-    res.render('./accueil')
-}
-
 module.exports = {
-    afficherAcceuil
+    
+    async afficherAcceuil(req, res) {
+        console.log(req.headers.cookie.split('='[1]))
+        res.render('./accueil')
+    },
+
 }

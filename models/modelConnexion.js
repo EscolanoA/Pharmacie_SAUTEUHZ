@@ -11,8 +11,31 @@ const mysqlConnexion = mysql.createConnection({
 mysqlConnexion.connect((err) => {
     if (!err) console.log('BDD connectée.')
     else console.log('BDD connexion échouée \n Erreur: ' + JSON.stringify(err))
-})
+});
+
+
+
+const modelTestConnexion = (req, res) => {
+
+    return new Promise((resolve, reject) => {
+
+        let email = req.body.email
+
+        let requeteSQL = 'SELECT * FROM Pharmaciens WHERE parmacien_email = ?'
+        mysqlConnexion.query(requeteSQL, [email], (err, data) => {
+
+            if (err) {
+                return reject(err)
+            }
+            return resolve(data)
+        })
+    }
+    )
+}
+
+
 
 module.exports = {
-    mysqlConnexion
+    mysqlConnexion,
+    modelTestConnexion
 } 

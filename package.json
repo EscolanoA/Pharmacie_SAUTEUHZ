@@ -15,6 +15,7 @@
     "iniparser": "^1.0.5",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
-    "package.json": "^2.0.1"
+    "package.json": "^2.0.1",
+    "uuid": "^9.0.0"
   }
 }

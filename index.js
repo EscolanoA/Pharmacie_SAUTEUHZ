@@ -15,9 +15,11 @@ app.use(express.static('controllers'));
 
 app.use(express.urlencoded())
 
+//priorité des routes 
+app.use('/', Routeur)
+
 app.listen(3000, () => console.log('Serveur de la Pharmacie Sauteuhz est actif'))
 app.get('/', (req, res) => {
     res.send('Serveur de la Pharmacie Sauteuhz est actif')
 })
 
-app.use('/', Routeur)
