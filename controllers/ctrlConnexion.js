@@ -4,7 +4,7 @@ const sessions = require('express-session');
 
 
 module.exports = {
-    
+
 
     async afficherConnexion(req, res) {
         res.render('./connexion')
@@ -17,19 +17,21 @@ module.exports = {
         let mdp = req.body.mdp
 
         try {
-            let data = await modelConnexion.modelTestConnexion(req,res)
+            let data = await modelConnexion.modelTestConnexion(req, res)
+            console.log(data)
+            if (data != []) {
+                if (data[0].parmacien_email == email && data[0].parmacien_mdp == mdp) {
+                    //console.log(data[0].parmacien_email, data[0].parmacien_mdp)
+                    const sessionId = uuidv4();
+                    sessions[sessionId] = { email };
+                    res.set('Set-Cookie', `session=${sessionId}`)
 
-            if (data && data[0].parmacien_email == email && data[0].parmacien_mdp == mdp) {
-                //console.log(data[0].parmacien_email, data[0].parmacien_mdp)
-                const sessionId = uuidv4();
-                sessions[sessionId] = {email, userId: 1};
-                res.set('Set-Cookie',`session=${sessionId}`)
+                    console.log(sessions)
 
-                console.log(sessions)
+                    res.render('./accueil')
+                }
                 
-                res.render('./accueil')
-            }
-            //res.render('./connexion')
+            }else{res.render('./connexion')}
 
 
         } catch (error) {
@@ -37,7 +39,7 @@ module.exports = {
         }
 
 
-        
+
     }
 
 
