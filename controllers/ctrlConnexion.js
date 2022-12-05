@@ -18,8 +18,10 @@ module.exports = {
 
         try {
             let data = await modelConnexion.modelTestConnexion(req, res)
-            console.log(data)
-            if (data != []) {
+            //console.log(typeof data[0])
+
+            if (typeof data[0] === "object") {
+                //console.log(data)
                 if (data[0].parmacien_email == email && data[0].parmacien_mdp == mdp) {
                     //console.log(data[0].parmacien_email, data[0].parmacien_mdp)
                     const sessionId = uuidv4();
@@ -30,7 +32,7 @@ module.exports = {
 
                     res.render('./accueil')
                 }
-                
+              //sinon type undefined  
             }else{res.render('./connexion')}
 
 

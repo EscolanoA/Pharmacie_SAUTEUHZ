@@ -1,5 +1,6 @@
 const express = require('express')
 const ejs = require('ejs')
+var cookieParser = require('cookie-parser');
 const sessions = require('express-session');
 const iniparser = require('iniparser')
 const Routeur = require('./routes/routes.js')
@@ -15,7 +16,7 @@ app.use(express.static('controllers'));
 
 
 app.use(express.urlencoded())
-
+app.use(cookieParser());
 app.use(sessions({
     secret: "secret",
     saveUninitialized:true,

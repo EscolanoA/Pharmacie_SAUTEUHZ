@@ -25,7 +25,7 @@ const modelTestConnexion = (req, res) => {
         mysqlConnexion.query(requeteSQL, [email], (err, data) => {
 
             if (err) {
-                return reject(err)
+                return reject()
             }
             return resolve(data)
         })
