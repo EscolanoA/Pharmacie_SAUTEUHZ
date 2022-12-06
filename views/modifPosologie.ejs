@@ -5,7 +5,7 @@
     <div> modifier la posologie n° <%=posologie[0].posologie_id%> pour l'ordonance N°
             <%=posologie[0].posologie_ordonnance_id%>
     </div>
-    <form action="/patients/ordonnances/posologies/modifier" method="POST" enctype="application/x-www-formurlencoded">
+    <form action="/patients/ordonnances/posologies/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
 
         <input hidden type="number" name="idordo" id="idordo" value="<%=posologie[0].posologie_ordonnance_id%>"
             required>

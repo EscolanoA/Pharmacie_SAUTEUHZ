@@ -5,6 +5,19 @@ const sessions = require('express-session');
 const iniparser = require('iniparser')
 const Routeur = require('./routes/routes.js')
 
+//require les file systems, crées avec la commende linux du git bash : 
+//openssl req -nodes -new -x509 -keyout server.key -out server.cert
+
+const fs = require('fs')
+const https = require('https')
+const path = require('path')
+
+const key = fs.readFileSync(path.join(__dirname, 'certificate', 'server.key'));
+const cert = fs.readFileSync(path.join(__dirname, 'certificate', 'server.cert'));
+const options = { key, cert };
+
+
+
 
 let app = express()
 app.set('view engine', 'ejs')
@@ -26,7 +39,15 @@ app.use(sessions({
 //priorité des routes 
 app.use('/', Routeur)
 
-app.listen(3000, () => console.log('Serveur de la Pharmacie Sauteuhz est actif'))
+//app.listen(3000, () => console.log('Serveur de la Pharmacie Sauteuhz est actif'))
+
+let port = 3000
+
+https.createServer(options, app).listen(port, () => {
+ console.log(`server running HTTPS. Go to https://localhost:${port}`);
+ }); 
+
+
 app.get('/', (req, res) => {
     res.send('Serveur de la Pharmacie Sauteuhz est actif')
 })

@@ -4,7 +4,7 @@
     <div>
         <div> informations du medecin n° <%=medecin[0].medecin_id%>
         </div>
-        <form action="/medecins/modifier" method="POST" enctype="application/x-www-formurlencoded">
+        <form action="/medecins/modifier" id="form"  method="POST" enctype="application/x-www-formurlencoded">
 
             <input hidden type="number" name="id" id="id" value="<%=medecin[0].medecin_id%>" required>
 

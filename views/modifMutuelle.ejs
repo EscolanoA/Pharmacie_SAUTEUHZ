@@ -4,7 +4,7 @@
     <div>
         <div> informations de la mutuelle n° <%=mutuelle[0].mutuelle_id%>
         </div>
-        <form action="/mutuelles/modifier" method="POST" enctype="application/x-www-formurlencoded">
+        <form action="/mutuelles/modifier" id="form"  method="POST" enctype="application/x-www-formurlencoded">
 
             <input hidden type="number" name="id" id="id" value="<%=mutuelle[0].mutuelle_id%>" required>
 
