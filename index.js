@@ -52,3 +52,7 @@ app.get('/', (req, res) => {
     res.send('Serveur de la Pharmacie Sauteuhz est actif')
 })
 
+//commande pour lancer :
+//npx nodemon index.js
+
+//lien de test : https://localhost:3000/accueil
