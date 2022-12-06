@@ -9,29 +9,30 @@
 
                 <button disabled>Mutuelle</button>
 
-                <% }else {%>
-                    <button
-                        onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=user.patient_mutuelle_id%>';">Mutuelle</button>
+            <% }else {%>
+                <button onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=user.patient_mutuelle_id%>';">Mutuelle</button>
                     <%} %>
 
 
                         <button onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>/<% if(user.patient_mutuelle_id==null){ user.patient_mutuelle_id = 0 }%><%= user.patient_mutuelle_id  %> ';">Modifier</button>
 
 
-                        <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+                        <button onclick="popupAttentionOff(),popupAttentionOn<%= i+1 %>()">Supprimer</button>
                         <script>
                             function popupAttentionOn<%= i+1 %> () {
-                                document.getElementById("attention").innerHTML = `Supprimer un patient supprimera ses ordonnances <button onClick="location.href='http://localhost:3000/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                                document.getElementById("attention<%= i+1 %>").innerHTML = `Supprimer <%= user.patient_nom.toUpperCase()%> <%= user.patient_prenom %> supprimera ses ordonnances <button onClick="location.href='http://localhost:3000/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                             }
                         </script>
 
                         <strong>
-                            Nom :<%= user.patient_nom %>
+                            Nom :<%= user.patient_nom.toUpperCase()%>
                                 Prenom :<%= user.patient_prenom %>
                                     age :<%= new Date().getFullYear() - user.patient_anneenaiss %>
                                         N° de secu :<%= user.patient_numsecu %>
                         </strong>
         </li>
+        <a class="attention" id="attention<%=i+1 %>"></a>
+
         <% })%>
 
 
@@ -70,18 +71,4 @@
             </form>
 
 
-
-            <script>
-                function popupAttentionOff() {
-                    document.getElementById("attention").innerHTML = ""
-                }
-                const onlyInputs = document.querySelectorAll('#form input');
-                const submit = document.querySelector('button[type="submit"]')
-
-                onlyInputs.forEach(input => {
-                    input.addEventListener('focusout', function() {
-                        let value = input.value.trim();
-                        input.value = value
-                    })
-                });
-            </script>
+            <script src="/scripts/controleSaisie.js"></script>

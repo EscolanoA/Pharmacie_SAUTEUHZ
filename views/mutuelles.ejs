@@ -5,14 +5,14 @@
     <% for(let i=0; i < mutuelles.length; i++) {%>
         <li>
             <button
-                onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>
+                onClick="location.href='/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>
 
-            <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
+            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
             <script>
-                function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Ceci désatribura la mutuelle des patients <button onClick="location.href='http://localhost:3000/mutuelles/supprimer/<%=mutuelles[i].mutuelle_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
-                }
 
+                function popupAttentionOn<%=i+1 %> () {
+                    document.getElementById("attention<%=i+1 %>").innerHTML = `Les patients de <%= mutuelles[i].mutuelle_nom.toUpperCase() %> n'aurons plus de mutuelle <button onClick="location.href='/mutuelles/supprimer/<%=mutuelles[i].mutuelle_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                }
 
             </script>
 
@@ -30,13 +30,15 @@
 
             </strong>
         </li>
+        <a class="attention" id="attention<%=i+1 %>"></a>
+
         <% }%>
 
 
 
             <div> Ajout d'une Mutuelle </div>
 
-            <form action="/mutuelles/ajouter" method="POST" id= "form" enctype="application/x-www-formurlencoded">
+            <form action="/mutuelles/ajouter" method="POST" id="form" enctype="application/x-www-formurlencoded">
                 <div>
 
                     <label for="nom">Nom : </label>
@@ -52,17 +54,4 @@
                 </div>
             </form>
 
-            <script>
-                function popupAttentionOff() {
-                    document.getElementById("attention").innerHTML = ""
-                }
-                const onlyInputs = document.querySelectorAll('#form input');
-                const submit = document.querySelector('button[type="submit"]')
-
-                onlyInputs.forEach(input => {
-                    input.addEventListener('focusout', function() {
-                        let value = input.value.trim();
-                        input.value = value
-                    })
-                });
-            </script>
+            <script src="/scripts/controleSaisie.js"></script>

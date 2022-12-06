@@ -20,6 +20,10 @@ const ctrlMedecins = require('../controllers/ctrlMedecins')
 
 const ctrlPathologies = require('../controllers/ctrlPathologies')
 
+//FAIRE HTTPS 
+//UTILISER JWT POUR ACC7DER AU ROUTES
+
+
 //Page d'indentification
 routeur.get('/', ctrlConnexion.afficherConnexion)
 routeur.post('/connexion', ctrlConnexion.testConnexion)

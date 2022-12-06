@@ -1,26 +1,27 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des médicaments </div>
-    <a id="attention"></a>
     <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
     on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
     <% medicaments.forEach(function(user,i){ %>
         <li>
 
             <button
-                onClick="location.href='http://localhost:3000/medicaments/modifier/<%=user.medicament_id%>';">Modifier</button>
-            <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
+                onClick="location.href='/medicaments/modifier/<%=user.medicament_id%>';">Modifier</button>
+            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
 
             <script>
                 function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Supprimer un médicament effacera les posologies qui lui sont liées <button onClick="location.href='http://localhost:3000/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                    document.getElementById("attention<%=i+1%>").innerHTML = `Supprimer le <%= user.medicament_nom.toUpperCase() %> effacera les posologies qui lui sont liées <button onClick="location.href='/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                 }
             </script>
 
             <strong>
-                <%= user.medicament_nom %>
+                <%= user.medicament_nom.toUpperCase() %>
             </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
 
         </li>
+        <a class="attention" id="attention<%=i+1 %>"></a>
+
         <% })%>
 
 
@@ -39,18 +40,4 @@
                 </div>
             </form>
 
-            <script>
-                function popupAttentionOff() {
-                    document.getElementById("attention").innerHTML = ""
-                }
-                const onlyInputs = document.querySelectorAll('#form input');
-                const submit = document.querySelector('button[type="submit"]')
-
-                onlyInputs.forEach(input => {
-                    input.addEventListener('focusout', function() {
-                        let value = input.value.trim();
-                        input.value = value
-                    })
-                });
-
-            </script>
+            <script src="/scripts/controleSaisie.js"></script>

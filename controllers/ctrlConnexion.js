@@ -12,7 +12,9 @@ module.exports = {
     async afficherConnexion(req, res) {
         const sessionId = req.headers.cookie?.split('session=')[1]
         delete sessions[sessionId]
+        //nettoyer session avant d'en créer un nouveau
         res.set('Set-Cookie' , `session=null`)
+
         res.render('connexion')
     
 

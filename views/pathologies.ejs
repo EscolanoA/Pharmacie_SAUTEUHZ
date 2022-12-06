@@ -6,10 +6,10 @@
             <button
                 onClick="location.href='http://localhost:3000/pathologies/modifier/<%=pathologies[i].pathologie_id%>';">Modifier</button>
 
-            <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
+            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Ceci Suprimera les ordonnances qui contiennent cette maladie <button onClick="location.href='http://localhost:3000/pathologies/supprimer/<%=pathologies[i].pathologie_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                    document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci Suprimera les ordonnances qui contiennent <%= pathologies[i].pathologie_nom.toUpperCase() %> <button onClick="location.href='http://localhost:3000/pathologies/supprimer/<%=pathologies[i].pathologie_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
                 }
 
 
@@ -19,10 +19,12 @@
 
 
             <strong>
-                n° Pathologie : <%= pathologies[i].pathologie_id %>
+                n° : <%= pathologies[i].pathologie_id %>
                 Nom : <%= pathologies[i].pathologie_nom.toUpperCase() %>
             </strong>
         </li>
+        <a class="attention" id="attention<%=i+1 %>"></a>
+
         <% }%>
 
 
@@ -40,19 +42,5 @@
                 </div>
             </form>
 
-            <script>
-                function popupAttentionOff() {
-                    document.getElementById("attention").innerHTML = ""
-                }
-                
-                const onlyInputs = document.querySelectorAll('#form input');
-                const submit = document.querySelector('button[type="submit"]')
+            <script src="/scripts/controleSaisie.js"></script>
 
-                onlyInputs.forEach(input => {
-                    input.addEventListener('focusout', function() {
-                        let value = input.value.trim();
-                        input.value = value
-                    })
-                });
-
-            </script>

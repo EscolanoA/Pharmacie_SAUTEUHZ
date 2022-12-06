@@ -4,7 +4,7 @@
 
     <div> modifier l' Ordonnance n° <%=ordonnance[0].ordonnance_id%>
     </div>
-    <form action="/patients/ordonnances/modifier" method="POST" enctype="application/x-www-formurlencoded">
+    <form action="/patients/ordonnances/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
 
         <input hidden type="number" name="idordo" id="idordo" value="<%=ordonnance[0].ordonnance_id%>" required>
         <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>"
@@ -27,7 +27,7 @@
 
         <label for="pathologie">Pathologie : </label>
         <select name="pathologie" id="pathologie">
-            <option value="null">Pas de pathologie</option>
+            
 
             <% pathologies.forEach(function(user){ if(user.pathologie_id==ordonnance[0].ordonnance_pathologie_id) { %>
                 <option value="<%= user.pathologie_id %>" selected>
@@ -45,14 +45,4 @@
         </select>
         <button type="submit">Modifier</button>
     </form>
-    <script>
-
-        const onlyInputs = document.querySelectorAll('#form input');
-        const submit = document.querySelector('button[type="submit"]')
-        onlyInputs.forEach(input => {
-            input.addEventListener('focusout', function () {
-                let value = input.value.trim();
-                input.value = value
-            })
-        });
-    </script>
+    <script src="/scripts/controleSaisie.js"></script>

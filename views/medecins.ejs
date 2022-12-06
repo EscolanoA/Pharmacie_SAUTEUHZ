@@ -1,26 +1,23 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des medecins </div>
-    <a id="attention"></a>
+    
     <% for(let i=0; i < medecins.length; i++) {%>
         <li>
             <button
-                onClick="location.href='http://localhost:3000/medecins/modifier/<%=medecins[i].medecin_id%>';">Modifier</button>
+                onClick="location.href='/medecins/modifier/<%=medecins[i].medecin_id%>';">Modifier</button>
 
-            <button onclick="popupAttentionOn<%=i+1%>()">Supprimer</button>
+            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention").innerHTML = `Ceci supprimera les ordonances que ce médecin aura crée <button onClick="location.href='http://localhost:3000/medecins/supprimer/<%=medecins[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                    Nom : 
+                    document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci supprimera les ordonances que <%= medecins[i].medecin_nom.toUpperCase() %> <%=medecins[i].medecin_prenom  %> aura crée <button onClick="location.href='/medecins/supprimer/<%=medecins[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
                 }
-
 
             </script>
 
-
-
-
             <strong>
+                Nom : <%= medecins[i].medecin_nom.toUpperCase() %>
                 Prenom : <%= medecins[i].medecin_prenom %>
-                    Nom : <%= medecins[i].medecin_nom.toUpperCase() %>
                         Tel : <a href="telto:<%= medecins[i].medecin_tel %>">
                             <%= medecins[i].medecin_tel %>
                         </a>
@@ -30,6 +27,7 @@
 
             </strong>
         </li>
+        <a class="attention" id="attention<%=i+1 %>"></a>
         <% }%>
 
 
@@ -56,5 +54,5 @@
                 </div>
             </form>
 
-<script src="scripts/controleSaisie.js"></script>
+<script src="/scripts/controleSaisie.js"></script>
 
