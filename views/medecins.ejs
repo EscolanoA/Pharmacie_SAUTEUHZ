@@ -47,7 +47,7 @@
                     <input type="text" name="prenom" id="prenom" required>
 
                     <label for="tel">Tel : </label>
-                    <input type="tel" name="tel" id="tel" required>
+                    <input type="number" name="tel" minlength="10" id="tel" required>
 
                     <label for="email">Mail : </label>
                     <input type="email" name="email" id="email" required>
@@ -56,17 +56,5 @@
                 </div>
             </form>
 
-            <script>
-                function popupAttentionOff() {
-                    document.getElementById("attention").innerHTML = ""
-                }
-                const onlyInputs = document.querySelectorAll('#form input');
-                const submit = document.querySelector('button[type="submit"]')
+<script src="scripts/controleSaisie.js"></script>
 
-                onlyInputs.forEach(input => {
-                    input.addEventListener('focusout', function() {
-                        let value = input.value.trim();
-                        input.value = value
-                    })
-                });
-            </script>

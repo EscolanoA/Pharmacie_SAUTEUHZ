@@ -1,6 +1,8 @@
 let mysql = require('mysql2');
 let iniparser = require('iniparser')
 let configDB = iniparser.parseSync('./DB.ini')
+const sessions = require('express-session');
+
 
 const mysqlConnexion = mysql.createConnection({
     host: configDB['dev']['host'],
@@ -35,7 +37,10 @@ const modelTestConnexion = (req, res) => {
 
 
 
+
+
 module.exports = {
     mysqlConnexion,
-    modelTestConnexion
+    modelTestConnexion,
+    
 } 

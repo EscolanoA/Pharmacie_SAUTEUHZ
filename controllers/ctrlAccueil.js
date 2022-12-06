@@ -2,18 +2,18 @@ const sessions = require('express-session');
 module.exports = {
 
     async afficherAcceuil(req, res) {
-        //?.split('='[1])
+
         //console.log(sessions)
-        console.log(req.headers.cookie.split('='))
+        console.log(req.headers.cookie?.split('session=')[1])
         
         const sessionId = req.headers.cookie?.split('session=')[1]
         
         const userSession = sessions[sessionId]
-        //console.log(userSession)
+        //impossible de trouvrer la variable "session="
         if (!userSession) {
-            res.render('./connexion')
+            res.render('connexion')
 
-        } else { res.render('./accueil') }
+        } else { res.render('accueil') }
 
 
     },

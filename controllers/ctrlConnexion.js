@@ -3,11 +3,20 @@ const uuidv4 = require('uuid').v4;
 const sessions = require('express-session');
 
 
+
+
+
 module.exports = {
 
 
     async afficherConnexion(req, res) {
-        res.render('./connexion')
+        const sessionId = req.headers.cookie?.split('session=')[1]
+        delete sessions[sessionId]
+        res.set('Set-Cookie' , `session=null`)
+        res.render('connexion')
+    
+
+
     },
 
     async testConnexion(req, res) {
@@ -42,7 +51,9 @@ module.exports = {
 
 
 
-    }
+    },
+
+
 
 
 

@@ -26,6 +26,7 @@ routeur.post('/connexion', ctrlConnexion.testConnexion)
 
 
 
+
 //La Page d'aceuil
 routeur.get('/accueil', ctrlAccueil.afficherAcceuil)
 
