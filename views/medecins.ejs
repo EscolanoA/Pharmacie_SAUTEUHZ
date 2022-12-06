@@ -9,7 +9,6 @@
             <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%=i+1 %> () {
-                    Nom : 
                     document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci supprimera les ordonances que <%= medecins[i].medecin_nom.toUpperCase() %> <%=medecins[i].medecin_prenom  %> aura crée <button onClick="location.href='/medecins/supprimer/<%=medecins[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
                 }
 

@@ -85,20 +85,4 @@ medecinpath    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= m
     </div>
 </form>
 
-<script>
-    function popupAttentionOff() {
-        document.getElementById("attention").innerHTML = ""
-    }
-    const onlyInputs = document.querySelectorAll('#form input');
-    const submit = document.querySelector('button[type="submit"]')
-
-    onlyInputs.forEach(input => {
-        input.addEventListener('focusout', function() {
-                let value = input.value.trim();
-                input.value = value
-            })
-    });
-
-    
-
-</script>
+<script src="/scripts/controleSaisie.js"></script>
