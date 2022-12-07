@@ -54,5 +54,7 @@ app.get('/', (req, res) => {
 
 //commande pour lancer :
 //npx nodemon index.js
+//ou npm run nodemon 
+//car script dans package.json
 
 //lien de test : https://localhost:3000/accueil

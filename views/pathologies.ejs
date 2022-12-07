@@ -4,12 +4,12 @@
     <% for(let i=0; i < pathologies.length; i++) {%>
         <li>
             <button
-                onClick="location.href='http://localhost:3000/pathologies/modifier/<%=pathologies[i].pathologie_id%>';">Modifier</button>
+                onClick="location.href='/pathologies/modifier/<%=pathologies[i].pathologie_id%>';">Modifier</button>
 
             <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci Suprimera les ordonnances qui contiennent <%= pathologies[i].pathologie_nom.toUpperCase() %> <button onClick="location.href='http://localhost:3000/pathologies/supprimer/<%=pathologies[i].pathologie_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
+                    document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci Suprimera les ordonnances qui contiennent <%= pathologies[i].pathologie_nom.toUpperCase() %> <button onClick="location.href='/pathologies/supprimer/<%=pathologies[i].pathologie_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
                 }
 
 

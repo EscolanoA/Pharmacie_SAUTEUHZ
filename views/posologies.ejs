@@ -1,9 +1,8 @@
 <%- include('header') %>
 <div> Bienvenue sur la page des posologies </div>
 
-<a id="attention"></a>
 
-<h1>Posologie  de l'ordonnance n° <%=idordo  %> pour <%=infosordo[0].patient_nom.toUpperCase()  %> <%= infosordo[0].patient_prenom %> </h1>
+<h1>Posologies de l'ordonnance n° <%=idordo  %> pour <%=infosordo[0].patient_nom.toUpperCase()  %> <%= infosordo[0].patient_prenom %> </h1>
 <li>Médecin : <%= medecinpath[0].medecin_nom.toUpperCase() %> <%= medecinpath[0].medecin_prenom %> 
 medecinpath    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= medecinpath[0].medecin_email %></a>
     Pathologie : <%= medecinpath[0].pathologie_nom %>
@@ -14,19 +13,17 @@ medecinpath    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= m
 
 
 
-
-
     <% posologies.forEach(function(user,i){ %>
         <li>
 
             <button
-                onClick="location.href='http://localhost:3000/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/modifier';">Modifier</button>
+                onClick="location.href='/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/modifier';">Modifier</button>
 
 
-            <button onclick="popupAttentionOn<%= i+1 %>()">Supprimer</button>
+            <button onclick="popupAttentionOff(),popupAttentionOn<%= i+1 %>()">Supprimer</button>
             <script>
                 function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention").innerHTML = `etes vous sûr? <button onClick="location.href='http://localhost:3000/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/supprimer';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                    document.getElementById("attention<%= i+1 %>").innerHTML = `etes vous sûr? <button onClick="location.href='/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/supprimer';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                 }
             </script>
 
@@ -46,6 +43,8 @@ medecinpath    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= m
 
             </strong>
         </li>
+        <a class="attention" id="attention<%=i+1 %>"></a>
+
     <% })%>
 <% } %>
 
@@ -78,11 +77,12 @@ medecinpath    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= m
         <input type="number" name="boites" id="boites" min="1" required>
 
         <label for="duree">Durée en mois : </label>
-        <input type="number" name="duree" id="duree" min="1" required>
+        <input type="number" name="duree" id="duree" min="1" max="1200" required>
 
 
         <button type="submit">Ajouter</button>
     </div>
 </form>
+<button onClick="history.back()">Retour</button>
 
 <script src="/scripts/controleSaisie.js"></script>

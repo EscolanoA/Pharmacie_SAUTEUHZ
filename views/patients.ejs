@@ -4,23 +4,23 @@
     <% patients.forEach(function(user,i){ %>
         <li>
             <button
-            onClick="location.href='http://localhost:3000/patients/ordonnances/<%=user.patient_numsecu%>';">Ordonnances</button>
+            onClick="location.href='/patients/ordonnances/<%=user.patient_numsecu%>';">Ordonnances</button>
             <%if(user.patient_mutuelle_id==null){%>
 
                 <button disabled>Mutuelle</button>
 
             <% }else {%>
-                <button onClick="location.href='http://localhost:3000/mutuelles/modifier/<%=user.patient_mutuelle_id%>';">Mutuelle</button>
+                <button onClick="location.href='/mutuelles/modifier/<%=user.patient_mutuelle_id%>';">Mutuelle</button>
                     <%} %>
 
 
-                        <button onClick="location.href='http://localhost:3000/patients/modifier/<%=user.patient_numsecu%>/<% if(user.patient_mutuelle_id==null){ user.patient_mutuelle_id = 0 }%><%= user.patient_mutuelle_id  %> ';">Modifier</button>
+                        <button onClick="location.href='/patients/modifier/<%=user.patient_numsecu%>/<% if(user.patient_mutuelle_id==null){ user.patient_mutuelle_id = 0 }%><%= user.patient_mutuelle_id  %> ';">Modifier</button>
 
 
                         <button onclick="popupAttentionOff(),popupAttentionOn<%= i+1 %>()">Supprimer</button>
                         <script>
                             function popupAttentionOn<%= i+1 %> () {
-                                document.getElementById("attention<%= i+1 %>").innerHTML = `Supprimer <%= user.patient_nom.toUpperCase()%> <%= user.patient_prenom %> supprimera ses ordonnances <button onClick="location.href='http://localhost:3000/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
+                                document.getElementById("attention<%= i+1 %>").innerHTML = `Supprimer <%= user.patient_nom.toUpperCase()%> <%= user.patient_prenom %> supprimera ses ordonnances <button onClick="location.href='/patients/supprimer/<%=user.patient_numsecu%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
                             }
                         </script>
 
