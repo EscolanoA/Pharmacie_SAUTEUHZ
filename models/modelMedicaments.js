@@ -15,7 +15,9 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let requeteSQL = 'SELECT * FROM Medicaments'
+            //fait la somme des besoins totaux d'un medicament entre la date actuelle et la date de fin de sa posologie
+
+            let requeteSQL = 'SELECT Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as medicament_besoins_totaux FROM Posologies, Medicaments WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id GROUP BY Medicaments.medicament_nom ORDER BY Medicaments.medicament_id;'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
@@ -115,6 +117,34 @@ module.exports = {
 
 
         async modelmodifMedicament(req) {
+
+            /** 
+             * instantiation d'une promesse de résultat de  @requetteSQL 
+             * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
+             * sinon @return @resolve avec les donnés @data de la @requetteSQL
+            */
+
+            return new Promise((resolve, reject) => {
+
+                let id = req.body.id
+                let nom = req.body.nom
+                let stock = req.body.stock
+
+                let requeteSQL = 'UPDATE Medicaments SET medicament_nom = ?, medicament_boitesstock = ?  WHERE medicament_id = ?'
+                mysqlConnexion.query(requeteSQL, [nom, stock, id], (err, data) => {
+
+                    if (err) {
+                        return reject(err)
+
+                    }
+                    return resolve(data)
+                })
+            }
+            )
+        },
+
+
+        async modelbesoinsTotauxMedicaments(req) {
 
             /** 
              * instantiation d'une promesse de résultat de  @requetteSQL 

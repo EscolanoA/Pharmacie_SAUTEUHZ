@@ -37,6 +37,9 @@ medecinpath    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= m
             
                 fin du traitement : <%=user.posologie_fin.toLocaleDateString()%>
 
+                Total boites prescrites : <%= user.posologie_nb_boites_debut_fin %>
+
+                Total boites restantes à déliverer : <%= user.posologie_nb_boites_maintenant_fin %>
 
 <!-- tentaive d'oprération pour avoir les mois resants   date = new Date().getDate() +"/"+ parseInt(new Date().getMonth()+1) +"/"+ new Date().getMonth(), console.log( parseInt(user.posologie_debut.toLocaleDateString()) - parseInt(date) )  -->
                 <!--Jours restant : --><%#console.log(user.jrestants)%>

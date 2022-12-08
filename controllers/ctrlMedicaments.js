@@ -1,7 +1,8 @@
 //importer les models d'accès aux donnés (requetes SQL)
 let modelMedicament = require('../models/modelMedicaments.js')
 
-module.exports = {
+module.exports = {    
+
 
     /**
     * méthode qui attend @data , fourni par la fonction @modelAfficherMedicaments () , sans bloquer le thread principal.
@@ -12,6 +13,7 @@ module.exports = {
 
         try {
             let data = await modelMedicament.modelAfficherMedicaments()
+
             if (data) {
                 //console.log(data)
                 res.render("./medicaments", { medicaments: data })

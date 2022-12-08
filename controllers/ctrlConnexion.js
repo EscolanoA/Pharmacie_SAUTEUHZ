@@ -40,7 +40,8 @@ module.exports = {
                     res.set('Set-Cookie', `session=${sessionId}`)
 
                     console.log(sessions)
-
+                    
+                    //faire .render affiche /conenxion dans l'url et ne declenche pas l'appel des données par la route /accueil => .ctrlAccueil.afficherAcceuil
                     res.redirect('accueil')
                 }
               //sinon type undefined  

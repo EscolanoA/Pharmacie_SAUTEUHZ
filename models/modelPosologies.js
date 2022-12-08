@@ -17,10 +17,22 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
+            //besoin de recuperer le numero de secu pour l'incure dans les url de modification de posologies.ejs pour ne pas faire de conflits sur le routage (il faudrait segmenter le routage )
             let numsecu = req.params.numsecu
             let idordo = req.params.idordo
 
-            let requeteSQL = `SELECT * FROM Posologies, Medicaments, Patients, Ordonnances, Medecins WHERE posologie_ordonnance_id = ? AND patient_numsecu = ? AND posologie_medicament_id = medicament_id AND posologie_ordonnance_id = ordonnance_id AND patient_numsecu = ordonnance_patient_numsecu AND ordonnance_medecin_id = medecin_id`
+            //Requette pour avoir le nombre de boites total prescrites d'une posologie  du début juqu'a sa fin et de la date actuelle jusquà la fin
+            let requeteSQL = `SELECT *,
+            SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_debut_fin,
+            SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_maintenant_fin  
+            FROM Posologies, Medicaments , Patients, Ordonnances
+            WHERE posologie_ordonnance_id = ? 
+            AND patient_numsecu = ?
+            AND Medicaments.medicament_id = Posologies.posologie_medicament_id 
+            AND posologie_ordonnance_id = ordonnance_id 
+            AND patient_numsecu = ordonnance_patient_numsecu
+            GROUP BY Posologies.posologie_id  
+            ORDER BY Posologies.posologie_id ASC;`
             mysqlConnexion.query(requeteSQL, [idordo, numsecu], (err, data) => {
 
                 if (err) {
@@ -158,7 +170,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
 
             let idpos = req.body.idpos
-            
+
             let medicament = req.body.medicament
             let duree = req.body.duree
             let boites = req.body.boites

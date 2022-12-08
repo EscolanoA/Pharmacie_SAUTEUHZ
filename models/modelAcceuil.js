@@ -51,28 +51,49 @@ module.exports = {
 
 
 /**
- 
- * Requette pour avoir le nombre de boites total d'une posologie sur la période de prise du medicament
+  * Requette pour avoir le nombre de boites total d'une posologie qu'une posologie donnera du début juqu'a sa fin  VALIDE
+
+SELECT *,
+SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_debut_fin,
+SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_maintenant_fin  
+FROM Posologies, Medicaments , Patients, Ordonnances
+WHERE posologie_ordonnance_id = 1 
+AND patient_numsecu = 0102053523882146
+AND Medicaments.medicament_id = Posologies.posologie_medicament_id 
+AND posologie_ordonnance_id = ordonnance_id 
+AND patient_numsecu = ordonnance_patient_numsecu
+GROUP BY Posologies.posologie_id  
+ORDER BY Posologies.posologie_id ASC;
+
+
+
+
+ * Requette pour avoir le nombre de boites total d'une posologie qu'il reste à fournir jusqua sa fin  VALIDE
+
+SELECT Posologies.*, SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as nbTotalBoitesUnePos 
+FROM Posologies, Medicaments 
+WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
+GROUP BY Posologies.posologie_id  
+ORDER BY `Posologies`.`posologie_id` ASC;
 
 SELECT TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois as nbTotalBoitesUnePos FROM Posologies;
  
+(date de fin -  ) 
+
  * 
  * 
  * 
- * Requette pour le nbtotal de medicaments sur toutes les ordonnances et le stock
+ * Requette pour le nbtotal de medicaments sur toutes les ordonnances et le stock VALIDE
 
 
-SELECT Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as nbTotalBoitesNecessaires
-FROM Posologies, Medicaments
-WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id
-GROUP BY Medicaments.medicament_nom;
+SELECT Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as besoinsTotauxMedicament FROM Posologies, Medicaments WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id GROUP BY Medicaments.medicament_nom;
 
 
 
 
 
 
-somme des besoins en medoc pour chaque medoc pour le 1 er mois à venir 
+somme des besoins en medoc pour chaque medoc durant le 1 er mois à venir VALIDE
 
 Interval 2 MONTH sera pour le 2 eme mois a venir, ect, ect...
 
@@ -83,8 +104,43 @@ WHERE Posologies.posologie_fin >= DATE_ADD(curdate(), INTERVAL 15 MONTH)
 GROUP BY Medicaments.medicament_id;
 
 
+Cette requette à aidé à faire celle dessus ^^^^^
 
 
-SELECT *, Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as nbTotalBoitesUnePos FROM Posologies, Medicaments WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id GROUP BY Posologies.posologie_id ORDER BY `Medicaments`.`medicament_id` ASC
+SELECT *, Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as nbTotalBoitesUnePos 
+FROM Posologies, Medicaments 
+WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
+GROUP BY Posologies.posologie_id 
+ORDER BY `Medicaments`.`medicament_id` ASC
+
+
+
+
+
+
+Besoins totaux en medicament pour les 4 mois a venir CASSÉ, 
+
+
+SELECT Medicaments.*,
+SUM( TIMESTAMPDIFF( MONTH, CURRENT_DATE, posologie_fin ) * Posologies.posologie_nbboitesmois ) AS medicament_besoins_totaux,
+SUM( TIMESTAMPDIFF( MONTH, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 4 MONTH)) * Posologies.posologie_nbboitesmois) AS medicament_besoins_totaux_4mois
+FROM Medicaments
+LEFT JOIN Posologies ON Posologies.posologie_medicament_id = Medicaments.medicament_id
+GROUP BY Medicaments.medicament_nom
+ORDER BY Medicaments.medicament_id;
+
+
+
+
+besoins en medicament pour les x mois à venir cassé crée:
+
+
+SELECT Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, curdate(), DATE_ADD(curdate(), INTERVAL 2 MONTH))* Posologies.posologie_nbboitesmois )as besoinsTotauxMedicament
+FROM Posologies, Medicaments
+WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id
+GROUP BY Medicaments.medicament_nom  
+ORDER BY `Medicaments`.`medicament_id` ASC;
+
+
 
 */
