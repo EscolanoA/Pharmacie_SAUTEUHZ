@@ -23,7 +23,7 @@ GROUP BY Medicaments.medicament_nom;
 
 somme des besoins en medoc pour chaque medoc pour le 1 er mois à venir 
 
-Interval 2 MONTH sera pour le 2 eme mois a venir, ect...
+Interval 2 MONTH sera pour le 2 eme mois a venir, ect, ect...
 
 SELECT *, SUM(Posologies.posologie_nbboitesmois)
 FROM Medicaments 
