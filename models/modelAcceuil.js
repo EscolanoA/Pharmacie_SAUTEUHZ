@@ -51,37 +51,7 @@ module.exports = {
 
 
 /**
-  * Requette pour avoir le nombre de boites total d'une posologie qu'une posologie donnera du début juqu'a sa fin  VALIDE
 
-SELECT *,
-SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_debut_fin,
-SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_maintenant_fin  
-FROM Posologies, Medicaments , Patients, Ordonnances
-WHERE posologie_ordonnance_id = 1 
-AND patient_numsecu = 0102053523882146
-AND Medicaments.medicament_id = Posologies.posologie_medicament_id 
-AND posologie_ordonnance_id = ordonnance_id 
-AND patient_numsecu = ordonnance_patient_numsecu
-GROUP BY Posologies.posologie_id  
-ORDER BY Posologies.posologie_id ASC;
-
-
-
-
- * Requette pour avoir le nombre de boites total d'une posologie qu'il reste à fournir jusqua sa fin  VALIDE
-
-SELECT Posologies.*, SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as nbTotalBoitesUnePos 
-FROM Posologies, Medicaments 
-WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
-GROUP BY Posologies.posologie_id  
-ORDER BY `Posologies`.`posologie_id` ASC;
-
-SELECT TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois as nbTotalBoitesUnePos FROM Posologies;
- 
-(date de fin -  ) 
-
- * 
- * 
  * 
  * Requette pour le nbtotal de medicaments sur toutes les ordonnances et le stock VALIDE
 
