@@ -5,8 +5,6 @@ const modelMedecins = require('../models/modelMedecins.js')
 
 module.exports = {
 
-// TODO: mettre le model modelAfficherMedecins dans model medecin
-
     async afficherMedecins(req, res) {
 
         try {

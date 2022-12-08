@@ -1,4 +1,8 @@
 const sessions = require('express-session');
+const modelAcceuil = require('../models/modelAcceuil.js')
+
+
+
 module.exports = {
 
     async afficherAcceuil(req, res) {
@@ -9,13 +13,28 @@ module.exports = {
         const sessionId = req.headers.cookie?.split('session=')[1]
         
         const userSession = sessions[sessionId]
-        //impossible de trouvrer la variable "session="
+        //si impossible de trouvrer la variable "session="
         if (!userSession) {
             res.render('connexion')
 
-        } else { res.render('accueil') }
-
-
+        } else { 
+            
+            
+            
+            try {
+                let data = await modelAcceuil.modelAfficherStockMedicaments()
+                if (data) {
+                    console.log(data)
+                    res.render("accueil", { medicaments: data })
+                }
+            } catch (error) {
+                console.log(error)
+            }
+    
+        }
     },
+
+
+
 
 }

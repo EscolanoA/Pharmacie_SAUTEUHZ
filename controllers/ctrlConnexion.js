@@ -41,10 +41,10 @@ module.exports = {
 
                     console.log(sessions)
 
-                    res.render('./accueil')
+                    res.redirect('accueil')
                 }
               //sinon type undefined  
-            }else{res.render('./connexion')}
+            }else{res.redirect('connexion')}
 
 
         } catch (error) {
