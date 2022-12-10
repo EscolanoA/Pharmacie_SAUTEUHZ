@@ -33,6 +33,7 @@ module.exports = {
 
             if (typeof data[0] === "object") {
                 //console.log(data)
+                //identification = email  et test de l'ahthentification = mdp
                 if (data[0].parmacien_email == email && data[0].parmacien_mdp == mdp) {
                     //console.log(data[0].parmacien_email, data[0].parmacien_mdp)
                     const sessionId = uuidv4();

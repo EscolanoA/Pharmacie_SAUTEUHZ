@@ -3,9 +3,14 @@
     <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
     on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
 
+<!-- TODO associer chaque besoin en medicament à son medicament et si pas besoin afficher 0 -->
 
+<% console.log(besoinsedicaments) %> 
+<% console.log(medicaments) %>    
 
     <% medicaments.forEach(function(user,i){ %>
+
+
         <li>
 
             <button
@@ -21,8 +26,17 @@
             <strong>
                 <%= user.medicament_nom.toUpperCase() %>
             </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
-            Besoins totaux : <%= user.medicament_besoins_totaux %>
 
+
+
+            <% besoinsedicaments.forEach(function(user2){%>
+            
+                <% if (user.medicament_id == user2.medicament_id ) {%>
+                     <%= "Besoins totaux :"+ user2.medicament_besoins_totaux %>
+                <% } %>  
+           
+            
+            <% })%>
         </li>
         <a class="attention" id="attention<%=i+1 %>"></a>
 

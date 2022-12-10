@@ -13,10 +13,11 @@ module.exports = {
 
         try {
             let data = await modelMedicament.modelAfficherMedicaments()
+            let data2 = await modelMedicament.modelAfficherBesoinsMedicaments()
 
             if (data) {
                 //console.log(data)
-                res.render("./medicaments", { medicaments: data })
+                res.render("./medicaments", { medicaments: data, besoinsedicaments: data2 })
             }
         } catch (error) {
             console.log(error)

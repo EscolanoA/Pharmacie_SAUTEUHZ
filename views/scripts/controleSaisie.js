@@ -19,3 +19,11 @@ onlyInputs.forEach(input => {
     })
 });
 
+/*
+TODO : Query selector sur la valeur des input des num de sécu 
+et boucle pour vérifier si ce num de secu n'est pas déja pris,
+cette fontion sexecute à nchaque saisie de numero dans num secu,
+et rend le bouton submit disabled, et ecrit un message " num de secu déja utilisé "
+
+*/
+

@@ -61,6 +61,31 @@ SELECT Medicaments.*, SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* 
 
 
 
+medicament_besoins_totaux
+
+
+`SELECT Medicaments.*,
+            SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as medicament_besoins_totaux 
+            FROM Posologies, Medicaments 
+            WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
+            GROUP BY Medicaments.medicament_nom 
+            ORDER BY Medicaments.medicament_id;`
+
+
+^^^REqutte imbrique^^^
+
+
+TEST :
+
+`SELECT Medicaments.*,
+(SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois ) as medicament_besoins_totaux 
+FROM Posologies, Medicaments 
+WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
+GROUP BY Medicaments.medicament_nom 
+ORDER BY Medicaments.medicament_id;`
+
+
+
 
 
 somme des besoins en medoc pour chaque medoc durant le 1 er mois à venir VALIDE
@@ -82,6 +107,20 @@ FROM Posologies, Medicaments
 WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
 GROUP BY Posologies.posologie_id 
 ORDER BY `Medicaments`.`medicament_id` ASC
+
+
+
+
+
+
+
+
+
+
+
+TODO OPTIONNEL : Requette qui fait la somme des besoins de médicaments pour les x mois à venir 
+
+
 
 
 
