@@ -5,6 +5,7 @@
 <h1>Posologies de l'ordonnance n° <%=idordo  %> pour <%=infosordo[0].patient_nom.toUpperCase()  %> <%= infosordo[0].patient_prenom %> </h1>
 <li>Médecin : <%= medecinpath[0].medecin_nom.toUpperCase() %> <%= medecinpath[0].medecin_prenom %> 
    Mail : <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= medecinpath[0].medecin_email %></a>
+   Tel : <a href="telto:<%= medecinpath[0].medecin_tel %>"><%= medecinpath[0].medecin_tel %></a>
     Pathologie : <%= medecinpath[0].pathologie_nom %>
 </li>
 
