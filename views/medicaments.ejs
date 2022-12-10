@@ -5,8 +5,8 @@
 
 <!-- TODO associer chaque besoin en medicament à son medicament et si pas besoin afficher 0 -->
 
-<% console.log(besoinsedicaments) %> 
-<% console.log(medicaments) %>    
+<%# console.log(besoinsedicaments) %> 
+<%# console.log(medicaments) %>    
 
     <% medicaments.forEach(function(user,i){ %>
 
@@ -29,11 +29,12 @@
 
 
 
-            <% besoinsedicaments.forEach(function(user2){%>
+            <% besoinsedicaments.forEach(function(user2){ %>
             
                 <% if (user.medicament_id == user2.medicament_id ) {%>
                      <%= "Besoins totaux :"+ user2.medicament_besoins_totaux %>
-                <% } %>  
+                <% } %>
+
            
             
             <% })%>
