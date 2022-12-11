@@ -233,78 +233,7 @@
         }
         });
 
-
-
-
-
-
-
     </script>
 
-
-
-
-
-
-
-
-
-
-
-    <!-- <script>
-    // setup 
-    <%# let arrayLabels = []
-    let arrayData = []
-    
-        medicaments.forEach(function(user,i){ 
-                //forrmatter les données pour charts JS
-                arrayLabels.push("`"+user.medicament_nom+"`")
-                arrayData.push(user.medicament_boitesstock)
-                
-             })
-             //console.log(arrayLabels)
-    %>
-
-    const nomsMedicaments = [<%#= arrayLabels %> ]
-    const medicamentsBoitesstock = [<%#= arrayData %> ]
-     
-    //console.log(nomsMedicaments)
-    const data = {
-
-      labels: nomsMedicaments,
-      datasets: [{
-        label: 'Stocks Des Médicaments',
-        data: medicamentsBoitesstock,
-        backgroundColor: [
-          'rgba(255, 26, 104, 0.2)'
-
-        ],
-        borderColor: [
-          'rgba(255, 26, 104, 1)'
-
-        ],
-        borderWidth: 1
-      }]
-    };
-
-    // config 
-    const config = {
-      type: 'bar',
-      data,
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    };
-
-    // render init block
-    const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-    </script> -->
 
   </body>

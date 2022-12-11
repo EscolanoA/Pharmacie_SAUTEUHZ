@@ -63,7 +63,7 @@ INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_m
 (6, 3, 1,  DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 22),
 (7, 4, 2,  DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 6),
 (8, 4, 3,  DATE_ADD(CURRENT_DATE(), INTERVAL '9' MONTH ), 16),
-(9, 5, 4,  DATE_ADD(CURRENT_DATE(), INTERVAL '15' MONTH ), 45),
+(9, 5, 4,  DATE_ADD(CURRENT_DATE(), INTERVAL '5' MONTH ), 35),
 (10, 5, 5, DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 8);
 
 
@@ -77,10 +77,10 @@ CREATE TABLE `Medicaments`(
     PRIMARY KEY (`medicament_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Medicaments` (`medicament_id`, `medicament_nom`, `medicament_boitesstock`) VALUES
-(1, 'Doloprane', 6),
-(2, 'Paracetamoule', 63),
+(1, 'Doloprane', 256),
+(2, 'Paracetamoule', 856),
 (3, 'CanardWC', 666),
-(4, 'StopCancer', 35),
+(4, 'StopCancer', 725),
 (5, 'EasyLeucémie', 384);
 
 

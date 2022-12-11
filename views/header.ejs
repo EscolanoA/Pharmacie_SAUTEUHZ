@@ -8,9 +8,11 @@
     <link rel="icon" type="image/x-icon" href="/img/Logoheadertransparent.svg">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="/scripts/animations.js"></script>
+
 </head>
 
-<body>
+<body onload="realtimeClock()">
     <div class="header">
         <img id="logo" src="/img/Logoheadertransparent.svg" alt="Logo">
         <button onclick="window.location.href='/accueil'" class="btnheader"><i class="fa-solid fa-house"></i> ACCUEIL</button>
@@ -19,7 +21,8 @@
         <button onclick="window.location.href='/mutuelles'"  class="btnheader"><i class="fa-solid fa-hospital"></i> MUTUELLES</button>
         <button onclick="window.location.href='/pathologies'"  class="btnheader"><i class="fa-solid fa-disease"></i> PATHOLOGIES</button>
         <button onclick="window.location.href='/medecins'"  class="btnheader"><i class="fa-solid fa-user-doctor"></i> MEDECINS</button>
-ALIGNER A DROITE LA DATE ET L'HEURE ACTUELLE (EN DIRECT AJAX)
+        <div id="dateActuelle"></div>
+
         <button onclick="window.location.href='/'" class="btnlogout"><i class="fa-solid fa-right-from-bracket"></i></button>
 
     </div>
