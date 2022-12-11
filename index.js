@@ -21,7 +21,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('assets'))
 app.use(express.static('views'))
 app.use(express.static('img'))
-app.use(express.static('controllers'));
+
+//app.use(express.static('controllers'));
 
 
 
@@ -49,8 +50,8 @@ const fs = require('fs')
 const https = require('https')
 const path = require('path')
 //donner le chemin vers les certificats autos-signés
-const key = fs.readFileSync(path.join(__dirname, 'certificate', 'server.key'));
-const cert = fs.readFileSync(path.join(__dirname, 'certificate', 'server.cert'));
+const key = fs.readFileSync(path.join(__dirname, 'certificates', 'server.key'));
+const cert = fs.readFileSync(path.join(__dirname, 'certificates', 'server.cert'));
 const options = { key, cert };
 
 
