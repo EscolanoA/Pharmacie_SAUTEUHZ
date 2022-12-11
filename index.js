@@ -1,20 +1,17 @@
 const express = require('express')
-const ejs = require('ejs')
 var cookieParser = require('cookie-parser');
 const sessions = require('express-session');
-const iniparser = require('iniparser')
+
+const cors = require('cors') // Cross Origin Resource Sharing
+const morgan = require('morgan') // logs pour authentification par token
+
 const Routeur = require('./routes/routes.js')
+//const loginRoutes = require('./routes/loginRoutes')
 
-//require les file systems, crées avec la commende linux du git bash : 
-//openssl req -nodes -new -x509 -keyout server.key -out server.cert
 
-const fs = require('fs')
-const https = require('https')
-const path = require('path')
 
-const key = fs.readFileSync(path.join(__dirname, 'certificate', 'server.key'));
-const cert = fs.readFileSync(path.join(__dirname, 'certificate', 'server.cert'));
-const options = { key, cert };
+
+
 
 
 
@@ -36,15 +33,31 @@ app.use(sessions({
     resave: false
 }));
 
-//priorité des routes 
+// Utilisation des midlewares pour l'authentification JWT à faire
+//app.use(cors())
+//app.use(morgan('tiny'))
+
 app.use('/', Routeur)
 
-//app.listen(3000, () => console.log('Serveur de la Pharmacie Sauteuhz est actif'))
+
+
+//require les file systems, crées avec la commende linux du git bash : 
+//openssl req -nodes -new -x509 -keyout server.key -out server.cert
+const fs = require('fs')
+
+//créer un serveur HTTPS 
+const https = require('https')
+const path = require('path')
+//donner le chemin vers les certificats autos-signés
+const key = fs.readFileSync(path.join(__dirname, 'certificate', 'server.key'));
+const cert = fs.readFileSync(path.join(__dirname, 'certificate', 'server.cert'));
+const options = { key, cert };
+
 
 let port = 3000
 
 https.createServer(options, app).listen(port, () => {
- console.log(`server running HTTPS. Go to https://localhost:${port}`);
+ console.log(`server démarré     en HTTPS. Go to https://localhost:${port}`);
  }); 
 
 
@@ -54,7 +67,5 @@ app.get('/', (req, res) => {
 
 //commande pour lancer :
 //npx nodemon index.js
-//ou npm run nodemon 
-//car script dans package.json
 
 //lien de test : https://localhost:3000/accueil

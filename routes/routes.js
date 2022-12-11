@@ -32,85 +32,85 @@ routeur.post('/connexion', ctrlConnexion.testConnexion)
 
 
 //La Page d'aceuil
-routeur.get('/accueil', ctrlAccueil.afficherAcceuil)
+routeur.get('/accueil',ctrlConnexion.testAuthentification, ctrlAccueil.afficherAcceuil)
 
 
 
 //Routes pour la page mutuelles
-routeur.get('/mutuelles', ctrlMutuelles.afficherMutuelles)
-routeur.post('/mutuelles/ajouter', ctrlMutuelles.ajouterMutuelle)
-routeur.get('/mutuelles/supprimer/:id', ctrlMutuelles.supprimerMututelle)
+routeur.get('/mutuelles', ctrlConnexion.testAuthentification, ctrlMutuelles.afficherMutuelles)
+routeur.post('/mutuelles/ajouter', ctrlConnexion.testAuthentification, ctrlMutuelles.ajouterMutuelle)
+routeur.get('/mutuelles/supprimer/:id', ctrlConnexion.testAuthentification, ctrlMutuelles.supprimerMututelle)
 
 //Routes pour la sous page mutuelles/modifier
-routeur.get('/mutuelles/modifier/:id', ctrlMutuelles.afficherModifMutuelle)
-routeur.post('/mutuelles/modifier', ctrlMutuelles.modifMututelle)
+routeur.get('/mutuelles/modifier/:id', ctrlConnexion.testAuthentification, ctrlMutuelles.afficherModifMutuelle)
+routeur.post('/mutuelles/modifier', ctrlConnexion.testAuthentification, ctrlMutuelles.modifMututelle)
 
 
 
 //Routes pour la page medecins
-routeur.get('/medecins', ctrlMedecins.afficherMedecins)
-routeur.post('/medecins/ajouter', ctrlMedecins.ajouterMedecin)
-routeur.get('/medecins/supprimer/:id', ctrlMedecins.supprimerMedecin)
+routeur.get('/medecins', ctrlConnexion.testAuthentification, ctrlMedecins.afficherMedecins)
+routeur.post('/medecins/ajouter', ctrlConnexion.testAuthentification, ctrlMedecins.ajouterMedecin)
+routeur.get('/medecins/supprimer/:id', ctrlConnexion.testAuthentification, ctrlMedecins.supprimerMedecin)
 
 //Routes pour la sous page medecins/modifier
-routeur.get('/medecins/modifier/:id', ctrlMedecins.afficherModifMedecin)
-routeur.post('/medecins/modifier', ctrlMedecins.modifMedecin)
+routeur.get('/medecins/modifier/:id', ctrlConnexion.testAuthentification, ctrlMedecins.afficherModifMedecin)
+routeur.post('/medecins/modifier', ctrlConnexion.testAuthentification, ctrlMedecins.modifMedecin)
 
 
 //Routes pour la page pathologies
-routeur.get('/pathologies', ctrlPathologies.afficherPathologies)
-routeur.post('/pathologies/ajouter', ctrlPathologies.ajouterPathologie)
-routeur.get('/pathologies/supprimer/:id', ctrlPathologies.supprimerPathologie)
+routeur.get('/pathologies', ctrlConnexion.testAuthentification, ctrlPathologies.afficherPathologies)
+routeur.post('/pathologies/ajouter', ctrlConnexion.testAuthentification, ctrlPathologies.ajouterPathologie)
+routeur.get('/pathologies/supprimer/:id', ctrlConnexion.testAuthentification, ctrlPathologies.supprimerPathologie)
 
 //Routes pour la sous page pathologies/modifier
-routeur.get('/pathologies/modifier/:id', ctrlPathologies.afficherModifPathologie)
-routeur.post('/pathologies/modifier', ctrlPathologies.modifPathologie)
+routeur.get('/pathologies/modifier/:id', ctrlConnexion.testAuthentification, ctrlPathologies.afficherModifPathologie)
+routeur.post('/pathologies/modifier', ctrlConnexion.testAuthentification, ctrlPathologies.modifPathologie)
 
 
 
 
 //Routes pour la page medicaments
-routeur.get('/medicaments', ctrlMedicaments.afficherMedicaments)
-routeur.post('/medicaments/ajouter', ctrlMedicaments.ajouterMedicament)
-routeur.get('/medicaments/supprimer/:id', ctrlMedicaments.supprimerMedicament)
+routeur.get('/medicaments', ctrlConnexion.testAuthentification, ctrlMedicaments.afficherMedicaments)
+routeur.post('/medicaments/ajouter', ctrlConnexion.testAuthentification, ctrlMedicaments.ajouterMedicament)
+routeur.get('/medicaments/supprimer/:id', ctrlConnexion.testAuthentification, ctrlMedicaments.supprimerMedicament)
 
 //Routes pour la sous page medicaments/modifier
-routeur.get('/medicaments/modifier/:id', ctrlMedicaments.afficherModifMedicament)
-routeur.post('/medicaments/modifier', ctrlMedicaments.modifMedicament)
+routeur.get('/medicaments/modifier/:id', ctrlConnexion.testAuthentification, ctrlMedicaments.afficherModifMedicament)
+routeur.post('/medicaments/modifier', ctrlConnexion.testAuthentification, ctrlMedicaments.modifMedicament)
 
 
 
 
 //Routes pour la page Patient
-routeur.get('/patients', ctrlPatients.afficherPatients)
-routeur.post('/patients/ajouter', ctrlPatients.ajouterPatient)
-routeur.get('/patients/supprimer/:numsecu', ctrlPatients.supprimerPatient)
+routeur.get('/patients', ctrlConnexion.testAuthentification, ctrlPatients.afficherPatients)
+routeur.post('/patients/ajouter', ctrlConnexion.testAuthentification, ctrlPatients.ajouterPatient)
+routeur.get('/patients/supprimer/:numsecu', ctrlConnexion.testAuthentification, ctrlPatients.supprimerPatient)
 
 //Routes pour la sous page patients/modifier
-routeur.get('/patients/modifier/:numsecu/:idmut', ctrlPatients.afficherModifPatient)
-routeur.post('/patients/modifier', ctrlPatients.modifPatient)
+routeur.get('/patients/modifier/:numsecu/:idmut', ctrlConnexion.testAuthentification, ctrlPatients.afficherModifPatient)
+routeur.post('/patients/modifier', ctrlConnexion.testAuthentification, ctrlPatients.modifPatient)
 
 //Routes pour la sous sous page patients/ordonnances/posologies
-routeur.get('/patients/ordonnances/:numsecu/posologies/:idordo', ctrlPosologies.afficherPosologies)
+routeur.get('/patients/ordonnances/:numsecu/posologies/:idordo', ctrlConnexion.testAuthentification, ctrlPosologies.afficherPosologies)
 
 //CECI DEVRAIT ETRE LE FOMALISME UTILISÉ POUR TOUTES LES ROUTES CAR PLUS COMPRÉHENSIBLE ET ADAPTÉ SUR DE GROS PROJETS
 routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/supprimer', ctrlPosologies.supprimerPosologie)
 
-routeur.post('/patients/ordonnances/posologies/ajouter', ctrlPosologies.ajouterPosologie)
+routeur.post('/patients/ordonnances/posologies/ajouter', ctrlConnexion.testAuthentification, ctrlPosologies.ajouterPosologie)
 
-routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/modifier', ctrlPosologies.afficherModifPosologie)
-routeur.post('/patients/ordonnances/posologies/modifier', ctrlPosologies.modifPosologie)
+routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/modifier', ctrlConnexion.testAuthentification, ctrlPosologies.afficherModifPosologie)
+routeur.post('/patients/ordonnances/posologies/modifier', ctrlConnexion.testAuthentification, ctrlPosologies.modifPosologie)
 
 
 
 
 
 //Routes pour la sous page patients/ordonnances
-routeur.get('/patients/ordonnances/:numsecu', ctrlOrdonnances.afficherOrdonnances)
-routeur.post('/patients/ordonnances/ajouter', ctrlOrdonnances.ajouterOrdonnance)
-routeur.get('/patients/ordonnances/:numsecu/supprimer/:idordo', ctrlOrdonnances.supprimerOrdonnance)
-routeur.get('/patients/ordonnances/modifier/:idordo', ctrlOrdonnances.afficherModifOrdonnance)
-routeur.post('/patients/ordonnances/modifier', ctrlOrdonnances.modifOrdonnance)
+routeur.get('/patients/ordonnances/:numsecu', ctrlConnexion.testAuthentification, ctrlOrdonnances.afficherOrdonnances)
+routeur.post('/patients/ordonnances/ajouter', ctrlConnexion.testAuthentification, ctrlOrdonnances.ajouterOrdonnance)
+routeur.get('/patients/ordonnances/:numsecu/supprimer/:idordo', ctrlConnexion.testAuthentification, ctrlOrdonnances.supprimerOrdonnance)
+routeur.get('/patients/ordonnances/modifier/:idordo', ctrlConnexion.testAuthentification, ctrlOrdonnances.afficherModifOrdonnance)
+routeur.post('/patients/ordonnances/modifier', ctrlConnexion.testAuthentification, ctrlOrdonnances.modifOrdonnance)
 
 
 

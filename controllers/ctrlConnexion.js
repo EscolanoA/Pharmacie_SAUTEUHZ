@@ -53,8 +53,30 @@ module.exports = {
             console.log(error)
         }
 
+    },
 
+    //middleware qui test la présence d'un cookie de session
+    async testAuthentification(req, res, next) {
 
+        //console.log(sessions)
+        //console.log(req.headers.cookie?.split('session=')[1])
+        
+        const sessionId = req.headers.cookie?.split('session=')[1]
+        
+        const userSession = sessions[sessionId]
+        //si impossible de trouvrer la variable "session="
+        if (!userSession) {
+            res.render('connexion')
+
+        } else { 
+            
+            try {
+                next()
+            } catch (error) {
+                console.log(error)
+            }
+    
+        }
     },
 
 
