@@ -1,8 +1,33 @@
-<%#- include('headerConnexion') %>
-<form action="/connexion" method="post" id="form">
+<!DOCTYPE html>
+<html lang="fr">
 
-    Adresse Mail : <input type="email" name="email" id="email">
-    Mot de passe :<input type="password" name="mdp" id="mdp">
-    <button type="submit">CONNEXION</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacie Sautheuz</title>
+    <link rel="icon" type="image/x-icon" href="/img/Logoheadertransparent.svg">
+    <link rel="stylesheet" href="/css/style.css">
 
-</form>
+
+</head>
+
+
+<div class="header"> PHARMACIE SAUTEUHZ </div>
+
+<div id="mainContainer">
+
+    <form class="connexionForm" action="/connexion" method="post" id="form">
+        <div class="align">
+            <label class="labelConnexion" for="email">Adresse Mail :</label>
+            <input type="email" name="email" id="email">
+        </div>
+
+        <div class="align">
+            <label class="labelConnexion" for="mdp"> Mot de passe :</label>
+            <input type="password" name="mdp" id="mdp">
+        </div>
+
+        <button class="btnSubmit" type="submit">CONNEXION</button>
+
+    </form>
+</div>

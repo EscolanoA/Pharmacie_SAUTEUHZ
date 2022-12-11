@@ -1,25 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato&family=Open+Sans:wght@700&display=swap');
-
-
+ @import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@400;900&family=Open+Sans:wght@800&display=swap'); 
 
 body {
     margin: 0;
 }
 
-.header {
-    background-color: #C3E5F8;
-    text-align: center;
-    padding-bottom: 10px;
-    padding-top: 10px;
+h1{
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 35px;
+
+    color: #18215B;
 
 }
 
-#logo {
-    float: left;
-    max-width: 50px;
-    margin-right: 10px;
-    margin-left: 10px;
 
+
+.btnSubmit{
+    background-color: #18215B;
+    font-family: 'Open', sans-serif;
+    width: 10em;
+    color: white;
+    border-radius: 5px;
+    padding: 12px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 0;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+
+}
+
+.align{
+display: flex;
+
+}
+
+input{
+    border: 0;
+    border-radius: 7px;
+    height: 25px;
+}
+
+#mainContainer{
+    width: 80%;
+    margin: 10% auto ;
+}
+
+.connexionForm{
+    padding: 40px;
+    text-align: center ;
+    background-color:#E6DECE ;
+    border-radius: 7px;
+}
+
+
+.labelConnexion{
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    padding: 10px;
+
+}
+
+
+#dateActuelle{
+align-items: flex-end;}
+
+.header {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    gap: 1em;
+    font-family: 'Anton', sans-serif;
+    background-color: #C3E5F8;
+    padding: 1em;
+
+
+}
+
+
+#logo {
+    max-width: 50px;
 }
 
 .btnheader {
@@ -30,12 +91,11 @@ body {
     font-size: 15px;
     cursor: pointer;
     border: 0px;
-    margin-left: 1%;
+
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
 }
 
 .btnlogout {
-    float: right;
     background-color: #FF6969;
     font-family: 'Anton', sans-serif;
     border-radius: 5px;
@@ -43,11 +103,21 @@ body {
     color: black;
     padding: 12px 16px;
     font-size: 15px;
-    margin-left: 10%;
-    margin-right: 10px;
+
     cursor: pointer;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
 }
+
+
+.chartBox {
+    width: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px rgba(255, 26, 104, 1);
+    background: white;
+  }
+
+
 
 /*
 font-family: 'Anton', sans-serif;

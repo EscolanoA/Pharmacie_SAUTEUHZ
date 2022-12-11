@@ -1,12 +1,14 @@
 <%- include('header') %>
     <div> Bienvenue sur la page des médicaments </div>
-    <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
-    on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
+
 
 <!-- TODO associer chaque besoin en medicament à son medicament et si pas besoin afficher 0 -->
 
 <%# console.log(besoinsedicaments) %> 
 <%# console.log(medicaments) %>    
+
+    <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
+    on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
 
     <% medicaments.forEach(function(user,i){ %>
 
@@ -28,7 +30,8 @@
             </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
 
 
-
+<!--Si dans la requette besoins medicaments ocurrence touvé avec tout les médicaments, afficher besoins
+car les medicaments sans besoins ne sont pas récupérés dans la requette, ils n'exisentent pas au niveau de SUM(.....) as medicament_besoins_totaux -->
             <% besoinsedicaments.forEach(function(user2){ %>
             
                 <% if (user.medicament_id == user2.medicament_id ) {%>
