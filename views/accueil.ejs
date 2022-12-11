@@ -21,100 +21,224 @@
       <div class="chartBox">
         <canvas id="myChart1"></canvas>
       </div>
+
+      <div class="chartBox">
+        <canvas id="myChart2"></canvas>
+      </div>
+
+      <div class="chartBox">
+        <canvas id="myChart3"></canvas>
+      </div>
+
+      <div class="chartBox">
+        <canvas id="myChart4"></canvas>
+      </div>
     
     <script type="text/javascript" src="scripts/chart.js/dist/chart.umd.js"></script>
 
 
     <script>
 
-    <%
+        <%
+        
+        let arrayLabelBesoinsMoisActuel = []
+        let arrayBesoinsMoisActuel = []
+        moisActuel.forEach(function(user,i){ 
+            //forrmatter les données pour charts JS
+            arrayLabelBesoinsMoisActuel.push("`"+user.medicament_nom+"`")
+            arrayBesoinsMoisActuel.push(user.besoins_mois_courant)
+        })
+
+        let arrayLabelBesoinsMoisActuelPlus1 = []
+        let arrayBesoinsMoisActuelPlus1 = []
+        moisActuelPlus1.forEach(function(user,i){ 
+            arrayLabelBesoinsMoisActuelPlus1.push("`"+user.medicament_nom+"`")
+            arrayBesoinsMoisActuelPlus1.push(user.besoins_mois_courant)
+        })
+
+
+        let arrayLabelBesoinsMoisActuelPlus2 = []
+        let arrayBesoinsMoisActuelPlus2 = []
+        moisActuelPlus2.forEach(function(user,i){ 
+            arrayLabelBesoinsMoisActuelPlus2.push("`"+user.medicament_nom+"`")
+            arrayBesoinsMoisActuelPlus2.push(user.besoins_mois_courant)
+        })
+
+        %>
+
+        let aujourdhui = new Date()
+        let lesMois=["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+
+        aujourdhui.setMonth(aujourdhui.getMonth());
+        //.split recupre que l'année [0]11/[1]12/[2]=>2022
+        moisActuel =lesMois[aujourdhui.getMonth()] + " " + aujourdhui.toLocaleDateString().split('/')[2]
+
+        aujourdhui.setMonth(aujourdhui.getMonth()+1);
+
+        plus1Mois = lesMois[aujourdhui.getMonth()] + " " + aujourdhui.toLocaleDateString().split('/')[2]
+
+        //pas + 2 car aujourdhui déja à + 1
+        aujourdhui.setMonth(aujourdhui.getMonth()+1);
+
+        plus2Mois = lesMois[aujourdhui.getMonth()] + " " + aujourdhui.toLocaleDateString().split('/')[2]
+
+
+        console.log( moisActuel )
+        console.log( plus1Mois )
+        console.log( plus2Mois )
+
+        const arrayLabelBesoinsMoisActuel = [<%= arrayLabelBesoinsMoisActuel %> ]
+        const arrayBesoinsMoisActuel = [<%= arrayBesoinsMoisActuel %> ]
+        
+        //console.log(nomsMedicaments)
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: arrayLabelBesoinsMoisActuel,
+            datasets: [{
+            label: "Boites nécessaires pour " + moisActuel ,
+            data: arrayBesoinsMoisActuel,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+
+        const arrayLabelBesoinsMoisActuelPlus1 = [<%= arrayLabelBesoinsMoisActuelPlus1 %> ]
+        const arrayBesoinsMoisActuelPlus1 = [<%= arrayBesoinsMoisActuelPlus1 %> ]
+        
+        //console.log(nomsMedicaments)
+        const ctx1 = document.getElementById('myChart1');
+
+        new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: arrayLabelBesoinsMoisActuelPlus1,
+            datasets: [{
+            label: "Boites nécessaires pour " + plus1Mois ,
+            data: arrayBesoinsMoisActuelPlus1,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+
+        const arrayLabelBesoinsMoisActuelPlus2 = [<%= arrayLabelBesoinsMoisActuelPlus2 %> ]
+        const arrayBesoinsMoisActuelPlus2 = [<%= arrayBesoinsMoisActuelPlus2 %> ]
+        
+        //console.log(nomsMedicaments)
+        const ctx2 = document.getElementById('myChart2');
+
+        new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: arrayLabelBesoinsMoisActuelPlus2,
+            datasets: [{
+            label: "Boites nécessaires pour " + plus2Mois ,
+            data: arrayBesoinsMoisActuelPlus2,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+
+    <% let arrayLabels = []
+    let arrayData = []
     
-    let arrayLabelBesoinsMoisActuel = []
-    let arrayBesoinsMoisActuel = []
-    moisActuel.forEach(function(user,i){ 
-        //forrmatter les données pour charts JS
-        arrayLabelBesoinsMoisActuel.push("`"+user.medicament_nom+"`")
-        arrayBesoinsMoisActuel.push(user.besoins_mois_courant)
+        medicaments.forEach(function(user,i){ 
+                //forrmatter les données pour charts JS
+                arrayLabels.push("`"+user.medicament_nom+"`")
+                arrayData.push(user.medicament_boitesstock)
                 
-   })
-    console.log(arrayLabelBesoinsMoisActuel)
-    console.log(arrayBesoinsMoisActuel)
-
-    let arrayLabelBesoinsMoisActuelPlus1 = []
-    let arrayBesoinsMoisActuelPlus1 = []
-    moisActuelPlus1.forEach(function(user,i){ 
-
-        arrayLabelBesoinsMoisActuelPlus1.push("`"+user.medicament_nom+"`")
-        arrayBesoinsMoisActuelPlus1.push(user.besoins_mois_courant)
-                
-   })
-    console.log(arrayLabelBesoinsMoisActuelPlus1)
-    console.log(arrayBesoinsMoisActuelPlus1)
-
-    let arrayLabelBesoinsMoisActuelPlus2 = []
-    let arrayBesoinsMoisActuelPlus2 = []
-    moisActuelPlus2.forEach(function(user,i){ 
-
-        arrayLabelBesoinsMoisActuelPlus2.push("`"+user.medicament_nom+"`")
-        arrayBesoinsMoisActuelPlus2.push(user.besoins_mois_courant)
-                
-    })
-    console.log(arrayLabelBesoinsMoisActuelPlus2)
-    console.log(arrayBesoinsMoisActuelPlus2)
+             })
+             //console.log(arrayLabels)
     %>
 
+    const nomsMedicaments = [<%= arrayLabels %> ]
+    const medicamentsBoitesstock = [<%= arrayData %> ]
+
+    const ctx3 = document.getElementById('myChart3');
+    new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: nomsMedicaments,
+            datasets: [{
+            label: 'Boites en Stocks',
+            data: medicamentsBoitesstock,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+
+
+        <% let arrayLabelsBesoins = []
+    let arrayDataBesoins = []
+    
+    besoinsedicaments.forEach(function(user,i){ 
+                //forrmatter les données pour charts JS
+                arrayLabelsBesoins.push("`"+user.medicament_nom+"`")
+                arrayDataBesoins.push(user.medicament_besoins_totaux)
+                
+             })
+             //console.log(arrayLabels)
+    %>
+
+    const nomsBesoinsMedicaments = [<%= arrayLabelsBesoins %> ]
+    const medicamentsBesoinsTotaux = [<%= arrayDataBesoins %> ]
+
+    const ctx4 = document.getElementById('myChart4');
+    new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: nomsBesoinsMedicaments,
+            datasets: [{
+            label: 'Besoins totaux',
+            data: medicamentsBesoinsTotaux,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
 
 
 
-    const arrayLabelBesoinsMoisActuel = [<%= arrayLabelBesoinsMoisActuel %> ]
-    const arrayBesoinsMoisActuel = [<%= arrayBesoinsMoisActuel %> ]
-     
-    //console.log(nomsMedicaments)
-    const ctx = document.getElementById('myChart');
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: arrayLabelBesoinsMoisActuel,
-    datasets: [{
-      label: '# of Votes',
-      data: arrayBesoinsMoisActuel,
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
 
-    const arrayLabelBesoinsMoisActuelPlus1 = [<%= arrayLabelBesoinsMoisActuelPlus1 %> ]
-    const arrayBesoinsMoisActuelPlus1 = [<%= arrayBesoinsMoisActuelPlus1 %> ]
-     
-    //console.log(nomsMedicaments)
-    const ctx1 = document.getElementById('myChart1');
 
-new Chart(ctx1, {
-  type: 'bar',
-  data: {
-    labels: arrayLabelBesoinsMoisActuelPlus1,
-    datasets: [{
-      label: '# of Votes',
-      data: arrayBesoinsMoisActuelPlus1,
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
+
     </script>
 
 

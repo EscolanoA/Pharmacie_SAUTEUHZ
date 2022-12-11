@@ -13,7 +13,7 @@ module.exports = {
 
         try {
             let data = await modelMedicament.modelAfficherMedicaments()
-            let data2 = await modelMedicament.modelAfficherBesoinsMedicaments()
+            let data2 = await modelMedicament.modelbesoinsTotauxMedicaments()
 
             if (data) {
                 //console.log(data)
