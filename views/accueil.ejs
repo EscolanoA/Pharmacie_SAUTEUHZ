@@ -2,26 +2,31 @@
 
 <div id="mainContainer">
     <h1> TABLEAU PRÉVISIONNEL DES BESOINS </h1>
+    <div class="align">
+      <div id="leftChart">
+            <canvas id="myChart"></canvas>
+        </div>
 
-      <div class="chartBox">
-        <canvas id="myChart"></canvas>
-      </div>
+        <div id="middleChart">
+            <canvas id="myChart1"></canvas>
+        </div>
 
-      <div class="chartBox">
-        <canvas id="myChart1"></canvas>
-      </div>
+        <div id="rightChart">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
 
-      <div class="chartBox">
-        <canvas id="myChart2"></canvas>
+    <h1> BESOINS TOTAUX </h1>
+
+    <div class="chartBox">
+        <canvas id="myChart4"></canvas>
       </div>
+      <h1> RÉSERVES </h1>
 
       <div class="chartBox">
         <canvas id="myChart3"></canvas>
       </div>
 
-      <div class="chartBox">
-        <canvas id="myChart4"></canvas>
-      </div>
     
     <script type="text/javascript" src="scripts/chart.js/dist/chart.umd.js"></script>
 
@@ -72,9 +77,9 @@
         plus2Mois = lesMois[aujourdhui.getMonth()] + " " + aujourdhui.toLocaleDateString().split('/')[2]
 
 
-        console.log( moisActuel )
-        console.log( plus1Mois )
-        console.log( plus2Mois )
+        //console.log( moisActuel )
+        //console.log( plus1Mois )
+        //console.log( plus2Mois )
 
         const arrayLabelBesoinsMoisActuel = [<%= arrayLabelBesoinsMoisActuel %> ]
         const arrayBesoinsMoisActuel = [<%= arrayBesoinsMoisActuel %> ]
@@ -89,7 +94,9 @@
             datasets: [{
             label: "Boites nécessaires pour " + moisActuel ,
             data: arrayBesoinsMoisActuel,
-            borderWidth: 1
+            backgroundColor: 'rgb(130, 186, 235)',
+            
+            borderRadius: 2
             }]
         },
         options: {
@@ -114,7 +121,8 @@
             datasets: [{
             label: "Boites nécessaires pour " + plus1Mois ,
             data: arrayBesoinsMoisActuelPlus1,
-            borderWidth: 1
+            backgroundColor: 'rgb(24, 33, 91)',
+            borderRadius: 2
             }]
         },
         options: {
@@ -139,7 +147,8 @@
             datasets: [{
             label: "Boites nécessaires pour " + plus2Mois ,
             data: arrayBesoinsMoisActuelPlus2,
-            borderWidth: 1
+            backgroundColor: 'rgb(130, 186, 235)',
+            borderRadius: 2
             }]
         },
         options: {
@@ -174,7 +183,8 @@
             datasets: [{
             label: 'Boites en Stocks',
             data: medicamentsBoitesstock,
-            borderWidth: 1
+            backgroundColor:'rgb(24, 33, 91)',
+            borderRadius: 2
             }]
         },
         options: {
@@ -210,7 +220,8 @@
             datasets: [{
             label: 'Besoins totaux',
             data: medicamentsBesoinsTotaux,
-            borderWidth: 1
+            backgroundColor: 'rgb(130, 186, 235)',
+            borderRadius: 2
             }]
         },
         options: {
