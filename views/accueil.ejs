@@ -16,7 +16,6 @@
       .chartCard {
         width: 100vw;
         height: calc(100vh - 40px);
-        background: rgba(255, 26, 104, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -39,9 +38,55 @@
     </div>
     
     <script type="text/javascript" src="scripts/chart.js/dist/chart.umd.js"></script>
+
+
+
+
+    <%
+    
+    let arrayLabelBesoinsMoisActuel = []
+    let arrayBesoinsMoisActuel = []
+    moisActuel.forEach(function(user,i){ 
+        //forrmatter les données pour charts JS
+        arrayLabelBesoinsMoisActuel.push("`"+user.medicament_nom+"`")
+        arrayBesoinsMoisActuel.push(user.besoins_mois_courant)
+                
+   })
+    console.log(arrayLabelBesoinsMoisActuel)
+    console.log(arrayBesoinsMoisActuel)
+
+    let arrayLabelBesoinsMoisActuelPlus1 = []
+    let arrayBesoinsMoisActuelPlus1 = []
+    moisActuelPlus1.forEach(function(user,i){ 
+
+        arrayLabelBesoinsMoisActuelPlus1.push("`"+user.medicament_nom+"`")
+        arrayBesoinsMoisActuelPlus1.push(user.besoins_mois_courant)
+                
+   })
+    console.log(arrayLabelBesoinsMoisActuelPlus1)
+    console.log(arrayBesoinsMoisActuelPlus1)
+
+    let arrayLabelBesoinsMoisActuelPlus2 = []
+    let arrayBesoinsMoisActuelPlus2 = []
+    moisActuelPlus2.forEach(function(user,i){ 
+
+        arrayLabelBesoinsMoisActuelPlus2.push("`"+user.medicament_nom+"`")
+        arrayBesoinsMoisActuelPlus2.push(user.besoins_mois_courant)
+                
+    })
+    console.log(arrayLabelBesoinsMoisActuelPlus2)
+    console.log(arrayBesoinsMoisActuelPlus2)
+    %>
+
+
+
+
+
+
+
+
     <script>
     // setup 
-
     <% let arrayLabels = []
     let arrayData = []
     
@@ -57,7 +102,7 @@
     const nomsMedicaments = [<%= arrayLabels %> ]
     const medicamentsBoitesstock = [<%= arrayData %> ]
      
-    console.log(nomsMedicaments)
+    //console.log(nomsMedicaments)
     const data = {
 
       labels: nomsMedicaments,
