@@ -1,49 +1,45 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page de Modification des posologies </div>
 
-
-    <div> modifier la posologie n° <%=posologie[0].posologie_id%> pour l'ordonance N°
-            <%=posologie[0].posologie_ordonnance_id%>
+    <div class="mainContainerBlue">
+        <h1> MODIFIER LA POSOLOGIE N° <%=posologie[0].posologie_id%> DE L'ORDONNANCE N° <%=posologie[0].posologie_ordonnance_id%></h1>
     </div>
-    <form action="/patients/ordonnances/posologies/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
+    <div class="itemModifContainer">
+        <div class="align">
+            
+            <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
 
-        <input hidden type="number" name="idordo" id="idordo" value="<%=posologie[0].posologie_ordonnance_id%>"
-            required>
-        <input hidden type="number" name="numsecu" id="numsecu" value="<%=posologie[0].patient_numsecu%>" required>
-        <input hidden type="number" name="idpos" id="idpos" value="<%=posologie[0].posologie_id%>" required>
+            <form action="/patients/ordonnances/posologies/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
 
+                <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
 
-
-        <label for="medicament">Medicament : </label>
-        <select name="medicament" id="medicament">
-
-            <% medicaments.forEach(function(user){ if(user.medicament_id==posologie[0].posologie_medicament_id) { %>
-                <option value="<%= user.medicament_id %>" selected>
-                    <%= user.medicament_nom %>
-                </option>
-                <% } else {%>
-                    <option value="<%= user.medicament_id %>">
-                        <%= user.medicament_nom %>
-                    </option>
-                    <% }})%>
-        </select>
-
-
-        <label for="boites">Nb de boites par mois :
-            <input type="number" name="boites" id="boites" value="<%=posologie[0].posologie_nbboitesmois%>" required>
-
-
-            <label for="datenaiss">date de fin : </label>
-            <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
-            <input type="date" name="datenaiss" id="datenaiss"
-                value="<%=posologie[0].posologie_anneefin%>-<%=posologie[0].posologie_moisfin%>-<%=posologie[0].posologie_jourfin%>"
-                required>
+                <input hidden type="number" name="idordo" id="idordo" value="<%=posologie[0].posologie_ordonnance_id%>"required>
+                <input hidden type="number" name="numsecu" id="numsecu" value="<%=posologie[0].patient_numsecu%>" required>
+                <input hidden type="number" name="idpos" id="idpos" value="<%=posologie[0].posologie_id%>" required>
 
 
 
-            </select>
-            <button type="submit">Modifier</button>
-    </form>
-    <button onClick="history.back()">Retour</button>
+                <label for="medicament">Médicament : </label>
+                <select name="medicament" id="medicament">
+
+                    <% medicaments.forEach(function(user){ if(user.medicament_id==posologie[0].posologie_medicament_id) { %>
+                        <option value="<%= user.medicament_id %>" selected> <%= user.medicament_nom %></option>
+                        <% } else {%>
+                            <option value="<%= user.medicament_id %>"> <%= user.medicament_nom %></option>
+                        <% }})%>
+                </select>
+
+
+                <label for="boites">Boites par mois :
+                    <input type="number" name="boites" id="boites" value="<%=posologie[0].posologie_nbboitesmois%>" required>
+
+
+                    <label for="datenaiss">Date de fin : </label>
+                    <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
+                    <input type="date" name="datenaiss" id="datenaiss" value="<%=posologie[0].posologie_anneefin%>-<%=posologie[0].posologie_moisfin%>-<%=posologie[0].posologie_jourfin%>"required>
+
+            </form>
+        </div>
+    </div>
 
     <script src="/scripts/controleSaisie.js"></script>
+<%- include('footerModif') %>

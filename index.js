@@ -6,10 +6,8 @@ const cors = require('cors') // Cross Origin Resource Sharing
 const morgan = require('morgan') // logs pour authentification par token
 
 const Routeur = require('./routes/routes.js')
+const routeur = require('./routes/routes.js')
 //const loginRoutes = require('./routes/loginRoutes')
-
-
-
 
 
 
@@ -65,6 +63,10 @@ https.createServer(options, app).listen(port, () => {
 app.get('/', (req, res) => {
     res.send('Serveur de la Pharmacie Sauteuhz est actif')
 })
+
+routeur.use((req, res) => {
+    res.status(404).redirect('accueil')
+});
 
 //commande pour lancer :
 //npx nodemon index.js

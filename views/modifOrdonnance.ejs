@@ -1,50 +1,47 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page de modification des Ordonnances </div>
 
-
-    <div> modifier l' Ordonnance n° <%=ordonnance[0].ordonnance_id%>
+    <div class="mainContainerBlue">
+        <h1> MODIFIER L'ORDONNANCE N° <%=ordonnance[0].ordonnance_id%></h1>
     </div>
-    <form action="/patients/ordonnances/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
+    <div class="itemModifContainer">
+        <div class="align">
+            <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
 
-        <input hidden type="number" name="idordo" id="idordo" value="<%=ordonnance[0].ordonnance_id%>" required>
-        <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>"
-            required>
 
-        <label for="medecin">Medecin : </label>
-        <select name="medecin" id="medecin">
+            <form action="/patients/ordonnances/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
 
-            <% medecins.forEach(function(user){ if(user.medecin_id==ordonnance[0].ordonnance_medecin_id) { %>
-                <option value="<%= user.medecin_id %>" selected>
-                    <%= user.medecin_nom %>
-                </option>
-                <% } else {%>
-                    <option value="<%= user.medecin_id %>">
-                        <%= user.medecin_nom %>
-                    </option>
+                <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                <input hidden type="number" name="idordo" id="idordo" value="<%=ordonnance[0].ordonnance_id%>" required>
+                <input hidden type="number" name="numsecu" id="numsecu" value="<%=ordonnance[0].ordonnance_patient_numsecu%>" required>
+
+
+                <label for="medecin"> Médecin&nbsp: </label>
+                <select name="medecin" id="medecin">
+                    <option value="" selected disabled>Choisir un Médecin</option>
+
+                    <% medecins.forEach(function(user){ if(user.medecin_id == ordonnance[0].ordonnance_medecin_id) { %>
+                        <option value="<%= user.medecin_id %>" selected> <%= user.medecin_nom %></option>
+                        <% } else {%>
+                            <option value="<%= user.medecin_id %>"> <%= user.medecin_nom %> </option>
                     <% }})%>
 
-        </select>
+                </select>
 
-        <label for="pathologie">Pathologie : </label>
-        <select name="pathologie" id="pathologie">
-            
 
-            <% pathologies.forEach(function(user){ if(user.pathologie_id==ordonnance[0].ordonnance_pathologie_id) { %>
-                <option value="<%= user.pathologie_id %>" selected>
-                    <%= user.pathologie_nom %>
-                </option>
-                <% } else {%>
-                    <option value="<%= user.pathologie_id %>">
-                        <%= user.pathologie_nom %>
-                    </option>
+                <label for="pathologie">Pathologie&nbsp: </label>
+                <select name="pathologie" id="pathologie">
+                    <option value="" selected disabled>Choisir une pathologie</option>
+
+                    <% pathologies.forEach(function(user){ if(user.pathologie_id==ordonnance[0].ordonnance_pathologie_id) { %>
+                        <option value="<%= user.pathologie_id %>" selected> <%= user.pathologie_nom %> </option>
+                        <% } else {%>
+                            <option value="<%= user.pathologie_id %>"> <%= user.pathologie_nom %> </option>
                     <% }})%>
-
-
-
-
-        </select>
-        <button type="submit">Modifier</button>
-    </form>
-    <button onClick="history.back()">Retour</button>
+                </select>
+            </form>
+        </div>
+    </div>
 
     <script src="/scripts/controleSaisie.js"></script>
+<%- include('footerModif') %>

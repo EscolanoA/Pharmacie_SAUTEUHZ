@@ -11,11 +11,11 @@ CREATE TABLE `Medecins`(
     PRIMARY KEY (`medecin_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Medecins` (`medecin_id`, `medecin_prenom`, `medecin_nom`,`medecin_tel`,`medecin_email`) VALUES
-(1, 'Tony', 'Montana','0664589745', 'contact@tonymontana.com'),
-(2, 'Mont', 'Hessquieu','0669686978', 'contact@monthessqieu.com'),
-(3, 'Doumé', 'Babar','0656326978', 'contact@doumébabar.com'),
-(4, 'Boloré', 'Fopaparler','0656326978', 'contact@bolorefopaparler.com'),
-(5, 'Kim', 'JongHun','6589423578', 'contact@kimkim420.com');
+(1, 'René', 'Laennec','0664589745', 'contact@ReneLaennec.com'),
+(2, 'Ambroise', 'Paré','0669686978', 'contact@AmbroisePare.com'),
+(3, 'Jean-Martin', 'Charcot','0656326978', 'contact@Charcot.com'),
+(4, 'Hippocrate', 'de Kos','0656326978', 'contact@Hippocrate2kos.com'),
+(5, 'Alexander', 'Fleming','6589423578', 'contact@Fleming.com');
 
 
 DROP TABLE IF EXISTS `Ordonnances`;
@@ -77,11 +77,11 @@ CREATE TABLE `Medicaments`(
     PRIMARY KEY (`medicament_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Medicaments` (`medicament_id`, `medicament_nom`, `medicament_boitesstock`) VALUES
-(1, 'Doloprane', 256),
-(2, 'Paracetamoule', 856),
-(3, 'CanardWC', 666),
-(4, 'StopCancer', 725),
-(5, 'EasyLeucémie', 384);
+(1, 'Retrovir', 256),
+(2, 'Inlyta', 856),
+(3, 'Signifor', 66),
+(4, 'Cosentyx', 725),
+(5, 'Leponex', 384);
 
 
 
@@ -93,11 +93,11 @@ CREATE TABLE `Pathologies`(
     PRIMARY KEY (`pathologie_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Pathologies` (`pathologie_id`, `pathologie_nom`) VALUES
-(1, 'Cancer'),
-(2, 'S.I.D.A'),
-(3, 'Leucémie'),
-(4, 'Épatant B'),
-(5, 'Pneumonique');
+(1, 'Amylose AA'),
+(2, 'Artérite de Takayasu'),
+(3, 'mucoviscidose'),
+(4, 'phénylcétonurie'),
+(5, 'Gougerot-Sjögren');
 
 
 DROP TABLE IF EXISTS `Patients`;
@@ -113,7 +113,6 @@ CREATE TABLE `Patients`(
 INSERT INTO `Patients` (`patient_numsecu`, `patient_mutuelle_id`, `patient_prenom`,`patient_nom`,`patient_datenaiss`) VALUES
 ('4753622189562547', NULL, 'Amandine', 'Place', '1495-7-14'),
 ('1162176249885478', NULL, 'Frank', 'Place', '2022-7-14'),
-('1162176789625478', NULL, 'Sans', 'Mutuelle', '2002-7-14'),
 ('0102053523882146', 1, 'Allan','Escolano', '2003-12-12'),
 ('1103053623883235', 2, 'Brieuc','Meyer', '2002-05-21'),
 ('0104053723884365', 3, 'OuiOui',"l'Ourson", '1995-10-3'),
@@ -131,9 +130,9 @@ CREATE TABLE `Mutuelles`(
     PRIMARY KEY (`mutuelle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Mutuelles` (`mutuelle_id`, `mutuelle_nom`, `mutuelle_tel`,`mutuelle_email`) VALUES
-(1, 'Stevia', '0664589745','contact@stevia.com'),
-(2, 'Matbut', '0669686978','contact@matbut.com'),
-(3, 'MMA', '0656326978','contact@mma.com'),
+(1, 'CSS', '0664589745','comp@santeSolidaire.gouv'),
+(2, 'MatMut', '0669686978','contact@matmut.com'),
+(3, 'MMA', '0656326978','hello@mma.com'),
 (4, 'SwissLife', '0656326978','contact@swisslife.com'),
 (5, 'Mutuelle générale', '6589423578','contact@mutuellegenerale.com');
 
@@ -145,7 +144,7 @@ CREATE TABLE `Pharmaciens`(
     PRIMARY KEY (`parmacien_email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Pharmaciens` (`parmacien_email`, `parmacien_mdp`) VALUES
-('root@root.com', 'root');
+('pharmacien@mail.com', 'root');
 
 
 
