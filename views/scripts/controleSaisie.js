@@ -23,7 +23,6 @@ onlyInputs.forEach(input => {
 dateLimite.max = new Date().toISOString().split("T")[0];
 
 
-
 /*
 TODO : Query selector sur la valeur des input des num de sécu 
 et boucle pour vérifier si ce num de secu n'est pas déja pris,

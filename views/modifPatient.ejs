@@ -1,45 +1,45 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page de modification des patients </div>
-
-
-    <div> modifier le patient n° <%=patient[0].patient_numsecu%>
+    <div class="mainContainerBlue">
+        <h1> MODIFIER LE PATIENT N° <%=patient[0].patient_numsecu%></h1>
     </div>
-    <form action="/patients/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
 
-        <input hidden type="number" name="numsecu" id="numsecu" value="<%=patient[0].patient_numsecu%>" required>
+    <div class="itemModifContainer">
+        <div class="align">
+            <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
 
-        <label for="nom">nom : </label>
-        <input type="text" name="nom" id="nom" value="<%=patient[0].patient_nom%>" required>
+            <form action="/patients/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
+                <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
 
-        <label for="prenom">prenom : </label>
-        <input type="text" name="prenom" id="prenom" value="<%=patient[0].patient_prenom%>" required>
+                <input hidden type="number" name="numsecu" id="numsecu" value="<%=patient[0].patient_numsecu%>" required>
 
-        <label for="datenaiss">date de naissance : </label>
-        <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
-        <input type="date" name="datenaiss" id="datenaiss"
-            value="<%=patient[0].patient_anneenaiss%>-<%=patient[0].patient_moisnaiss%>-<%=patient[0].patient_journaiss%>"
-            required>
+                <label for="nom">Nom&nbsp: </label>
+                <input type="text" name="nom" id="nom" value="<%=patient[0].patient_nom%>" required>
 
-        <label for="mutuelle">Mutuelle : </label>
-        <select name="mutuelle" id="mutuelle">
-            <option value="null">Pas de mutuelle</option>
+                <label for="prenom">Prenom&nbsp: </label>
+                <input type="text" name="prenom" id="prenom" value="<%=patient[0].patient_prenom%>" required>
 
-            <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
-                <option value="<%= user.mutuelle_id %>" selected>
-                    <%= user.mutuelle_nom %>
-                </option>
-                <% } else {%>
-                    <option value="<%= user.mutuelle_id %>">
-                        <%= user.mutuelle_nom %>
-                    </option>
+                <label for="datenaiss">Date de naissance&nbsp: </label>
+                <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
+                <input type="date" name="datenaiss" id="dateLimite"
+                    value="<%=patient[0].patient_anneenaiss%>-<%=patient[0].patient_moisnaiss%>-<%=patient[0].patient_journaiss%>"
+                    required>
+
+                <label for="mutuelle">Mutuelle&nbsp: </label>
+                <select name="mutuelle" id="mutuelle">
+                    <option value="null">Pas de mutuelle</option>
+
+                    <% mutuelles.forEach(function(user){ if(user.mutuelle_id==patient[0].patient_mutuelle_id) { %>
+                        <option value="<%= user.mutuelle_id %>" selected> <%= user.mutuelle_nom %> </option>
+                        <% } else {%>
+                            <option value="<%= user.mutuelle_id %>"> <%= user.mutuelle_nom %> </option>
                     <% }})%>
 
+                </select>
 
 
 
-        </select>
-        <button type="submit">Modifier</button>
-    </form>
-    <button onClick="history.back()">Retour</button>
-
+            </form>
+        </div>
+    </div>
     <script src="/scripts/controleSaisie.js"></script>
+<%- include('footerModif') %>

@@ -1,30 +1,35 @@
 <%- include('header') %>
 
 
-    <div>
-        <div> informations du medecin n° <%=medecin[0].medecin_id%>
-        </div>
-        <form action="/medecins/modifier" id="form"  method="POST" enctype="application/x-www-formurlencoded">
-
-            <input hidden type="number" name="id" id="id" value="<%=medecin[0].medecin_id%>" required>
-
-            <label for="nom">Nom : </label>
-            <input type="text" name="nom" id="nom" value="<%=medecin[0].medecin_nom.toUpperCase()%>" required>
-
-            <label for="nom">Prenom : </label>
-            <input type="text" name="prenom" id="prenom" value="<%=medecin[0].medecin_prenom%>" required>
-
-            <label for="tel">Tel : </label>
-            <input type="tel" name="tel" id="tel" value="<%=medecin[0].medecin_tel%>" required>
-
-            <label for="email">Mail : </label>
-            <input type="email" name="email" id="email" value="<%=medecin[0].medecin_email%>" required>
-
-
-            <button type="submit">Modifier</button>
-
-        </form>
-
-        <button onClick="history.back()">Retour</button>
+    <div class="mainContainerBlue">
+        <h1> INFORMATIONS DU MÉDECIN N° <%=medecin[0].medecin_id%></h1>
     </div>
+    <div class="itemModifContainer">
+        <div class="align">
+
+            <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
+
+            <form action="/medecins/modifier" id="form"  method="POST" enctype="application/x-www-formurlencoded">
+
+                <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                <input hidden type="number" name="id" id="id" value="<%=medecin[0].medecin_id%>" required>
+
+                <label for="nom">Nom : </label>
+                <input type="text" name="nom" id="nom" value="<%=medecin[0].medecin_nom.toUpperCase()%>" required>
+
+                <label for="nom">Prenom : </label>
+                <input type="text" name="prenom" id="prenom" value="<%=medecin[0].medecin_prenom%>" required>
+
+                <label for="tel">Tel : </label>
+                <input type="tel" name="tel" id="tel" value="<%=medecin[0].medecin_tel%>" required>
+
+                <label for="email">Mail : </label>
+                <input type="email" name="email" id="email" value="<%=medecin[0].medecin_email%>" required>
+
+            </form>
+        </div>
+    </div>
+    
     <script src="/scripts/controleSaisie.js"></script>
+<%- include('footerModif') %>

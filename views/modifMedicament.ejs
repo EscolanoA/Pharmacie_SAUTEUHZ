@@ -1,35 +1,28 @@
 <%- include('header') %>
-    <!--affiche le méducament à modifier avec les champs pré remplis-->
-    <% medicament.forEach(function(user){ %>
-        <div class="mainContainerBlue">
-            <h1> MODIFIER LE MÉDICAMENT N° <%=user.medicament_id%></h1>
-        </div>
+    <!--affiche le médicament à modifier avec les champs pré remplis-->
 
-        
+    <div class="mainContainerBlue">
+        <h1> MODIFIER LE MÉDICAMENT N° <%=medicament[0].medicament_id%></h1>
+    </div>
 
-        <form action="/medicaments/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
-            <div class="itemModifContainer">
-                <div class="align">
+    <div class="itemModifContainer">
+        <div class="align">
+            <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
+            <form action="/medicaments/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
 
                 <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
 
-                <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
-
                 <label for="nom">Nom&nbsp: </label>
-                <input type="text" name="nom" id="nom" value="<%=user.medicament_nom%>">
-
+                <input type="text" name="nom" id="nom" value="<%=medicament[0].medicament_nom%>">
 
                 <label for="stock">Quantité en stock&nbsp: </label>
-                <input type="number" name="stock" id="stock" value="<%=user.medicament_boitesstock%>">
+                <input type="number" name="stock" id="stock" value="<%=medicament[0].medicament_boitesstock%>">
 
-                <input type="hidden" name="id" id="id" value="<%=user.medicament_id%>">
-            
-                
-            </div>
-            <% })%>
-        </form>
-        
-        
+                <input type="hidden" name="id" id="id" value="<%=medicament[0].medicament_id%>">
 
+            </form>
+        </div>
+    </div>
 
-        <script src="/scripts/controleSaisie.js"></script>
+    <script src="/scripts/controleSaisie.js"></script>
+<%- include('footerModif') %>

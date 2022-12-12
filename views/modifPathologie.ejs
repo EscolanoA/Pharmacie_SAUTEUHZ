@@ -1,22 +1,29 @@
 <%- include('header') %>
 
 
-    <div>
-        <div> informations de la pathologie N° <%=pathologie[0].pathologie_id%>
-        </div>
-        <form action="/pathologies/modifier" id="form"  method="POST" enctype="application/x-www-formurlencoded">
-
-            <input hidden type="number" name="id" id="id" value="<%=pathologie[0].pathologie_id%>" required>
-
-            <label for="nom">Nom : </label>
-            <input type="text" name="nom" id="nom" value="<%=pathologie[0].pathologie_nom.toUpperCase()%>" required>
-
-
-            <button type="submit">Modifier</button>
-
-        </form>
-
-        <button onClick="history.back()">Retour</button>
+    <div class="mainContainerBlue">
+        <h1> INFORMATIONS DE LA PATHOLOGIE N° <%=pathologie[0].pathologie_id%></h1>
     </div>
-    
-    <script src="/scripts/controleSaisie.js"></script>
+
+    <div class="itemModifContainer">
+        <div class="align">
+            <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
+
+            <form action="/pathologies/modifier" id="form"  method="POST" enctype="application/x-www-formurlencoded">
+
+                <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                <input hidden type="number" name="id" id="id" value="<%=pathologie[0].pathologie_id%>" required>
+
+                <label for="nom">Nom : </label>
+                <input type="text" name="nom" id="nom" value="<%=pathologie[0].pathologie_nom.toUpperCase()%>" required>
+
+            </form>
+            
+        </div>
+    </div>
+
+
+<script src="/scripts/controleSaisie.js"></script>
+
+<%- include('footerModif') %>
