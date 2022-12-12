@@ -1,57 +1,59 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page des mutuelles </div>
-    <a id="attention"></a>
-    <!--boucle qui commence à 0 car il n'y a pas à cacher une colonne "pas de mutuelle -->
-    <% for(let i=0; i < mutuelles.length; i++) {%>
-        <li>
-            <button
-                onClick="location.href='/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';">Modifier</button>
+    <div class="mainContainer">
+        <h1> LISTES DES MUTUELLES </h1>
+        <!--boucle qui commence à 0 car il n'y a pas à cacher une aventuelle colonne "pas de mutuelle"... -->
+        <% for(let i=0; i < mutuelles.length; i++) {%>
+            <div class="itemContainer">
+                <button class="btnEdit" onClick="location.href='/mutuelles/modifier/<%=mutuelles[i].mutuelle_id%>';"><i class="fa-regular fa-pen-to-square"></i></button>
 
-            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
-            <script>
+                <script>
 
-                function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention<%=i+1 %>").innerHTML = `Les patients de <%= mutuelles[i].mutuelle_nom.toUpperCase() %> n'aurons plus de mutuelle <button onClick="location.href='/mutuelles/supprimer/<%=mutuelles[i].mutuelle_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
-                }
+                    function popupAttentionOn<%=i+1 %> () {
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
+                        document.getElementById("attention<%=i+1 %>").innerHTML = `Les clients de <%= mutuelles[i].mutuelle_nom.toUpperCase() %>&nbsp&nbsp</br> n'aurons plus de mutuelle &nbsp&nbsp <button class="btnDelete"onClick="location.href='/mutuelles/supprimer/<%=mutuelles[i].mutuelle_id%>';"><i class="fa-regular fa-trash-can"></button>`
+                    }
+                    function popupAttentionOff<%= i+1 %> () {
 
-            </script>
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button>`
+                        document.getElementById("attention<%=i+1%>").innerHTML = ``
+                    }
 
+                </script>
 
-
-
-            <strong>
-                Nom : <%= mutuelles[i].mutuelle_nom %>
-                    Tel : <a href="telto:<%= mutuelles[i].mutuelle_tel %>">
-                        <%= mutuelles[i].mutuelle_tel %>
-                    </a>
-                    Mail : <a href="mailto:<%= mutuelles[i].mutuelle_email %>">
-                        <%= mutuelles[i].mutuelle_email %>
-                    </a>
-
-            </strong>
-        </li>
-        <a class="attention" id="attention<%=i+1 %>"></a>
-
-        <% }%>
+                <div id="sup<%=i+1%>"><button class="btnDelete"onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button></div>
+                <div class="attention" id="attention<%=i+1 %>"></div>
 
 
+                    N°&nbsp: <strong><%= mutuelles[i].mutuelle_id %></strong>
+                    Nom&nbsp: <strong><%= mutuelles[i].mutuelle_nom %></strong>
+                    Tel&nbsp: <strong><a href="telto:<%= mutuelles[i].mutuelle_tel %>"><%= mutuelles[i].mutuelle_tel %></strong></a>
+                    Mail&nbsp: <strong><a href="mailto:<%= mutuelles[i].mutuelle_email %>"><%= mutuelles[i].mutuelle_email %></strong></a>
 
-            <div> Ajout d'une Mutuelle </div>
+            </div>
 
-            <form action="/mutuelles/ajouter" method="POST" id="form" enctype="application/x-www-formurlencoded">
-                <div>
 
-                    <label for="nom">Nom : </label>
-                    <input type="text" name="nom" id="nom" required>
+        <% } %>
+    </div>
+    <div class="fixedContainer">
 
-                    <label for="tel">Tel : </label>
-                    <input type="tel" name="tel" id="tel" required>
+        <h2> AJOUTER UNE MUTUELLE </h2>
 
-                    <label for="email">Mail : </label>
-                    <input type="email" name="email" id="email" required>
+        <form action="/mutuelles/ajouter" method="POST" id="form" enctype="application/x-www-formurlencoded">
+            <div class="align">
 
-                    <button type="submit">Ajouter</button>
-                </div>
-            </form>
+                <label for="nom">Nom&nbsp: </label>
+                <input type="text" name="nom" id="nom" required>
+
+                <label for="tel">Tel&nbsp: </label>
+                <input type="tel" name="tel" id="tel" required>
+
+                <label for="email">Mail&nbsp: </label>
+                <input type="email" name="email" id="email" required>
+
+                <button type="submit">AJOUTER</button>
+            </div>
+        </form>
+
+    </div>
 
             <script src="/scripts/controleSaisie.js"></script>

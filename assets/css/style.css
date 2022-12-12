@@ -14,15 +14,27 @@ h1{
 
 }
 
+h2{
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 25px;
+
+    color: #18215B;
+
+}
 
 
-.btnSubmit{
+
+button[type=submit] {
+
+    margin: 10px ;
     background-color: #18215B;
-    font-family: 'Open', sans-serif;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.07em;
     width: 10em;
     color: white;
-    border-radius: 5px;
-    padding: 12px 16px;
+    border-radius: 7px;
+    padding: 4px ;
     font-size: 15px;
     cursor: pointer;
     border: 0;
@@ -31,7 +43,11 @@ h1{
 }
 
 .align{
+    
 display: flex;
+justify-content: center;
+align-items: center;
+gap: 1em;
 
 }
 
@@ -41,10 +57,33 @@ input{
     height: 25px;
 }
 
-#mainContainer{
-    width: 80%;
-    margin: 10% auto ;
+.mainContainer{
+    width: 90%;
+    margin: 5% auto ;
     text-align: center;
+}
+
+.itemContainer{
+    display: flex;
+    align-items:stretch;
+    align-items: center;
+
+    gap: 1em;
+    padding: 20px;
+    margin: 20px;
+    background-color:#E6DECE ;
+    border-radius: 10px;
+
+}
+
+.fixedContainer{
+
+    text-align: center ;
+
+    gap: 1em;
+    padding: 20px;
+    background-color: #82BAEB;
+
 }
 
 .connexionForm{
@@ -74,6 +113,7 @@ align-items: flex-end;}
     justify-content: space-evenly;
     gap: 1em;
     font-family: 'Anton', sans-serif;
+    letter-spacing: 0.07em;
     background-color: #C3E5F8;
     padding: 1em;
 
@@ -88,6 +128,7 @@ align-items: flex-end;}
 .btnheader {
     background-color: #82BAEB;
     font-family: 'Anton', sans-serif;
+    letter-spacing: 0.07em;
     border-radius: 5px;
     padding: 12px 16px;
     font-size: 15px;
@@ -98,16 +139,103 @@ align-items: flex-end;}
 }
 
 .btnEdit {
+    max-height: 55px;
+    min-width: 50px;
     background-color: #82BAEB;
     font-family: 'Anton', sans-serif;
     border-radius: 5px;
     border: none;
     color: black;
-    padding: 12px 16px;
-    font-size: 15px;
-
+    padding: 8px 13px;
+    font-size: 25px;
     cursor: pointer;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+.btnBack {
+    background-color: #84EB82;
+    font-family: 'Anton', sans-serif;
+    max-height: 55px;
+    min-width: 50px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    padding: 8px 13px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+.btnDelete {
+    max-height: 55px;
+    min-width: 50px;
+    background-color: #FF6969;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    padding: 8px 13px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+.btnMutuelle {
+    background-color: #8A82EB;
+    font-family: 'Anton', sans-serif;
+    max-height: 55px;
+    min-width: 50px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    padding: 8px 11px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+.btnMutuelle:disabled {
+    background-color: #9e99dd;
+    padding: 8px 19px;
+    cursor:not-allowed;
+
+}
+
+.btnOrdonnances {
+    background-color: #EBB482;
+    font-family: 'Anton', sans-serif;
+    max-height: 55px;
+    min-width: 50px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    padding: 8px 11px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+
+
+select{
+    width: 9em;
+
+    height: 30px;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 5px;
+
+}
+
+
+
+
+
+
+
+.attention{
+    display: flex;
+    align-content:flex-end;
 }
 
 
@@ -162,6 +290,8 @@ align-items: flex-end;}
     border: 40px;
     background: #E6DECE;
   }
+
+
 
 
 

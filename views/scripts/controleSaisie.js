@@ -9,7 +9,7 @@ function popupAttentionOff() {
     
 }
 
-//
+
 const onlyInputs = document.querySelectorAll('#form input');
 
 onlyInputs.forEach(input => {
@@ -18,6 +18,11 @@ onlyInputs.forEach(input => {
         input.value = value
     })
 });
+
+//date actuelle limite dans les input date
+dateLimite.max = new Date().toISOString().split("T")[0];
+
+
 
 /*
 TODO : Query selector sur la valeur des input des num de sécu 

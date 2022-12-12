@@ -1,65 +1,81 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page des médicaments </div>
+        
 
 
-<!-- TODO associer chaque besoin en medicament à son medicament et si pas besoin afficher 0 -->
+    <!-- TODO associer chaque besoin en medicament à son medicament et si pas besoin afficher 0 -->
 
-<%# console.log(besoinsedicaments) %> 
-<%# console.log(medicaments) %>    
+    <%# console.log(besoinsedicaments) %> 
+    <%# console.log(medicaments) %>    
 
-    <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
-    on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
-
-    <% medicaments.forEach(function(user,i){ %>
-
-
-        <li>
-
-            <button
-                onClick="location.href='/medicaments/modifier/<%=user.medicament_id%>';">Modifier</button>
-            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
-
-            <script>
-                function popupAttentionOn<%= i+1 %> () {
-                    document.getElementById("attention<%=i+1%>").innerHTML = `Supprimer le <%= user.medicament_nom.toUpperCase() %> effacera les posologies qui lui sont liées <button onClick="location.href='/medicaments/supprimer/<%=user.medicament_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>`
-                }
-            </script>
-
-            <strong>
-                <%= user.medicament_nom.toUpperCase() %>
-            </strong> Nb Boites en stock : <%= user.medicament_boitesstock %>
+        <!--Boucle sur les data medicaments recupérées grace à la méthode qui s'execute lors de l'accès à la page via l'url /medicaments 
+        on crée également une fonction différente à chaque passage dans la boucle, qui affichra le bouton d'alerte dans la div id attention corresopondant à l'id du médiacment à supprimer -->
+    <div class="mainContainer">
+        <h1> RÉSERVE DES MÉDICAMENTS  </h1>
+        <% medicaments.forEach(function(user,i){ %>
 
 
-<!--Si dans la requette besoins medicaments ocurrence touvé avec tout les médicaments, afficher besoins
-car les medicaments sans besoins ne sont pas récupérés dans la requette, ils n'exisentent pas au niveau de SUM(.....) as medicament_besoins_totaux -->
-            <% besoinsedicaments.forEach(function(user2){ %>
+            <div class="itemContainer">
+
+                <button class="btnEdit" onClick="location.href='/medicaments/modifier/<%=user.medicament_id%>';"><i class="fa-regular fa-pen-to-square"></i></button>
+                
+
+                <script>
+                    function popupAttentionOn<%= i+1 %> () {
+
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
+                        document.getElementById("attention<%=i+1%>").innerHTML = `Ceci effacera les posologies&nbsp&nbsp</br> qui lui sont liées <button class="btnDelete" onClick="location.href='/medicaments/supprimer/<%=user.medicament_id%>';"><i class="fa-regular fa-trash-can"></i></button>`
+                    }
+                    function popupAttentionOff<%= i+1 %> () {
+
+                    document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnDelete"onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button>`
+                    document.getElementById("attention<%=i+1%>").innerHTML = ``
+                    }
+                </script>
+                
+                <div id="sup<%=i+1%>"><button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button></div>
+                <div class="attention" id="attention<%=i+1 %>"></div>
+                N°&nbsp:<strong><%= user.medicament_id %></strong>
+                Nom&nbsp:<strong><%= user.medicament_nom.toUpperCase() %></strong>
+                Boites en stock&nbsp:<strong><%= user.medicament_boitesstock %></strong>
+
+
+                <!--Si dans la requette besoins medicaments ocurrence touvé avec tout les médicaments, afficher besoins
+                car les medicaments sans besoins ne sont pas récupérés dans la requette, ils n'exisentent pas au niveau de SUM(.....) as medicament_besoins_totaux -->
+                <% besoinsedicaments.forEach(function(user2){ %>
+                
+                    <% if (user.medicament_id == user2.medicament_id ) {%>
+                        <%= "Besoins totaux : " %> <strong> <%= user2.medicament_besoins_totaux  %></strong>
+                    <% } %>
+
             
-                <% if (user.medicament_id == user2.medicament_id ) {%>
-                     <%= "Besoins totaux :"+ user2.medicament_besoins_totaux %>
-                <% } %>
-
-           
+                
+                <% })%>
             
+                
+            </div>
             <% })%>
-        </li>
-        <a class="attention" id="attention<%=i+1 %>"></a>
-
-        <% })%>
+    </div>
 
 
-            <div> Ajout d'un médicament </div>
+    <div class="fixedContainer">
+        <h2> AJOUTER UN MÉDICAMENT </h2>
+                
 
-            <form action="/medicaments/ajouter" method="POST" id= "form" enctype="application/x-www-formurlencoded">
-                <div>
+        <form action="/medicaments/ajouter" method="POST" id= "form" enctype="application/x-www-formurlencoded">
 
-                    <label for="nom">nom : </label>
-                    <input type="text" name="nom" id="nom" required>
+            <div class="align">
 
-                    <label for="stock">Quantité en stock : </label>
-                    <input type="number" name="stock" id="stock" value="0" required>
+                <label for="nom">Nom&nbsp: </label>
+                <input type="text" name="nom" id="nom" required>
 
-                    <button type="submit">Ajouter</button>
-                </div>
-            </form>
+                <label for="stock">Boites en stock&nbsp:</label>
+                <input type="number" name="stock" id="stock" value="0" required>
+            
+                <button type="submit">AJOUTER</button>
+        
+            </div>
+        </form>
+    </div>
 
-            <script src="/scripts/controleSaisie.js"></script>
+    <script src="/scripts/controleSaisie.js"></script>
+</body>
