@@ -1,58 +1,63 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page des medecins </div>
-    
-    <% for(let i=0; i < medecins.length; i++) {%>
-        <li>
-            <button
-                onClick="location.href='/medecins/modifier/<%=medecins[i].medecin_id%>';">Modifier</button>
+    <div class="mainContainer">
+        <h1> LISTE DES MEDECINS </h1>
+        
+        <% for(let i=0; i < medecins.length; i++) {%>
+            <div class="itemContainer">
+                <button class="btnEdit" onClick="location.href='/medecins/modifier/<%=medecins[i].medecin_id%>';"><i class="fa-regular fa-pen-to-square"></i></button>
 
-            <button onclick="popupAttentionOff(),popupAttentionOn<%=i+1%>()">Supprimer</button>
-            <script>
-                function popupAttentionOn<%=i+1 %> () {
-                    document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci supprimera les ordonances que <%= medecins[i].medecin_nom.toUpperCase() %> <%=medecins[i].medecin_prenom  %> aura crée <button onClick="location.href='/medecins/supprimer/<%=medecins[i].medecin_id%>';">oui</button>   ||  <button onClick="popupAttentionOff()">non</button>?`
-                }
+                <script>
+                    function popupAttentionOn<%=i+1 %> () {
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
+                        document.getElementById("attention<%=i+1 %>").innerHTML = `Ceci supprimera les ordonances que &nbsp&nbsp</br> Dr. <%= medecins[i].medecin_nom.toUpperCase() %> aura crée&nbsp&nbsp <button class="btnDelete" onClick="location.href='/medecins/supprimer/<%=medecins[i].medecin_id%>';"><i class="fa-regular fa-trash-can"></i></button>`
+                    }
+                    function popupAttentionOff<%= i+1 %> () {
 
-            </script>
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button>`
+                        document.getElementById("attention<%=i+1%>").innerHTML = ``
+                    }
 
-            <strong>
-                Nom : <%= medecins[i].medecin_nom.toUpperCase() %>
-                Prenom : <%= medecins[i].medecin_prenom %>
-                        Tel : <a href="telto:<%= medecins[i].medecin_tel %>">
-                            <%= medecins[i].medecin_tel %>
-                        </a>
-                        Mail : <a href="mailto:<%= medecins[i].medecin_email %>">
-                            <%= medecins[i].medecin_email %>
-                        </a>
+                </script>
 
-            </strong>
-        </li>
-        <a class="attention" id="attention<%=i+1 %>"></a>
-        <% }%>
+                <div id="sup<%=i+1%>"><button class="btnDelete"onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button></div>
+                <div class="attention" id="attention<%=i+1 %>"></div>
+
+                N°&nbsp: <strong><%= medecins[i].medecin_id %></strong>
+                Nom&nbsp: <strong><%= medecins[i].medecin_nom.toUpperCase() %></strong>
+                Prenom&nbsp:<strong> <%= medecins[i].medecin_prenom %></strong>
+                Tel&nbsp: <strong><a href="telto:<%= medecins[i].medecin_tel %>"> <%= medecins[i].medecin_tel %> </a></strong>
+                Mail&nbsp: <strong><a href="mailto:<%= medecins[i].medecin_email %>"> <%= medecins[i].medecin_email %></a></strong>
+
+                
+            </div>
+            <% }%>
 
 
-
-            <div> Ajout d'un medecin </div>
+    </div>
+    <div class="fixedContainer">
+            <h2> AJOUTER UN MEDECIN </h2>
 
             <form action="/medecins/ajouter" method="POST" id= "form" enctype="application/x-www-formurlencoded">
-                <div>
+                <div class="align">
 
 
-                    <label for="nom">Nom : </label>
+                    <label for="nom">Nom&nbsp: </label>
                     <input type="text" name="nom" id="nom" required>
 
-                    <label for="prenom">Prenom : </label>
+                    <label for="prenom">Prenom&nbsp: </label>
                     <input type="text" name="prenom" id="prenom" required>
 
-                    <label for="tel">Tel : </label>
+                    <label for="tel">Tel&nbsp: </label>
                     <input type="number" name="tel" minlength="10" id="tel" required>
 
-                    <label for="email">Mail : </label>
+                    <label for="email">Mail&nbsp: </label>
                     <input type="email" name="email" id="email" required>
 
-                    <button type="submit">Ajouter</button>
+                    <button type="submit">AJOUTER</button>
                 </div>
             </form>
+    </div>
 
-<script src="/scripts/controleSaisie.js"></script>
+    <script src="/scripts/controleSaisie.js"></script>
 <%- include('footer') %>
 

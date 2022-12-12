@@ -17,7 +17,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             //ORDER BY afin que pas de mutuelle soit selected
 
-            let requeteSQL = 'SELECT * FROM Medecins ORDER BY medecin_nom'
+            let requeteSQL = 'SELECT * FROM Medecins ORDER BY medecin_id'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
