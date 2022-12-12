@@ -1,28 +1,35 @@
 <%- include('header') %>
-    <div> Bienvenue sur la page de modification des médicaments </div>
     <!--affiche le méducament à modifier avec les champs pré remplis-->
     <% medicament.forEach(function(user){ %>
-        <div> modifier le médicament n° <%=user.medicament_id%>
+        <div class="mainContainerBlue">
+            <h1> MODIFIER LE MÉDICAMENT N° <%=user.medicament_id%></h1>
         </div>
 
+        
 
         <form action="/medicaments/modifier" id="form" method="POST" enctype="application/x-www-formurlencoded">
+            <div class="itemModifContainer">
+                <div class="align">
 
-            <label for="nom">nom : </label>
-            <input type="text" name="nom" id="nom" value="<%=user.medicament_nom%>">
+                <button class="btnEdit"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
+
+                <label for="nom">Nom&nbsp: </label>
+                <input type="text" name="nom" id="nom" value="<%=user.medicament_nom%>">
 
 
-            <label for="stock">Quantité en stock : </label>
-            <input type="number" name="stock" id="stock" value="<%=user.medicament_boitesstock%>">
+                <label for="stock">Quantité en stock&nbsp: </label>
+                <input type="number" name="stock" id="stock" value="<%=user.medicament_boitesstock%>">
 
-            <input type="hidden" name="id" id="id" value="<%=user.medicament_id%>">
-
-
-            <button type="submit">Modifier</button>
-
+                <input type="hidden" name="id" id="id" value="<%=user.medicament_id%>">
+            
+                
+            </div>
             <% })%>
         </form>
-        <button onClick="history.back()">Retour</button>
+        
+        
 
 
         <script src="/scripts/controleSaisie.js"></script>
