@@ -1,3 +1,10 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Lorenzo Porcu => aide sur les Promesses 
+*/
+
+
 //récuperer le module de connexion
 let modelConnexion = require('./modelConnexion.js')
 let mysqlConnexion = modelConnexion.mysqlConnexion
@@ -5,14 +12,14 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 //export des methodes contenant les requettes SQL
 module.exports = {
 
+    /**
+     * Médhodes d'instantiations des promesses de résultat de  @requetteSQL 
+     * si @err est true la promesse est @return rejeté @reject avec le message d'erreur @err
+     * sinon @return @resolve avec les donnés @data de la @requetteSQL
+     * !  on ne peut résolve q'une @data par promesse  !
+    */
 
     async modelAfficherMutuelles() {
-
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
             //ORDER BY afin que pas de mutuelle soit selected
@@ -33,12 +40,6 @@ module.exports = {
     
 
     async modelAjouterMutuelle(req) {
-
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -63,11 +64,6 @@ module.exports = {
 
     async modelAfficherModifMutuelle(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -91,12 +87,6 @@ module.exports = {
 
     async modelModifMutuelle(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
         return new Promise((resolve, reject) => {
 
             
@@ -119,13 +109,6 @@ module.exports = {
     },
 
     async modelSupprimerMutuelle(req) {
-
-        /** 
-         * recuperation de l' @id dans la requette GET @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec la donné en paramètre
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 

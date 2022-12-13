@@ -1,15 +1,12 @@
 //importer les models d'accès aux donnés (requetes SQL)
 const modelMedecins = require('../models/modelMedecins.js')
 
-//SYNTEC : convention collective informatique 
-//Grille Bac+3 27/ 30k
-// Bac +5 : 35 k  
 
 module.exports = {
 
     /**
     * méthodes qui envoient la @req au @modelMedecin () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher les données contenues dans @data .
+    * le resultat @res , est d'afficher les données contenues dans @data et/ou de rediriger après une opération réussi vers la BDD .
     */
 
     async afficherMedecins(req, res) {

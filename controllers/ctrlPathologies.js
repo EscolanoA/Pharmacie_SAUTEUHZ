@@ -5,7 +5,10 @@ const modelPathologies = require('../models/modelPathologies.js')
 
 module.exports = {
 
-// TODO: mettre le model modelAfficherPathologies dans model pathologie
+    /**
+    * méthodes qui envoient la @req au @modelPathologies () , sans bloquer le thread principal.
+    * le resultat @res , est d'afficher les collections d'objets contenues dans @data et/ou de rediriger après une opération réussie vers la BDD .
+    */
 
     async afficherPathologies(req, res) {
 
@@ -22,10 +25,12 @@ module.exports = {
 
     },
 
-
     async ajouterPathologie(req, res) {
 
         try {
+            /**
+             * @param req contient les data du body du dom
+             */
             let data = await modelPathologies.modelAjouterPathologie(req)
             if (data) {
                 console.log(data)
@@ -35,12 +40,14 @@ module.exports = {
             console.log(error)
         }
 
-
     },
     
     async supprimerPathologie(req, res) {
 
         try {
+            /**
+             * @param req contient le param id a suprimmer
+             */
             let data = await modelPathologies.modelSupprimerPathologie(req)
             
             if (data) {
@@ -52,12 +59,14 @@ module.exports = {
             console.log(error)
         }
 
-
     },
 
     async afficherModifPathologie(req, res) {
 
         try {
+            /**
+             * @param req contient les data de la pathologie a modifier
+             */
             let data = await modelPathologies.modelAfficherModifPathologie(req)
             if (data ) {
                 //console.log(data)
@@ -70,14 +79,12 @@ module.exports = {
 
     },
 
-    /**
-    * méthode qui envoie la @req à @modelModifPatient () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher sur la page medicament le medicament contenu dans @data .
-    */
-
     async modifPathologie(req, res) {
 
         try {
+            /**
+             * @param req envoie à la BDD les data de la pathologie a modifier
+             */
             let data = await modelPathologies.modelModifPathologie(req)
             
             if (data) {
@@ -89,9 +96,6 @@ module.exports = {
             console.log(error)
         }
 
-
     },
-
-
 
 }

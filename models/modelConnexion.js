@@ -1,7 +1,16 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Lorenzo Porcu => aide sur les Promesses 
+
+ * @mysql2 => Gère les process asynchones,
+ *         => Améliore les transactions gestion des grandes quantitées de données et des procédures stockées,
+ *         => Connection pool systématique, automatise aqquérir / relacher les connections
+ * @iniparser => lis / parse les ficier .ini, afin de faire des .gitignore de ces derniers et de protèger ses accès,
+*/ 
 let mysql = require('mysql2');
 let iniparser = require('iniparser')
 let configDB = iniparser.parseSync('./DB.ini')
-const sessions = require('express-session');
 
 
 const mysqlConnexion = mysql.createConnection({
@@ -22,7 +31,7 @@ const modelTestConnexion = (req, res) => {
     return new Promise((resolve, reject) => {
 
         let email = req.body.email
-
+        //la serrure est l'email, on vérifiera ctrlConnexion si l'utilisateur connait la clé
         let requeteSQL = 'SELECT * FROM Pharmaciens WHERE parmacien_email = ?'
         mysqlConnexion.query(requeteSQL, [email], (err, data) => {
 
@@ -34,9 +43,6 @@ const modelTestConnexion = (req, res) => {
     }
     )
 }
-
-
-
 
 
 module.exports = {

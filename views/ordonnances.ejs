@@ -1,5 +1,6 @@
 <%- include('header') %>
-    
+    <title>Pharmacie - ORDONNANCES - <%= patient_numsecu %></title>
+
     <div class="mainContainer">
         <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
 
@@ -46,7 +47,7 @@
                     
 
                     N°&nbsp: <strong><%= user.ordonnance_id %></strong>
-                    Médecin&nbsp: <strong><%= user.medecin_nom.toUpperCase() %><%= user.medecin_prenom %></strong>
+                    Médecin&nbsp: <strong><%= user.medecin_nom.toUpperCase() %> <%= user.medecin_prenom %></strong>
                     <strong><a href="telto:<%= user.medecin_tel %>"><%= user.medecin_tel %></a></strong>
                     <strong><a href="mailto:<%= user.medecin_email %>"><%= user.medecin_email %></a></strong>
                     Pathologie&nbsp: <strong><%= user.pathologie_nom %></strong>

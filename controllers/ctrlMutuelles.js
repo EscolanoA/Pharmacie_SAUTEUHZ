@@ -7,7 +7,7 @@ module.exports = {
 
     /**
     * méthodes qui envoient la @req au @modelMutuelles () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher les données contenues dans @data .
+    * le resultat @res , est d'afficher les données contenues dans @data et/ou de rediriger après une opération réussi vers la BDD .
     */
 
     async afficherMutuelles(req, res) {
@@ -34,7 +34,7 @@ module.exports = {
              */
             let data = await modelMutuelles.modelAjouterMutuelle(req)
             if (data) {
-                console.log(data)
+                //console.log(data)
                 res.redirect("/mutuelles")
             }
         } catch (error) {
@@ -45,10 +45,11 @@ module.exports = {
     },
 
     async supprimerMututelle(req, res) {
+
+        try {
         /**
          * @param req contient le param id a suprimmer
          */
-        try {
             let data = await modelMutuelles.modelSupprimerMutuelle(req)
             
             if (data) {
@@ -86,7 +87,7 @@ module.exports = {
 
         try {
             /**
-             * @param req envoie à la BDD les data de la mutu a modifier
+             * @param req envoie à la BDD les data de la mutuelle a modifier
              */
             let data = await modelMutuelles.modelModifMutuelle(req)
             

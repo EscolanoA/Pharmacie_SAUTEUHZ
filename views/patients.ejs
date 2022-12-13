@@ -1,4 +1,5 @@
 <%- include('header') %>
+    <title>Pharmacie - PATIENTS</title>
     <div class="mainContainer">
         <h1> LISTE DES PATIENTS  </h1>
         <% patients.forEach(function(user,i){ %>
@@ -59,7 +60,7 @@
                 <input type="text" name="prenom" id="prenom" required>
 
                 <label for="datenaiss">Date de naissance&nbsp: </label>
-                <input type="date" name="datenaiss" id="dateLimite" required>
+                <input type="date" name="datenaiss" id="dateLimiteMax" required>
 
                 <label for="numsecu">N° de secu&nbsp: </label>
                 <!-- Min Et Max peuvent etre utilisés pour donner un num de sécu long de 16 charactères -->

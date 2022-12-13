@@ -4,7 +4,7 @@ let modelMedicament = require('../models/modelMedicaments.js')
 module.exports = {    
     /**
     * méthodes qui envoient la @req au @modelMedicament () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher les données contenues dans @data .
+    * le resultat @res , est d'afficher les données contenues dans @data et/ou de rediriger après une opération réussi vers la BDD .
     */
     async afficherMedicaments(req, res) {
 

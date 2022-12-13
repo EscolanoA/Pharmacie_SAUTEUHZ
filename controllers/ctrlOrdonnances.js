@@ -8,7 +8,7 @@ module.exports = {
 
     /**
     * méthodes qui envoient la @req au @modelMutuelles () ,@modelMedecins (),@modelPathologies (),@modelPatients () sans bloquer le thread principal.
-    * le resultat @res , est d'afficher les données contenues dans @data .
+    * le resultat @res , est d'afficher les données contenues dans @data et/ou de rediriger après une opération réussi vers la BDD .
     */
 
     async afficherOrdonnances(req, res) {
@@ -21,9 +21,6 @@ module.exports = {
             let data2 = await modelMedecins.modelAfficherMedecins()
             let data3 = await modelPathologies.modelAfficherPathologies()
             let data4 = await modelPatients.modelAfficherModifPatient(req)
-
-
-
 
             if (data) {
                 //console.log(data)
@@ -41,6 +38,7 @@ module.exports = {
             let data = await modelOrdonnances.modelAjouterOrdonnance(req, res)
             if (data) {
                 //console.log(data)
+                //rediriger vers le patient à qui appartient les ordonnances
                 res.redirect("/patients/ordonnances/" + req.body.numsecu)
             }
         } catch (error) {
@@ -91,6 +89,9 @@ module.exports = {
     async modifOrdonnance(req, res) {
 
         try {
+            /**
+             * @param req envoie à la BDD les data de la mutu a modifier
+             */
             let data = await modelOrdonnances.modelmodifOrdonnance(req)
             if (data) {
                 //console.log(data)

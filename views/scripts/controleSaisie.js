@@ -20,7 +20,8 @@ onlyInputs.forEach(input => {
 });
 
 //date actuelle limite dans les input date
-dateLimite.max = new Date().toISOString().split("T")[0];
+dateLimiteMax.max = new Date().toISOString().split("T")[0];
+dateLimiteMin.min = new Date().toISOString().split("T")[0];
 
 
 /*

@@ -37,7 +37,7 @@ module.exports = {
                     sessions[sessionId] = { email };
                     res.set('Set-Cookie', `session=${sessionId}`)
 
-                    console.log(sessions)
+                    //console.log(sessions)
                     
                     //faire .render affiche /conenxion dans l'url et ne declenche pas l'appel des données par la route /accueil => .ctrlAccueil.afficherAcceuil
                     res.redirect('accueil')
@@ -61,7 +61,7 @@ module.exports = {
         const sessionId = req.headers.cookie?.split('session=')[1]
         
         const userSession = sessions[sessionId]
-        //si impossible de trouvrer la variable après le name "session="
+        //si impossible de trouvrer la valeur après la clé "session="
         if (!userSession) {
             res.render('connexion')
 

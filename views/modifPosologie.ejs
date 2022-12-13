@@ -1,4 +1,5 @@
 <%- include('header') %>
+    <title>Pharmacie - POSOLOGIE - <%=posologie[0].posologie_id%></title>
 
     <div class="mainContainerBlue">
         <h1> MODIFIER LA POSOLOGIE N° <%=posologie[0].posologie_id%> DE L'ORDONNANCE N° <%=posologie[0].posologie_ordonnance_id%></h1>
@@ -18,7 +19,7 @@
 
 
 
-                <label for="medicament">Médicament : </label>
+                <label for="medicament">  Médicament : </label>
                 <select name="medicament" id="medicament">
 
                     <% medicaments.forEach(function(user){ if(user.medicament_id==posologie[0].posologie_medicament_id) { %>
@@ -30,13 +31,10 @@
 
 
                 <label for="boites">Boites par mois :
-                    <input type="number" name="boites" id="boites" value="<%=posologie[0].posologie_nbboitesmois%>" required>
+                <input type="number" name="boites" id="boites" value="<%=posologie[0].posologie_nbboitesmois%>" required>
 
-
-                    <label for="datenaiss">Date de fin : </label>
-                    <!--value par défaut au format YYYY-MM-DD un min / max peut etre définit en javascript-->
-                    <input type="date" name="datenaiss" id="datenaiss" value="<%=posologie[0].posologie_anneefin%>-<%=posologie[0].posologie_moisfin%>-<%=posologie[0].posologie_jourfin%>"required>
-
+                <label for="duree">Durée en mois : </label>
+                <input type="number" name="duree" id="duree" min="1" max="1200" required>
             </form>
         </div>
     </div>

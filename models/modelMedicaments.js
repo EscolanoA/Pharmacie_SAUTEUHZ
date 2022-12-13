@@ -1,3 +1,10 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Lorenzo Porcu => aide sur les Promesses 
+*/
+
+
 //récuperer le module de connexion
 let modelConnexion = require('./modelConnexion.js')
 let mysqlConnexion = modelConnexion.mysqlConnexion
@@ -5,17 +12,17 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 //export des methodes contenant les requettes SQL
 module.exports = {
 
+    /**
+     * Médhodes d'instantiations des promesses de résultat de  @requetteSQL 
+     * si @err est true la promesse est @return rejeté @reject avec le message d'erreur @err
+     * sinon @return @resolve avec les donnés @data de la @requetteSQL
+     * !  on ne peut résolve q'une @data par promesse  !
+    */
+
     async modelAfficherMedicaments() {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
-
-            //fait la somme des besoins totaux d'un medicament entre la date actuelle et la date de fin de sa posologie
 
             let requeteSQL = `SELECT * FROM  Medicaments ORDER BY medicament_id;`
 
@@ -34,15 +41,15 @@ module.exports = {
 
     async modelbesoinsTotauxMedicaments() {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
-            //fait la somme des besoins totaux d'un medicament entre la date actuelle et la date de fin de sa posologie
+            /**
+             * fait la somme des besoins totaux d'un medicament entre la date actuelle et la date de fin de sa posologie
+             * cette requette ne peut pas etre combinée avec celle ligne 27 car les médicaments non prescrits 
+             * sont exclus des résultats de cette requette tel qu'elle est écrite
+            */
+             
 
             let requeteSQL = `SELECT Medicaments.*, 
             SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois) as medicament_besoins_totaux 
@@ -70,12 +77,6 @@ module.exports = {
 
     async modelAjouterMedicament(req) {
 
-        /** 
-         * recuperation des données la requette POST @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec ces données en paramètres
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -99,12 +100,6 @@ module.exports = {
 
     async modelSupprimerMedicament(req) {
 
-        /** 
-         * recuperation de l' @id dans la requette GET @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec la donné en paramètre
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -124,13 +119,9 @@ module.exports = {
         }
         )
     },
-    async modelafficherModifMedicament(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
+
+    async modelafficherModifMedicament(req) {
 
         return new Promise((resolve, reject) => {
 
@@ -152,33 +143,28 @@ module.exports = {
 
 
 
-        async modelmodifMedicament(req) {
+    async modelmodifMedicament(req) {
 
-            /** 
-             * instantiation d'une promesse de résultat de  @requetteSQL 
-             * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-             * sinon @return @resolve avec les donnés @data de la @requetteSQL
-            */
 
-            return new Promise((resolve, reject) => {
 
-                let id = req.body.id
-                let nom = req.body.nom
-                let stock = req.body.stock
+        return new Promise((resolve, reject) => {
 
-                let requeteSQL = 'UPDATE Medicaments SET medicament_nom = ?, medicament_boitesstock = ?  WHERE medicament_id = ?'
-                mysqlConnexion.query(requeteSQL, [nom, stock, id], (err, data) => {
+            let id = req.body.id
+            let nom = req.body.nom
+            let stock = req.body.stock
 
-                    if (err) {
-                        return reject(err)
+            let requeteSQL = 'UPDATE Medicaments SET medicament_nom = ?, medicament_boitesstock = ?  WHERE medicament_id = ?'
+            mysqlConnexion.query(requeteSQL, [nom, stock, id], (err, data) => {
 
-                    }
-                    return resolve(data)
-                })
-            }
-            )
-        },
+                if (err) {
+                    return reject(err)
 
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
 
 
 

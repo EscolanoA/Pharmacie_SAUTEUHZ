@@ -8,10 +8,12 @@ module.exports = {
     async afficherAcceuil(req, res) {
 
         try {
-            let data = await modelAcceuil.modelAfficherStockMedicaments()
             /**
+             * Remplissage des charts 
              * @param = mois de besoins 
+             * le resultat @res , est d'afficher les collections d'objets contenues dans @data et de rediriger après réussite des opérations dans la BDD .
              */
+            let data = await modelAcceuil.modelAfficherStockMedicaments()
             let data2 = await modelAcceuil.modelAfficherBesoinsMedicaments(1)
             let data3 = await modelAcceuil.modelAfficherBesoinsMedicaments(2)
             let data4 = await modelAcceuil.modelAfficherBesoinsMedicaments(3)

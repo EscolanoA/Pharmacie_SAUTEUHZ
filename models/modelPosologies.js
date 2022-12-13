@@ -1,3 +1,9 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Lorenzo Porcu => aide sur les Promesses 
+*/
+
 //récuperer le module de connexion
 let modelConnexion = require('./modelConnexion.js')
 let mysqlConnexion = modelConnexion.mysqlConnexion
@@ -5,24 +11,24 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 //export des methodes contenant les requettes SQL
 module.exports = {
 
-
+    /**
+     * Médhodes d'instantiations des promesses de résultat de  @requetteSQL 
+     * si @err est true la promesse est @return rejeté @reject avec le message d'erreur @err
+     * sinon @return @resolve avec les donnés @data de la @requetteSQL
+     * !  on ne peut résolve q'une @data par promesse  !
+    */
 
     async modelAfficherPosologies(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
         return new Promise((resolve, reject) => {
 
-            //besoin de recuperer le numero de secu pour l'incure dans les url de modification de posologies.ejs pour ne pas faire de conflits sur le routage (il faudrait segmenter le routage )
+            
             let numsecu = req.params.numsecu
             let idordo = req.params.idordo
 
             //Requette pour avoir le nombre de boites total prescrites d'une posologie  du début juqu'a sa fin et de la date actuelle jusquà la fin
-            let requeteSQL = `SELECT *,
+            let requeteSQL = `
+            SELECT *,
             SUM(TIMESTAMPDIFF(MONTH, posologie_debut, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_debut_fin,
             SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois )as posologie_nb_boites_maintenant_fin  
             FROM Posologies, Medicaments , Patients, Ordonnances
@@ -74,13 +80,6 @@ module.exports = {
 
     async modelAjouterPosologie(req) {
 
-        /** 
-         * recuperation des données la requette POST @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec ces données en paramètres
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
         return new Promise((resolve, reject) => {
 
             let idordo = req.body.idordo
@@ -109,12 +108,6 @@ module.exports = {
 
     async modelSupprimerPosologie(req) {
 
-        /** 
-         * recuperation de l' @id dans la requette GET @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec la donné en paramètre
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -137,16 +130,21 @@ module.exports = {
 
     async modelAfficherModifPosologie(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
             let idpos = req.params.idpos
-            let requeteSQL = 'SELECT Posologies.*, Medicaments.medicament_nom, Patients.patient_numsecu, DATE_FORMAT(posologie_fin, "%Y") as posologie_anneefin, DATE_FORMAT(posologie_fin, "%m") as posologie_moisfin,DATE_FORMAT(posologie_fin, "%d") as posologie_jourfin  FROM Posologies, Medicaments, Patients, Ordonnances WHERE Posologies.posologie_id = ? AND Posologies.posologie_medicament_id = Medicaments.medicament_id AND Posologies.posologie_ordonnance_id = Ordonnances.ordonnance_id AND Ordonnances.ordonnance_patient_numsecu = Patients.patient_numsecu;'
+            let requeteSQL = `
+            SELECT Posologies.*, Medicaments.medicament_nom, Patients.patient_numsecu,
+            DATE_FORMAT(posologie_fin, "%Y") as posologie_anneefin,
+            DATE_FORMAT(posologie_fin, "%m") as posologie_moisfin,
+            DATE_FORMAT(posologie_fin, "%d") as posologie_jourfin
+            FROM Posologies, Medicaments, Patients, Ordonnances
+            WHERE Posologies.posologie_id = ? 
+            AND Posologies.posologie_medicament_id = Medicaments.medicament_id
+            AND Posologies.posologie_ordonnance_id = Ordonnances.ordonnance_id
+            AND Ordonnances.ordonnance_patient_numsecu = Patients.patient_numsecu;`
+
             mysqlConnexion.query(requeteSQL, [idpos], (err, data) => {
 
                 if (err) {
@@ -174,7 +172,6 @@ module.exports = {
             let medicament = req.body.medicament
             let duree = req.body.duree
             let boites = req.body.boites
-
 
             let requeteSQL = 'UPDATE Posologies SET posologie_medicament_id = ?, posologie_fin = DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), posologie_nbboitesmois = ? WHERE posologie_id = ?'
             mysqlConnexion.query(requeteSQL, [medicament, duree, boites, idpos], (err, data) => {

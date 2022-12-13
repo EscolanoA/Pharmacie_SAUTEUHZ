@@ -95,7 +95,7 @@ routeur.post('/patients/modifier', ctrlConnexion.testAuthentification, ctrlPatie
 routeur.get('/patients/ordonnances/:numsecu/posologies/:idordo', ctrlConnexion.testAuthentification, ctrlPosologies.afficherPosologies)
 
 //formalisme d'écritures des routes :
-routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/supprimer', ctrlPosologies.supprimerPosologie)
+routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/supprimer', ctrlConnexion.testAuthentification, ctrlPosologies.supprimerPosologie)
 
 routeur.post('/patients/ordonnances/posologies/ajouter', ctrlConnexion.testAuthentification, ctrlPosologies.ajouterPosologie)
 
