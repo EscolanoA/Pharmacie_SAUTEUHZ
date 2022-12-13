@@ -1,3 +1,9 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Roumanet David => utilisation de dotenv pour utiliser des variables d'environnent : http://david.roumanet.free.fr/BTS-SIO/Bloc3-Dev/B3-DEV%20-%20300%20exploration%20s%C3%A9curisation%20NodeJS.pdf
+ *                              tès utiles pour des gestions de rôles par ex 
+*/
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const sessions = require('express-session')

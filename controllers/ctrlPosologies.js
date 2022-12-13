@@ -1,3 +1,9 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Guclu Sefa Illian Benaissa => aide sur les asnc : await
+*/
+
 const modelOrdonnances = require('../models/modelOrdonnances.js')// TO DO il fautdrai utiliser ce module pour afficher les infos de l'odonnance meme quans il ny a pas de posologies dessus
 const modelPosologies = require('../models/modelPosologies.js')
 const modelMedicaments = require('../models/modelMedicaments.js')

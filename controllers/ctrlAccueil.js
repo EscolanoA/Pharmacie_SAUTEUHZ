@@ -1,3 +1,9 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Gucl Sefa Illian Benaissa => aide sur les asnc : await
+*/
+
 const modelAcceuil = require('../models/modelAcceuil.js')
 let modelMedicament = require('../models/modelMedicaments.js')
 

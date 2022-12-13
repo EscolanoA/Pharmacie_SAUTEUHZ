@@ -1,3 +1,9 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Guclu Sefa Illian Benaissa => aide sur les asnc : await
+*/
+
 //importer les models d'accès aux donnés (requetes SQL)
 const modelMutuelles = require('../models/modelMutuelles.js')
 

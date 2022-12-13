@@ -1,3 +1,10 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Web Dev Simplified => construire et utiliser la métode testAuthentification() dans les routes https://www.youtube.com/watch?v=-RCnNyD0L-s&t=905s&pp=ugMICgJmchABGAE%3D
+ *          : Web Dev Junkie => créer un cookie de session uuid-4 et le parser lorsqu'il transite par la longue chaine de charactères du header https://www.youtube.com/watch?v=BgsQrOHNKeY&t=790s&ab_channel=WebDevJunkie
+*/
+
 const modelConnexion = require('../models/modelConnexion.js')
 //middleware pour créer des uuids de sessions sous ce format : 'da8d572d-411e-4f62-b267-d6b122582637'
 const uuidv4 = require('uuid').v4;

@@ -1,3 +1,9 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Guclu Sefa Illian Benaissa => aide sur les asnc : await
+*/
+
 const modelOrdonnances = require('../models/modelOrdonnances.js')
 const modelMedecins = require('../models/modelMedecins.js')
 const modelPathologies = require('../models/modelPathologies.js')
