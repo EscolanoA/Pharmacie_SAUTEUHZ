@@ -7,15 +7,15 @@ module.exports = {
 
     async afficherAcceuil(req, res) {
 
-
-
         try {
             let data = await modelAcceuil.modelAfficherStockMedicaments()
+            /**
+             * @param = mois de besoins 
+             */
             let data2 = await modelAcceuil.modelAfficherBesoinsMedicaments(1)
             let data3 = await modelAcceuil.modelAfficherBesoinsMedicaments(2)
             let data4 = await modelAcceuil.modelAfficherBesoinsMedicaments(3)
             let data5 = await modelMedicament.modelbesoinsTotauxMedicaments()
-
             
             if (data) {
                 //console.log(data)
@@ -24,7 +24,6 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-
 
     },
 

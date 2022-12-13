@@ -22,8 +22,7 @@ const ctrlMedecins = require('../controllers/ctrlMedecins')
 
 const ctrlPathologies = require('../controllers/ctrlPathologies')
 
-//FAIRE HTTPS 
-//UTILISER JWT POUR ACC7DER AU ROUTES
+
 
 
 //Page d'indentification
@@ -32,7 +31,7 @@ routeur.post('/connexion', ctrlConnexion.testConnexion)
 
 
 
-
+//Toutes les routes dessous sont sécurisés par un middlware qui renvoie next() si l'user est euthentifié / à une session
 //La Page d'aceuil
 routeur.get('/accueil',ctrlConnexion.testAuthentification, ctrlAccueil.afficherAcceuil)
 
@@ -95,7 +94,7 @@ routeur.post('/patients/modifier', ctrlConnexion.testAuthentification, ctrlPatie
 //Routes pour la sous sous page patients/ordonnances/posologies
 routeur.get('/patients/ordonnances/:numsecu/posologies/:idordo', ctrlConnexion.testAuthentification, ctrlPosologies.afficherPosologies)
 
-//CECI DEVRAIT ETRE LE FOMALISME UTILISÉ POUR TOUTES LES ROUTES CAR PLUS COMPRÉHENSIBLE ET ADAPTÉ SUR DE GROS PROJETS
+//formalisme d'écritures des routes :
 routeur.get('/patients/:numsecu/ordonnances/:idordo/posologies/:idpos/supprimer', ctrlPosologies.supprimerPosologie)
 
 routeur.post('/patients/ordonnances/posologies/ajouter', ctrlConnexion.testAuthentification, ctrlPosologies.ajouterPosologie)

@@ -1,10 +1,7 @@
 const modelConnexion = require('../models/modelConnexion.js')
+//middleware pour créer des uuids de sessions sous ce format : 'da8d572d-411e-4f62-b267-d6b122582637'
 const uuidv4 = require('uuid').v4;
 const sessions = require('express-session');
-
-
-
-
 
 module.exports = {
 
@@ -33,10 +30,10 @@ module.exports = {
 
             if (typeof data[0] === "object") {
                 //console.log(data)
-                //identification = email  et test de l'ahthentification = mdp
                 if (data[0].parmacien_email == email && data[0].parmacien_mdp == mdp) {
                     //console.log(data[0].parmacien_email, data[0].parmacien_mdp)
                     const sessionId = uuidv4();
+                    //stocker email pour perspectives d'évolution (rôles, vues...)
                     sessions[sessionId] = { email };
                     res.set('Set-Cookie', `session=${sessionId}`)
 
@@ -64,13 +61,14 @@ module.exports = {
         const sessionId = req.headers.cookie?.split('session=')[1]
         
         const userSession = sessions[sessionId]
-        //si impossible de trouvrer la variable "session="
+        //si impossible de trouvrer la variable après le name "session="
         if (!userSession) {
             res.render('connexion')
 
         } else { 
             
             try {
+                //prochaine instruction sera le controlleur placé apres l'appel de cette fonction
                 next()
             } catch (error) {
                 console.log(error)
@@ -78,9 +76,6 @@ module.exports = {
     
         }
     },
-
-
-
 
 
 }

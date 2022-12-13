@@ -24,6 +24,9 @@ module.exports = {
     async ajouterMedecin(req, res) {
 
         try {
+            /**
+             * @param req contient les data du body du dom
+             */
             let data = await modelMedecins.modelAjouterMedecin(req)
             if (data) {
                 console.log(data)
@@ -37,7 +40,9 @@ module.exports = {
     },
     
     async supprimerMedecin(req, res) {
-
+            /**
+             * @param req contient le param id a suprimmer
+             */
         try {
             let data = await modelMedecins.modelSupprimerMedecin(req)
             
