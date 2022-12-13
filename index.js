@@ -1,40 +1,26 @@
 const express = require('express')
-var cookieParser = require('cookie-parser');
-const sessions = require('express-session');
-
-const cors = require('cors') // Cross Origin Resource Sharing
-const morgan = require('morgan') // logs pour authentification par token
-
+const cookieParser = require('cookie-parser')
+const sessions = require('express-session')
 const Routeur = require('./routes/routes.js')
-const routeur = require('./routes/routes.js')
-//const loginRoutes = require('./routes/loginRoutes')
-
-
-
-
+const dotenv = require('dotenv')
 
 
 let app = express()
+//liens vers les dossiers de travail
 app.set('view engine', 'ejs')
 app.use(express.static('assets'))
 app.use(express.static('views'))
-app.use(express.static('img'))
 
-//app.use(express.static('controllers'));
-
-
-
+dotenv.config()
 app.use(express.urlencoded())
-app.use(cookieParser());
+app.use(cookieParser())
+//config du middleware express-sessions
 app.use(sessions({
-    secret: "secret",
+    secret: process.env.TOKEN_SECRET,
     saveUninitialized:true,
     resave: false
 }));
 
-// Utilisation des midlewares pour l'authentification JWT à faire
-//app.use(cors())
-//app.use(morgan('tiny'))
 
 app.use('/', Routeur)
 
@@ -47,13 +33,14 @@ const fs = require('fs')
 //créer un serveur HTTPS 
 const https = require('https')
 const path = require('path')
+
 //donner le chemin vers les certificats autos-signés
 const key = fs.readFileSync(path.join(__dirname, 'certificates', 'server.key'));
 const cert = fs.readFileSync(path.join(__dirname, 'certificates', 'server.cert'));
 const options = { key, cert };
 
 
-let port = 3000
+const port = 3000
 
 https.createServer(options, app).listen(port, () => {
  console.log(`server démarré     en HTTPS. Go to https://localhost:${port}`);
@@ -64,7 +51,8 @@ app.get('/', (req, res) => {
     res.send('Serveur de la Pharmacie Sauteuhz est actif')
 })
 
-routeur.use((req, res) => {
+//gerer 404
+Routeur.use((req, res) => {
     res.status(404).redirect('accueil')
 });
 

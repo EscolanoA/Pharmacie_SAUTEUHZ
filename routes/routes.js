@@ -1,6 +1,8 @@
 const express = require('express');
 const routeur = express.Router();
 
+
+//relatives paths to 
 const ctrlConnexion = require('../controllers/ctrlConnexion')
 
 const ctrlAccueil = require('../controllers/ctrlAccueil')
