@@ -1,3 +1,10 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Lorenzo Porcu => aide sur les Promesses 
+*/
+
+
 //récuperer le module de connexion
 let modelConnexion = require('./modelConnexion.js')
 let mysqlConnexion = modelConnexion.mysqlConnexion
@@ -5,19 +12,32 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 //export des methodes contenant les requettes SQL
 module.exports = {
 
-    async modelAfficherOrdonnances(req) {
+    /**
+     * Médhodes d'instantiations des promesses de résultat de  @requetteSQL 
+     * si @err est true la promesse est @return rejeté @reject avec le message d'erreur @err
+     * sinon @return @resolve avec les donnés @data de la @requetteSQL
+     * !  on ne peut résolve q'une @data par promesse  !
+    */
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
+    async modelAfficherOrdonnances(req) {
 
         return new Promise((resolve, reject) => {
 
             let numsecu = req.params.numsecu
 
-            let requeteSQL = `SELECT *, DATE_FORMAT(patient_datenaiss, "%Y") as patient_anneenaiss,DATE_FORMAT(patient_datenaiss, "%m") as patient_moisnaiss,DATE_FORMAT(patient_datenaiss, "%d") as patient_journaiss FROM Patients, Ordonnances, Medecins, Pathologies WHERE patient_numsecu = ? AND ordonnance_patient_numsecu = patient_numsecu AND ordonnance_medecin_id = medecin_id AND ordonnance_pathologie_id = pathologie_id `
+            //formatter les donnés dans la requette pour permettre 1 : de faire des calculs sur l'age avec la médode .getFullYear() 
+            //2 : d'afficher ce format ci dd-mm-YYY , meme fomat utilisé pour mettre des valeurs par défault dans les champs de type date  
+            let requeteSQL = `
+            SELECT *,
+            DATE_FORMAT(patient_datenaiss, "%Y") as patient_anneenaiss,
+            DATE_FORMAT(patient_datenaiss, "%m") as patient_moisnaiss,
+            DATE_FORMAT(patient_datenaiss, "%d") as patient_journaiss
+            FROM Patients, Ordonnances, Medecins, Pathologies
+            WHERE patient_numsecu = ? 
+            AND ordonnance_patient_numsecu = patient_numsecu
+            AND ordonnance_medecin_id = medecin_id
+            AND ordonnance_pathologie_id = pathologie_id `
+
             mysqlConnexion.query(requeteSQL, [numsecu], (err, data) => {
 
                 if (err) {
@@ -33,13 +53,6 @@ module.exports = {
 
 
     async modelAjouterOrdonnance(req) {
-
-        /** 
-         * recuperation des données la requette POST @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec ces données en paramètres
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -68,12 +81,6 @@ module.exports = {
 
     async modelSupprimerOrdonnance(req) {
 
-        /** 
-         * recuperation de l' @id dans la requette GET @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec la donné en paramètre
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -96,12 +103,6 @@ module.exports = {
 
     async modelafficherModifOrdonnance(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
         return new Promise((resolve, reject) => {
 
             let idordo = req.params.idordo
@@ -121,11 +122,6 @@ module.exports = {
 
     async modelmodifOrdonnance(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 

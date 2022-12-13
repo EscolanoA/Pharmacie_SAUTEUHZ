@@ -51,14 +51,13 @@ module.exports = {
         )
     },
 
-    //Pour afficher les infos de l'ordonnance qand aucune posologie n'a été encore créer mais impossible car aucun medecin n'a cree de posologie pour le moment
+    /**
+     * Pour afficher les infos de l'ordonnance qand aucune posologie n'a été crée on fait cette requette,
+     * car aucun medecin n'a crée de posologie donc problème de jointure on ne peut
+     * donc pas joindre posologie_id pas encore crée aux infos du médecin qui a prescit l'ordonnance, et donc la posologie
+    */
     async modelAfficherInfoMedecinEtPath(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -87,7 +86,6 @@ module.exports = {
             let boites = req.body.boites
             let duree = req.body.duree
 
-            //console.log(mutuelle)
 
             let requeteSQL = "INSERT INTO Posologies (posologie_ordonnance_id, posologie_medicament_id, posologie_fin ,posologie_nbboitesmois) VALUES (?, ?, DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), ?)"
 
@@ -134,11 +132,11 @@ module.exports = {
         return new Promise((resolve, reject) => {
 
             let idpos = req.params.idpos
+            //pour pré remplir le champ de durée en mois on calule la différence en mois entre la date actuelle et la fin de la posologie
+            //on essaie de ne pas requetter les collones inutiles dans les tables mentionnées dans la jointure #GreenIT :3
             let requeteSQL = `
             SELECT Posologies.*, Medicaments.medicament_nom, Patients.patient_numsecu,
-            DATE_FORMAT(posologie_fin, "%Y") as posologie_anneefin,
-            DATE_FORMAT(posologie_fin, "%m") as posologie_moisfin,
-            DATE_FORMAT(posologie_fin, "%d") as posologie_jourfin
+            TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin) as posologie_mois_restants
             FROM Posologies, Medicaments, Patients, Ordonnances
             WHERE Posologies.posologie_id = ? 
             AND Posologies.posologie_medicament_id = Medicaments.medicament_id
@@ -159,12 +157,6 @@ module.exports = {
 
     async modelModifPosologie(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
         return new Promise((resolve, reject) => {
 
             let idpos = req.body.idpos
@@ -172,7 +164,8 @@ module.exports = {
             let medicament = req.body.medicament
             let duree = req.body.duree
             let boites = req.body.boites
-
+            
+            //on update toujours en choisisant des mois entiers
             let requeteSQL = 'UPDATE Posologies SET posologie_medicament_id = ?, posologie_fin = DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), posologie_nbboitesmois = ? WHERE posologie_id = ?'
             mysqlConnexion.query(requeteSQL, [medicament, duree, boites, idpos], (err, data) => {
 

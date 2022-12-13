@@ -1,3 +1,10 @@
+/**
+ * @Auteur Brieuc Meyer
+ * @Version 1.0.0
+ * @Crédits : Lorenzo Porcu => aide sur les Promesses 
+*/
+
+
 //récuperer le module de connexion
 let modelConnexion = require('./modelConnexion.js')
 let mysqlConnexion = modelConnexion.mysqlConnexion
@@ -5,18 +12,22 @@ let mysqlConnexion = modelConnexion.mysqlConnexion
 //export des methodes contenant les requettes SQL
 module.exports = {
 
+    /**
+     * Médhodes d'instantiations des promesses de résultat de  @requetteSQL 
+     * si @err est true la promesse est @return rejeté @reject avec le message d'erreur @err
+     * sinon @return @resolve avec les donnés @data de la @requetteSQL
+     * !  on ne peut résolve q'une @data par promesse  !
+    */
+
     async modelAfficherPatients() {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
             //'SELECT Patients.*, DATE_FORMAT(patient_datenaiss, "%Y") as patient_anneenaiss, Mutuelles.mutuelle_nom FROM Patients, Mutuelles WHERE patient_mutuelle_id = mutuelle_id ORDER BY patient_nom'
 
+            //la clé etrangère etant le num de Sécu (Bonne ou mauvaise pratique ???) en pricipe unique et checkSumable on ordonnance les patients par nom
+            //BONNE PRATIQUES : ajouter une colonne patient_date_création et patient_date_derniere_modif pour mieux afficher / filter dans les vues 
             let requeteSQL = 'SELECT Patients.*, DATE_FORMAT(patient_datenaiss, "%Y") as patient_anneenaiss FROM Patients ORDER BY patient_nom'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
@@ -36,12 +47,6 @@ module.exports = {
 
     async modelAjouterPatient(req) {
 
-        /** 
-         * recuperation des données la requette POST @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec ces données en paramètres
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -93,13 +98,6 @@ module.exports = {
 
     async modelSupprimerPatient(req) {
 
-        /** 
-         * recuperation de l' @id dans la requette GET @req
-         * instantiation d'une promesse de résultat de  @requetteSQL avec la donné en paramètre
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
-
         return new Promise((resolve, reject) => {
 
             let numsecu = req.params.numsecu
@@ -121,11 +119,6 @@ module.exports = {
     
     async modelAfficherModifPatient(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 
@@ -146,11 +139,6 @@ module.exports = {
 
     async modelAfficherMutuelles() {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
             
@@ -171,11 +159,6 @@ module.exports = {
 
     async modelModifPatient(req) {
 
-        /** 
-         * instantiation d'une promesse de résultat de  @requetteSQL 
-         * si @err est true ou non null la promesse est @return rejeté @reject avec le message d'erreur @err
-         * sinon @return @resolve avec les donnés @data de la @requetteSQL
-        */
 
         return new Promise((resolve, reject) => {
 

@@ -26,7 +26,6 @@ module.exports = {
 
             let requeteSQL = `SELECT * FROM  Medicaments ORDER BY medicament_id;`
 
-
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
@@ -39,6 +38,9 @@ module.exports = {
         )
     },
 
+
+    
+
     async modelbesoinsTotauxMedicaments() {
 
 
@@ -50,13 +52,13 @@ module.exports = {
              * sont exclus des résultats de cette requette tel qu'elle est écrite
             */
              
-
+            //orderby pour harmoniser les charts, n'as pas d'effect sur l'affecttion à chaque médicaments dans la vue grâce à boucle + condition sur l'occurence medicament id
             let requeteSQL = `SELECT Medicaments.*, 
             SUM(TIMESTAMPDIFF(MONTH, CURRENT_DATE, posologie_fin)* Posologies.posologie_nbboitesmois) as medicament_besoins_totaux 
             FROM Posologies, Medicaments 
             WHERE Medicaments.medicament_id = Posologies.posologie_medicament_id 
             GROUP BY Medicaments.medicament_nom 
-            ORDER BY Medicaments.medicament_id;`
+            ORDER BY medicament_besoins_totaux DESC;`
 
 
             mysqlConnexion.query(requeteSQL, (err, data) => {

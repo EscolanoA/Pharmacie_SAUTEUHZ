@@ -22,8 +22,8 @@ module.exports = {
     async modelAfficherStockMedicaments() {
 
         return new Promise((resolve, reject) => {
-
-            let requeteSQL = 'SELECT * FROM Medicaments ORDER BY Medicament_id'
+            //la requette est spécifique à l'accueil avec le ORDER BY
+            let requeteSQL = 'SELECT * FROM Medicaments ORDER BY medicament_boitesstock DESC'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
@@ -47,7 +47,8 @@ module.exports = {
             FROM Medicaments 
             JOIN Posologies ON Medicaments.medicament_id = Posologies.posologie_medicament_id
             WHERE Posologies.posologie_fin >= DATE_ADD(curdate(), INTERVAL ? MONTH)
-            GROUP BY Medicaments.medicament_id;`
+            GROUP BY Medicaments.medicament_id
+            ORDER BY besoins_mois_courant DESC;`
             
             mysqlConnexion.query(requeteSQL, [interval], (err, data) => {
 

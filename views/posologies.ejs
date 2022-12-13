@@ -32,7 +32,7 @@
                     <script>
                         function popupAttentionOn<%= i+1 %> () {
                             document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
-                            document.getElementById("attention<%= i+1 %>").innerHTML = `etes vous sûr?&nbsp&nbsp <button class="btnDelete onClick="location.href='/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/supprimer';"><i class="fa-regular fa-trash-can"></i></button>`
+                            document.getElementById("attention<%= i+1 %>").innerHTML = `etes vous sûr?&nbsp&nbsp <button class="btnDelete" onClick="location.href='/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/supprimer';"><i class="fa-regular fa-trash-can"></i></button>`
                         }
                         function popupAttentionOff<%= i+1 %> () {
 
