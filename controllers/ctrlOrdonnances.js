@@ -2,15 +2,21 @@ const modelOrdonnances = require('../models/modelOrdonnances.js')
 const modelMedecins = require('../models/modelMedecins.js')
 const modelPathologies = require('../models/modelPathologies.js')
 const modelPatients = require('../models/modelPatients.js')
-const modelPosologies = require('../models/modelPosologies.js')
 
 
 module.exports = {
 
+    /**
+    * méthodes qui envoient la @req au @modelMutuelles () ,@modelMedecins (),@modelPathologies (),@modelPatients () sans bloquer le thread principal.
+    * le resultat @res , est d'afficher les données contenues dans @data .
+    */
 
     async afficherOrdonnances(req, res) {
 
         try {
+            /**
+             * @param req contient les data du body du dom
+             */
             let data = await modelOrdonnances.modelAfficherOrdonnances(req, res)
             let data2 = await modelMedecins.modelAfficherMedecins()
             let data3 = await modelPathologies.modelAfficherPathologies()
@@ -46,6 +52,9 @@ module.exports = {
     async supprimerOrdonnance(req, res) {
 
         try {
+        /**
+         * @param req contient le param id a suprimmer
+         */
             let data = await modelOrdonnances.modelSupprimerOrdonnance(req)
             if (data) {
                 //console.log(data)
@@ -61,6 +70,9 @@ module.exports = {
     async afficherModifOrdonnance(req, res) {
 
         try {
+            /**
+             * @param req contient les data de la l'oronnance a modifier
+             */
             let data = await modelOrdonnances.modelafficherModifOrdonnance(req)
             let data2 = await modelMedecins.modelAfficherMedecins(req)
             let data3 = await modelPathologies.modelAfficherPathologies(req)

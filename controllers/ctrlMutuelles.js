@@ -5,7 +5,10 @@ const modelMutuelles = require('../models/modelMutuelles.js')
 
 module.exports = {
 
-// TODO: mettre le model modelAfficherMutuelles dans model mutuelle
+    /**
+    * méthodes qui envoient la @req au @modelMutuelles () , sans bloquer le thread principal.
+    * le resultat @res , est d'afficher les données contenues dans @data .
+    */
 
     async afficherMutuelles(req, res) {
 
@@ -26,6 +29,9 @@ module.exports = {
     async ajouterMutuelle(req, res) {
 
         try {
+            /**
+             * @param req contient les data du body du dom
+             */
             let data = await modelMutuelles.modelAjouterMutuelle(req)
             if (data) {
                 console.log(data)
@@ -38,30 +44,12 @@ module.exports = {
 
     },
 
-    async afficherModifMutuelle(req, res) {
-
+    async supprimerMututelle(req, res) {
+        /**
+         * @param req contient le param id a suprimmer
+         */
         try {
-            let data = await modelMutuelles.modelAfficherModifMutuelle(req)
-            if (data ) {
-                //console.log(data)
-                res.render("./modifMutuelle", { mutuelle: data })
-            }
-        } catch (error) {
-            console.log(error)
-        }
-
-
-    },
-
-    /**
-    * méthode qui envoie la @req à @modelModifPatient () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher sur la page medicament le medicament contenu dans @data .
-    */
-
-    async modifMututelle(req, res) {
-
-        try {
-            let data = await modelMutuelles.modelModifMutuelle(req)
+            let data = await modelMutuelles.modelSupprimerMutuelle(req)
             
             if (data) {
                 //console.log(data)
@@ -74,10 +62,33 @@ module.exports = {
 
 
     },
-    async supprimerMututelle(req, res) {
+
+
+    async afficherModifMutuelle(req, res) {
 
         try {
-            let data = await modelMutuelles.modelSupprimerMutuelle(req)
+            /**
+             * @param req contient les data de la mutuelle a modifier
+             */
+            let data = await modelMutuelles.modelAfficherModifMutuelle(req)
+            if (data ) {
+                //console.log(data)
+                res.render("./modifMutuelle", { mutuelle: data })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async modifMututelle(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutu a modifier
+             */
+            let data = await modelMutuelles.modelModifMutuelle(req)
             
             if (data) {
                 //console.log(data)

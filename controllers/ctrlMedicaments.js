@@ -2,13 +2,10 @@
 let modelMedicament = require('../models/modelMedicaments.js')
 
 module.exports = {    
-
-
     /**
-    * méthode qui attend @data , fourni par la fonction @modelAfficherMedicaments () , sans bloquer le thread principal.
-    * le resultat res , est d'afficher sur la page medicament les @data nommées @medicaments .
+    * méthodes qui envoient la @req au @modelMedicament () , sans bloquer le thread principal.
+    * le resultat @res , est d'afficher les données contenues dans @data .
     */
-
     async afficherMedicaments(req, res) {
 
         try {
@@ -26,14 +23,12 @@ module.exports = {
 
     },
 
-    /**
-    * méthode qui envoie @req en paramètre, au modèle @modelAjouterMedicament () , sans bloquer le thread principal.
-    * si @data est true (elle ne l'est qui si elle n'est pas nulle / à été resolve), alors le resultat, @res est d'afficher la page /medicaments qui apellera la fontion du dessus pour rafraichir les données .
-    */
-
     async ajouterMedicament(req, res) {
 
         try {
+            /**
+             * @param req contient les data du body du dom
+             */
             let data = await modelMedicament.modelAjouterMedicament(req)
             if (data) {
                 res.redirect("/medicaments")
@@ -45,14 +40,13 @@ module.exports = {
 
     },
 
-    /**
-    * méthode qui envoie @req en paramètre, au modèle @modelSupprimerMedicament () , sans bloquer le thread principal.
-    * si @data est true, alors le resultat, @res est d'afficher la page /medicaments qui apellera la fontion du dessus pour rafraichir les données .
-    */
 
     async supprimerMedicament(req, res) {
 
         try {
+            /**
+             * @param req contient le param id a suprimmer
+             */
             let data = await modelMedicament.modelSupprimerMedicament(req)
             if (data) {
                 res.redirect("/medicaments")
@@ -66,6 +60,9 @@ module.exports = {
     async afficherModifMedicament(req, res) {
 
         try {
+            /**
+             * @param req contient les data du medicament a modifier
+             */
             let data = await modelMedicament.modelafficherModifMedicament(req)
             if (data) {
                 //console.log(data)
@@ -78,14 +75,13 @@ module.exports = {
 
     },
 
-    /**
-    * méthode qui envoie la @req à @modelModifMedicament () , sans bloquer le thread principal.
-    * le resultat @res , est d'afficher sur la page medicament le medicament contenu dans @data .
-    */
 
     async modifMedicament(req, res) {
 
         try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
             let data = await modelMedicament.modelmodifMedicament(req)
             if (data) {
                 //console.log(data)
