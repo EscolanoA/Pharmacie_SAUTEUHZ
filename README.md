@@ -1,4 +1,4 @@
-<img src="/assets/img/Logoheadertransparent.svg" alt="Logo Pharmacie Sautheuhz" width="100px"/>
+<img src="/assets/img/Logoheadertransparent.svg" alt="Logo Pharmacie Sautheuhz" width="200px"/>
 
 ## Projet PHARMACIE SAUTHEUHZ
 Mon premier projet nodeJS en MVC. 
