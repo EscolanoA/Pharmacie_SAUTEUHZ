@@ -1,6 +1,6 @@
 <img src="/assets/img/Logoheadertransparent.svg" alt="Logo Pharmacie Sautheuhz" width="200px"/>
 
-## Projet PHARMACIE SAUTHEUHZ
+## PHARMACIE SAUTHEUHZ
 Mon premier projet nodeJS en MVC. 
 L'objectif est de créer une application web sécurisée et scalable permettant à une pharmacie et ses employés de gerer ses clients, ordonnances et stocks .
 
@@ -21,21 +21,21 @@ L'objectif est de créer une application web sécurisée et scalable permettant 
 - [package.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-json) v2.0.1 => manifeste du projet, contient les prérequis pour exécuter l'application
 - [uuid](https://www.npmjs.com/package/uuid)  v9.0.0 => pour créeer des id de sessions sous ce format : 6e3z5rzez6z-87ef-75gr-e6e5qe86dzty
 
-**Base de donnée**  
+**Base de données**  
 - [mysql2](https://www.npmjs.com/package/mysql2) v2.3.3 => surcouche mysql, gérant les promesses, procédures stockées...
 
 
 ## Installer le projet sur votre ordinateur
 
-Après avoir installé git ainsi que node sur votre pc, clonez le projet grâce a la commande : 
+Après avoir installé git ainsi que node v16.17.0 mini sur votre pc, clonez le projet grâce a la commande : 
 ```
 git clone https://github.com/EscolanoA/Pharmacie_SAUTEUHZ.git
 ```
 
-- Récuperez la base de données et importez là dans votre gestionnaire de BDD.  
+- Créez une base de données dans votre gestionnaire de BDD.
+- Copiez le script de création de des tables dedans
 - Il s'agit du fichier : assets/bdd/CreateTablesEtJdd.sql
-- Ensuite insérer vos identifiants dans le fichier de connexion à la base de données.
-- Il s'agit du fichier : /DB.ini
+- Ensuite rentrez l'hote, l'user et le mot de passe et le libellé de votre BDD dans le fichier : /DB.ini
 
 Il vous suffit alors d'installer les dépendances avec cette commande : 
 ```
