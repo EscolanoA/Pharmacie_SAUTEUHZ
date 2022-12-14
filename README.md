@@ -1,36 +1,36 @@
 ![This is an image](/assets/img/Logoheadertransparent.svg)
 
-## Projet SAUTHEUHZ
+## Projet PHARMACIE SAUTHEUHZ
 Mon premier projet nodeJS en MVC. 
-L'objectif du projet sautheuhz est de créer une application web permettant à une pharmacie et ses employés de gerer ses clients, ordonnances et stocks de manières aussi simple qu'intuitive.
+L'objectif est de créer une application web permettant à une pharmacie et ses employés de gerer ses clients, ordonnances et stocks de manières aussi simple .
 
 ## Quelles technologies ? 
 **FrontEnd**    
 -Javascript => Controles de saisie
--css => Affichages 
--Utilisation de Chart.Js le graphique sur la page d'acceuil (prévoyant les stocks sur les 6 prochains mois).  
+-css, html => Affichages 
+-chart.js v4.0.1 => afficher des graphiques dynamiques
+-ejs v3.1.8 => JavaScript intégrée dans les pages html
+
 
 **BackEnd**   
 Du côté serveur nous utilisons deux frameworks principaux pour ce projet :  
--NodeJS  
--ExpressJs  
+-Node.js v16.17.0 => Environnement d'exécution JavaScript asynchrone et orienté événement, Node.js est conçu pour générer des applications scalables.
+-express v4.18.2 => routing / higher perfs / test coverages / HTTP helpers
+-cookie-parser v1.4.6 => parse et remplie le header d'objet mis en relation avec leur clé
+-dotenv v16.0.3 => parse les fichier .env avec les différents TOKENS
+-express-session v1.17.3 => stocke coté serveur les clients
+-iniparser v1.0.5 => parse les fichier .ini avec les différentes variables d'environemment 
+-package.json v2.0.1 => manifeste du projet, contient les prérequis pour exécuter l'application
+-uuid  v9.0.0 => pour créeer des id de sessions sous ce format : 6e3z5rzez6z-87ef-75gr-e6e5qe86dzty
 
 **Base de données**  
 La base de données est hébergé sur AlwaysData sous PhpMyAdmin.  
+-mysql2 v2.3.3 => surcouche mysql, gérant les promesses, procédures stockées...
 
 
 **Dépendances** 
 
--chart.js v4.0.1 => afficher des graphiques dynamiques
--cookie-parser v1.4.6 => 
--dotenv v16.0.3 => parse les fichier .env avec les différents TOKENS
--ejs v3.1.8 => Embedded JavaScript dans la page format html
--express v4.18.2 => routing / higher perfs / test coverages / HTTP helpers
--express-session v1.17.3 => stocke coté serveur les clients
--iniparser v1.0.5 => 
--mysql2 v2.3.3 => 
--package.json v2.0.1 => 
--uuid  v9.0.0 => 
+
 
 
 ## Installer le projet sur votre ordinateur ? 
