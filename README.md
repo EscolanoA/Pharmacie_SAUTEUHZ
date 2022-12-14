@@ -49,7 +49,7 @@ Et rendez vous sur l'url suivante
 https://localhost:3000/
 ```
 - Les identifiants suivants vous donneront accès à l'application
-- Adress Mail : <pharmacien@mail.com> 
+- Adress Mail : <p>pharmacien@mail.com></p> 
 - Mot de passe : root
 
 - N'hésitez pas à me rapporter différents dysfonctionnements, bugs, et points de frictions que vous rencontreriez via  <a href="mailto:brieucme35@gmail.com"> brieucme35@gmail.com</a>
