@@ -36,7 +36,7 @@ git clone https://github.com/EscolanoA/Pharmacie_SAUTEUHZ.git
 - Collez le script de dans votre gestionnaire de base de données ex WAMP, XAMP ...
 - Ensuite rentrez l'hote, l'user et le mot de passe pour accèder à votre BDD dans le fichier : /DB.ini
 
-Il vous suffit alors d'installer les dépendances avec cette commande : 
+Dans le dossier Pharmacie_SAUTEUHZ installez les dépendances avec cette commande : 
 ```
 npm i iniparser mysql2  express express-session ejs express-session dotenv 
 ```
