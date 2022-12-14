@@ -1,4 +1,4 @@
-![This is an image](/assets/img/Logoheadertransparent.svg)
+<img src="/assets/img/Logoheadertransparent.svg" alt="Logo Pharmacie Sautheuhz" width="100px"/>
 
 ## Projet PHARMACIE SAUTHEUHZ
 Mon premier projet nodeJS en MVC. 
