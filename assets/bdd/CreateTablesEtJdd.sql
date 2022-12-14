@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS `pharmacie`;
+CREATE DATABASE pharmacie;
+USE pharmacie;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -44,27 +48,25 @@ CREATE TABLE `Posologies`(
     `posologie_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `posologie_ordonnance_id` INT UNSIGNED NOT NULL,
     `posologie_medicament_id` INT UNSIGNED NOT NULL,
-
-    `posologie_debut` DATE NOT NULL DEFAULT CURRENT_DATE(),
+    `posologie_debut` DATE NOT NULL,
     `posologie_fin` DATE NOT NULL,
-
     `posologie_nbboitesmois` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`posologie_id`),
     KEY `posologie_ordonnance_id` (`posologie_ordonnance_id`),
     KEY `posologie_medicament_id` (`posologie_medicament_id`)
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_medicament_id`, `posologie_fin`,`posologie_nbboitesmois`) VALUES
-(1, 1, 1,  DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 14),
-(2, 1, 2,  DATE_ADD(CURRENT_DATE(), INTERVAL '9' MONTH ), 36),
-(3, 2, 3,  DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 25),
-(4, 2, 4,  DATE_ADD(CURRENT_DATE(), INTERVAL '5' MONTH ), 25),
-(5, 3, 5,  DATE_ADD(CURRENT_DATE(), INTERVAL '7' MONTH ), 12),
-(6, 3, 1,  DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 22),
-(7, 4, 2,  DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 6),
-(8, 4, 3,  DATE_ADD(CURRENT_DATE(), INTERVAL '9' MONTH ), 16),
-(9, 5, 4,  DATE_ADD(CURRENT_DATE(), INTERVAL '5' MONTH ), 35),
-(10, 5, 5, DATE_ADD(CURRENT_DATE(), INTERVAL '2' MONTH ), 8);
+INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_medicament_id`,`posologie_debut`, `posologie_fin`,`posologie_nbboitesmois`) VALUES
+(1, 1, 1,'2021-7-04' , DATE_ADD(CURDATE(), INTERVAL '2' MONTH ), 14),
+(2, 1, 2,'2014-8-05' , DATE_ADD(CURDATE(), INTERVAL '9' MONTH ), 36),
+(3, 2, 3,'2020-9-06' , DATE_ADD(CURDATE(), INTERVAL '2' MONTH ), 25),
+(4, 2, 4,'2022-10-07' , DATE_ADD(CURDATE(), INTERVAL '5' MONTH ), 25),
+(5, 3, 5,'2022-11-08' , DATE_ADD(CURDATE(), INTERVAL '7' MONTH ), 12),
+(6, 3, 1,'2010-12-09' , DATE_ADD(CURDATE(), INTERVAL '2' MONTH ), 22),
+(7, 4, 2,'2018-1-10' , DATE_ADD(CURDATE(), INTERVAL '2' MONTH ), 6),
+(8, 4, 3,'2018-2-11' , DATE_ADD(CURDATE(), INTERVAL '9' MONTH ), 16),
+(9, 5, 4,'2016-3-12' , DATE_ADD(CURDATE(), INTERVAL '5' MONTH ), 35),
+(10, 5, 5,'2021-4-13' , DATE_ADD(CURDATE(), INTERVAL '2' MONTH ), 8);
 
 
 
@@ -72,7 +74,7 @@ INSERT INTO `Posologies` (`posologie_id`,`posologie_ordonnance_id`, `posologie_m
 DROP TABLE IF EXISTS `Medicaments`;
 CREATE TABLE `Medicaments`(
     `medicament_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `medicament_nom` VARCHAR(40) NOT NULL,
+    `medicament_nom` VARCHAR(50) NOT NULL,
     `medicament_boitesstock` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`medicament_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
@@ -81,9 +83,14 @@ INSERT INTO `Medicaments` (`medicament_id`, `medicament_nom`, `medicament_boites
 (2, 'Inlyta', 856),
 (3, 'Signifor', 66),
 (4, 'Cosentyx', 725),
-(5, 'Leponex', 384);
-
-
+(5, 'Leponex', 384),
+(6, 'xylométazoline', 254),
+(7, 'Lamaline', 78),
+(8, 'Pivalone', 865),
+(9, 'neo-codion', 120),
+(10, 'Tussidane', 796),
+(11, 'Euphon', 456),
+(12, 'Paracetamol Codeine', 245);
 
 
 DROP TABLE IF EXISTS `Pathologies`;
@@ -111,8 +118,8 @@ CREATE TABLE `Patients`(
     KEY `patient_mutuelle_id` (`patient_mutuelle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 INSERT INTO `Patients` (`patient_numsecu`, `patient_mutuelle_id`, `patient_prenom`,`patient_nom`,`patient_datenaiss`) VALUES
-('4753622189562547', NULL, 'Amandine', 'Place', '1495-7-14'),
-('1162176249885478', NULL, 'Frank', 'Place', '2022-7-14'),
+('4753622189562547', NULL, 'Amandine', 'Place', '1995-7-14'),
+('1162176249885478', NULL, 'Frank', 'Place', '2017-7-14'),
 ('0102053523882146', 1, 'Allan','Escolano', '2003-12-12'),
 ('1103053623883235', 2, 'Brieuc','Meyer', '2002-05-21'),
 ('0104053723884365', 3, 'OuiOui',"l'Ourson", '1995-10-3'),
@@ -124,7 +131,7 @@ INSERT INTO `Patients` (`patient_numsecu`, `patient_mutuelle_id`, `patient_preno
 DROP TABLE IF EXISTS `Mutuelles`;
 CREATE TABLE `Mutuelles`(
     `mutuelle_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `mutuelle_nom` VARCHAR(20) NOT NULL,
+    `mutuelle_nom` VARCHAR(40) NOT NULL,
     `mutuelle_tel` VARCHAR(50) NOT NULL,
     `mutuelle_email` VARCHAR(200) NOT NULL,
     PRIMARY KEY (`mutuelle_id`)

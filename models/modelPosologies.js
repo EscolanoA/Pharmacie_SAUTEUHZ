@@ -87,7 +87,7 @@ module.exports = {
             let duree = req.body.duree
 
 
-            let requeteSQL = "INSERT INTO Posologies (posologie_ordonnance_id, posologie_medicament_id, posologie_fin ,posologie_nbboitesmois) VALUES (?, ?, DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), ?)"
+            let requeteSQL = "INSERT INTO Posologies (posologie_ordonnance_id, posologie_medicament_id, posologie_debut, posologie_fin ,posologie_nbboitesmois) VALUES (?, ?, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), ?)"
 
 
             mysqlConnexion.query(requeteSQL, [idordo, medicament, duree, boites], (err, data) => {
@@ -166,7 +166,7 @@ module.exports = {
             let boites = req.body.boites
             
             //on update toujours en choisisant des mois entiers
-            let requeteSQL = 'UPDATE Posologies SET posologie_medicament_id = ?, posologie_fin = DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), posologie_nbboitesmois = ? WHERE posologie_id = ?'
+            let requeteSQL = 'UPDATE Posologies SET posologie_medicament_id = ?,posologie_debut=CURRENT_DATE() , posologie_fin = DATE_ADD(CURRENT_DATE(), INTERVAL ? MONTH ), posologie_nbboitesmois = ? WHERE posologie_id = ?'
             mysqlConnexion.query(requeteSQL, [medicament, duree, boites, idpos], (err, data) => {
 
                 if (err) {

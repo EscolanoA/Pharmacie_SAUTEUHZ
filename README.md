@@ -32,10 +32,9 @@ Après avoir installé git ainsi que node v16.17.0 mini sur votre pc, clonez le 
 git clone https://github.com/EscolanoA/Pharmacie_SAUTEUHZ.git
 ```
 
-- Créez une base de données dans votre gestionnaire de BDD.
-- Copiez le script de création de des tables dedans
-- Il s'agit du fichier : assets/bdd/CreateTablesEtJdd.sql
-- Ensuite rentrez l'hote, l'user et le mot de passe et le libellé de votre BDD dans le fichier : /DB.ini
+- Copiez le script de création de la BDD : assets/bdd/CreateTablesEtJdd.sql
+- Collez le script de dans votre gestionnaire de base de données ex WAMP, XAMP ...
+- Ensuite rentrez l'hote, l'user et le mot de passe pour accèder à votre BDD dans le fichier : /DB.ini
 
 Il vous suffit alors d'installer les dépendances avec cette commande : 
 ```
@@ -49,9 +48,10 @@ Et rendez vous sur l'url suivante
 ``` 
 https://localhost:3000/
 ```
-- entrez les identifiants suivants vous donnera accès à l'application
+- Les identifiants suivants vous donneront accès à l'application
 - Adress Mail : pharmacien@mail.com 
 - Mot de passe : root
 
+- N'hésitez pas à me rapporter différents dysfonctionnements, bugs, et points de frictions que vous rencontreriez via  <a href="mailto:brieucme35@gmail.com"> brieucme35@gmail.com</a>
 ## Auteur
 - [Brieuc-Meyer](https://github.com/Brieuc-Meyer)
