@@ -36,11 +36,11 @@ git clone https://github.com/EscolanoA/Pharmacie_SAUTEUHZ.git
 - Collez le script de dans votre gestionnaire de base de données ex WAMP, XAMP ...
 - Ensuite rentrez l'hote, l'user et le mot de passe pour accèder à votre BDD dans le fichier : /DB.ini
 
-Dans le dossier Pharmacie_SAUTEUHZ installez les dépendances avec cette commande : 
+Dans le dossier Pharmacie_SAUTEUHZ ouvrez un terminal et installez les dépendances avec cette commande : 
 ```
 npm i iniparser mysql2  express express-session ejs express-session dotenv 
 ```
-Pour finir, pour accèder au site web, lancer le serveur https : 
+Toujours dans le terminal cette commende lancera lancer le serveur https : 
 ``` 
 npm run node
 ```
@@ -55,3 +55,4 @@ https://localhost:3000/
 - N'hésitez pas à me rapporter différents dysfonctionnements, bugs, et points de frictions que vous rencontreriez via  <a href="mailto:brieucme35@gmail.com"> brieucme35@gmail.com</a>
 ## Auteur
 - [Brieuc-Meyer](https://github.com/Brieuc-Meyer)
+- NB la version dans se reposistory est la 1.0.0, ce projet sera soutenu dans le temps ici : [Brieuc-Meyer](https://github.com/Brieuc-Meyer)
